@@ -111,6 +111,7 @@ public class PurchaseOrder extends BaseClass {
 		// Get PO Number
 		System.out.println(PO.getPoNumber());
 
+		//Logout and Close driver
 		PO.logout();
 		driver.close();
 
