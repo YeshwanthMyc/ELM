@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-05-15T14:44:47 IST" name="Default suite" finished-at="2025-05-15T14:47:09 IST" duration-ms="142018">
+    <groups>
+    </groups>
+    <test started-at="2025-05-15T14:44:47 IST" name="Default test" finished-at="2025-05-15T14:47:09 IST" duration-ms="142018">
+      <class name="PurchaseOrderCreation.PurchaseOrder">
+        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@7f6f61c8]" started-at="2025-05-15T14:44:47 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-05-15T14:47:09 IST" duration-ms="141790" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=2100, quantity=5, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, contractCategoryName=صيانة طرق روتينية -مبلغ, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- purchaseOrderCreation -->
+      </class> <!-- PurchaseOrderCreation.PurchaseOrder -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
