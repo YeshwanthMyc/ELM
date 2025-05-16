@@ -3,6 +3,7 @@ package Base;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.chrono.HijrahChronology;
@@ -93,6 +94,16 @@ public class BaseClass {
 
 	}
 
+	private static String fixEncoding(String input) {
+		if (input == null)
+			return null;
+		try {
+			return new String(input.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+		} catch (Exception e) {
+			return input; // Return original if conversion fails
+		}
+	}
+
 	@DataProvider(name = "poData")
 	public Object[][] getData() throws IOException {
 		List<HashMap<String, String>> data = getJSONData(
@@ -105,8 +116,9 @@ public class BaseClass {
 
 			for (String key : originalData.keySet()) {
 				String jenkinsValue = System.getProperty(key);
+				
 				if (jenkinsValue != null && !jenkinsValue.isEmpty()) {
-					finalData.put(key, jenkinsValue);
+					finalData.put(key, fixEncoding(jenkinsValue));
 				} else {
 					finalData.put(key, originalData.get(key));
 				}
