@@ -94,16 +94,7 @@ public class BaseClass {
 
 	}
 
-	private static String fixEncoding(String input) {
-		if (input == null)
-			return null;
-		try {
-			return new String(input.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-		} catch (Exception e) {
-			return input; // Return original if conversion fails
-		}
-	}
-
+	
 	@DataProvider(name = "poData")
 	public Object[][] getData() throws IOException {
 		List<HashMap<String, String>> data = getJSONData(
@@ -118,7 +109,7 @@ public class BaseClass {
 				String jenkinsValue = System.getProperty(key);
 				
 				if (jenkinsValue != null && !jenkinsValue.isEmpty()) {
-					finalData.put(key, fixEncoding(jenkinsValue));
+					finalData.put(key, jenkinsValue);
 				} else {
 					finalData.put(key, originalData.get(key));
 				}
