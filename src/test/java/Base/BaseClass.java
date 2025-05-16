@@ -100,27 +100,26 @@ public class BaseClass {
 		Object[][] dataProvider = new Object[data.size()][];
 
 		for (int i = 0; i < data.size(); i++) {
-		    HashMap<String, String> originalData = data.get(i);
-		    HashMap<String, String> finalData = new HashMap<>();
+			HashMap<String, String> originalData = data.get(i);
+			HashMap<String, String> finalData = new HashMap<>();
 
-		    for (String key : originalData.keySet()) {
-		        String jenkinsValue = System.getProperty(key);
-		        if (jenkinsValue != null && !jenkinsValue.isEmpty()) {
-		        	 try {
-		                 // Decode Jenkins-passed values that may have been misencoded
-		                 String decodedValue = new String(jenkinsValue.getBytes("ISO-8859-1"), "UTF-8");
-		                 finalData.put(key, decodedValue);
-		             } catch (Exception e) {
-		                 // If decoding fails, fall back to raw value
-		                 finalData.put(key, jenkinsValue);
-		             }
-		        } else {
-		            finalData.put(key, originalData.get(key)); // fallback to JSON
-		        }
-		    }
+			for (String key : originalData.keySet()) {
+				String jenkinsValue = System.getProperty(key);
+				if (jenkinsValue != null && !jenkinsValue.isEmpty()) {
+					try {
+						String decodedValue = new String(jenkinsValue.getBytes("ISO-8859-1"), "UTF-8");
+						finalData.put(key, decodedValue);
+					} catch (Exception e) {
 
-		    dataProvider[i] = new Object[] { finalData };
-}
+						finalData.put(key, jenkinsValue);
+					}
+				} else {
+					finalData.put(key, originalData.get(key));
+				}
+			}
+
+			dataProvider[i] = new Object[] { finalData };
+		}
 
 		return dataProvider;
 	}
