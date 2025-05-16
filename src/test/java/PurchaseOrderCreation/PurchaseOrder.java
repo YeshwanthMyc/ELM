@@ -18,6 +18,7 @@ public class PurchaseOrder extends BaseClass {
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
 
 		launchApplication();
+		System.out.println("supplierName from Jenkins: " + System.getProperty("supplierName"));
 		PurchaseOrderLocators PO = new PurchaseOrderLocators(driver, wait, action);
 
 		// Open Window
