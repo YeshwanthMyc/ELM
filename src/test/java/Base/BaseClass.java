@@ -106,7 +106,14 @@ public class BaseClass {
 		    for (String key : originalData.keySet()) {
 		        String jenkinsValue = System.getProperty(key);
 		        if (jenkinsValue != null && !jenkinsValue.isEmpty()) {
-		            finalData.put(key, jenkinsValue); // override from Jenkins
+		        	 try {
+		                 // Decode Jenkins-passed values that may have been misencoded
+		                 String decodedValue = new String(jenkinsValue.getBytes("ISO-8859-1"), "UTF-8");
+		                 finalData.put(key, decodedValue);
+		             } catch (Exception e) {
+		                 // If decoding fails, fall back to raw value
+		                 finalData.put(key, jenkinsValue);
+		             }
 		        } else {
 		            finalData.put(key, originalData.get(key)); // fallback to JSON
 		        }
