@@ -14,29 +14,10 @@ import LocatorsOfWindows.PurchaseOrderLocators;
 
 public class PurchaseOrder extends BaseClass {
 
-	// Dates
-	LocalDate today = LocalDate.now();
-	LocalDate futuredate = today.plusDays(5);
-
-	// Gregorian Date
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-	String currentDate = today.format(formatter);
-	String futureDate = futuredate.format(formatter);
-
-	// Hijri Date
-	HijrahDate hijriToday = HijrahChronology.INSTANCE.date(today);
-	HijrahDate hijriFutureDate = HijrahChronology.INSTANCE.date(futuredate);
-	DateTimeFormatter hijriFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-	String hijricurrentDate = hijriToday.format(hijriFormatter);
-	String hijrifutureDate = hijriFutureDate.format(hijriFormatter);
-
-	String approvalType = System.getProperty("approvalType", "Single");
-
 	@Test(dataProvider = "poData")
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
 
 		launchApplication();
-
 		PurchaseOrderLocators PO = new PurchaseOrderLocators(driver, wait, action);
 
 		// Open Window
@@ -111,7 +92,7 @@ public class PurchaseOrder extends BaseClass {
 		// Get PO Number
 		System.out.println(PO.getPoNumber());
 
-		//Logout and Close driver
+		// Logout and Close driver
 		PO.logout();
 		driver.close();
 

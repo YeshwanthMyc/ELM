@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.chrono.HijrahChronology;
+import java.time.chrono.HijrahDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
@@ -24,6 +28,24 @@ public class BaseClass {
 	public WebDriverWait wait;
 	public Actions action;
 	public Properties prop;
+
+	// Dates
+	LocalDate today = LocalDate.now();
+	LocalDate futuredate = today.plusDays(5);
+
+	// Gregorian Date
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+	public String currentDate = today.format(formatter);
+	public String futureDate = futuredate.format(formatter);
+
+	// Hijri Date
+	HijrahDate hijriToday = HijrahChronology.INSTANCE.date(today);
+	HijrahDate hijriFutureDate = HijrahChronology.INSTANCE.date(futuredate);
+	DateTimeFormatter hijriFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+	public String hijricurrentDate = hijriToday.format(hijriFormatter);
+	public String hijrifutureDate = hijriFutureDate.format(hijriFormatter);
+
+	public String approvalType = System.getProperty("approvalType", "Single");
 
 	public BaseClass() {
 		try {
@@ -64,21 +86,36 @@ public class BaseClass {
 
 		ObjectMapper mapper = new ObjectMapper();
 
-		List<HashMap<String, String>> data = mapper.readValue(jsonData, new TypeReference<List<HashMap<String, String>>>() {});
+		List<HashMap<String, String>> data = mapper.readValue(jsonData,
+				new TypeReference<List<HashMap<String, String>>>() {
+				});
 		return data;
 
 	}
-	
+
 	@DataProvider(name = "poData")
 	public Object[][] getData() throws IOException {
-	    List<HashMap<String, String>> data = getJSONData(System.getProperty("user.dir") + "\\src\\test\\java\\TestData\\purchaseOrder.json");
-	    Object[][] dataProvider = new Object[data.size()][];
+		List<HashMap<String, String>> data = getJSONData(
+				System.getProperty("user.dir") + "\\src\\test\\java\\TestData\\purchaseOrder.json");
+		Object[][] dataProvider = new Object[data.size()][];
 
-        for (int i = 0; i < data.size(); i++) {
-            dataProvider[i] = new Object[] { data.get(i) };
-        }
+		for (int i = 0; i < data.size(); i++) {
+		    HashMap<String, String> originalData = data.get(i);
+		    HashMap<String, String> finalData = new HashMap<>();
 
-        return dataProvider;
+		    for (String key : originalData.keySet()) {
+		        String jenkinsValue = System.getProperty(key);
+		        if (jenkinsValue != null && !jenkinsValue.isEmpty()) {
+		            finalData.put(key, jenkinsValue); // override from Jenkins
+		        } else {
+		            finalData.put(key, originalData.get(key)); // fallback to JSON
+		        }
+		    }
+
+		    dataProvider[i] = new Object[] { finalData };
+}
+
+		return dataProvider;
 	}
 
 }
