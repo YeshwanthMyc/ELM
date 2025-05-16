@@ -106,13 +106,7 @@ public class BaseClass {
 			for (String key : originalData.keySet()) {
 				String jenkinsValue = System.getProperty(key);
 				if (jenkinsValue != null && !jenkinsValue.isEmpty()) {
-					try {
-						String decodedValue = new String(jenkinsValue.getBytes("ISO-8859-1"), "UTF-8");
-						finalData.put(key, decodedValue);
-					} catch (Exception e) {
-
-						finalData.put(key, jenkinsValue);
-					}
+					finalData.put(key, jenkinsValue);
 				} else {
 					finalData.put(key, originalData.get(key));
 				}
