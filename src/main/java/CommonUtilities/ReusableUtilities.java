@@ -2,6 +2,7 @@ package CommonUtilities;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Duration;
@@ -47,10 +48,11 @@ public class ReusableUtilities {
 		driver.findElement(By.xpath("//button[@id='buttonOK']")).click();
 	}
 
-	public void logout() throws InterruptedException {// Wait for and click the image
+	public void logout() throws InterruptedException {
 		WebElement mainIcon = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//img[@name='isc_10main']")));
-		mainIcon.click();
+		Thread.sleep(500);
+		action.moveToElement(mainIcon).click().build().perform();
 
 		try {
 			action.sendKeys(Keys.ENTER).pause(Duration.ofMillis(1000)).sendKeys(Keys.ENTER).build().perform();
@@ -173,28 +175,40 @@ public class ReusableUtilities {
 		driver.switchTo().defaultContent();
 	}
 
-	public void successMessage() throws InterruptedException {
+	public String submitMessage(String poNumber) throws InterruptedException {
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='Processing_Container']")));
 		Thread.sleep(2000);
 		WebElement successMessageLocator = null;
 		int successMessageLocatorAttempt = 0;
+		String actualMessage="";
 		while (successMessageLocatorAttempt < 2) {
 			try {
 				successMessageLocator = wait.until(ExpectedConditions.presenceOfElementLocated(
-						By.xpath("//div[contains(@class, 'OBMessageBarDescriptionText_success')]")));
-				String actualMessage = successMessageLocator.getText();
-				String expectedMessage = "Process completed successfully.";
-				if (actualMessage.contains(expectedMessage)) {
+						By.xpath("//div[contains(@class, 'OBMessageBarDescriptionText')]/div/b")));
+				actualMessage = successMessageLocator.getText();
+				String expectedMessage = "Success";
+				if (actualMessage.equalsIgnoreCase(expectedMessage)) {
 					System.out.println("Record Submitted");
 
 				} else {
-					System.out.println("Success Message Not Matched");
+					if(actualMessage.equalsIgnoreCase("Warning")) {
+						String warningMessageQuery ="select EM_Efin_Posting_Errormsg from m_inout \r\n"
+								+ "where c_order_id in(select c_order_id from c_order where documentNo='"+poNumber+"')\r\n"
+								+ "\r\n"
+								+ "";
+						ResultSet warningMessageQueryResult = s.executeQuery(warningMessageQuery);
+						if (warningMessageQueryResult.next()) {
+							actualMessage = warningMessageQueryResult.getString("EM_Efin_Posting_Errormsg"); 
+						}
+					}
 				}
-				break;
+				
+				return actualMessage;
 			} catch (Exception e) {
 				successMessageLocatorAttempt++;
+				return "Exception:"+e.getMessage();
 			}
-		}
+		}return actualMessage;
 	}
 
 }

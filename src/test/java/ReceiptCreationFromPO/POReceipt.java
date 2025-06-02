@@ -1,23 +1,23 @@
-package PurchaseOrderCreation;
+package ReceiptCreationFromPO;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.chrono.HijrahChronology;
-import java.time.chrono.HijrahDate;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import LocatorsOfWindows.POReceiptLocators;
 import LocatorsOfWindows.PurchaseOrderLocators;
 import TestComponents.BaseClass;
 import TestComponents.RetryAnalyzer;
 
-public class PurchaseOrder extends BaseClass {
-
-	String contractType ="Amt";
-	
+public class POReceipt extends BaseClass {
+	String contractType = "Qty";
+	String txrnType = "Project Receiving";
+	String poDocNumber = "";
+	String productCode="";
+	double receiptAmount=0;
+	double receiptQty=0;
 	@Test(dataProvider = "poData",retryAnalyzer = RetryAnalyzer.class)
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
 
@@ -40,11 +40,11 @@ public class PurchaseOrder extends BaseClass {
 		// PO Header Fields
 		PO.processType(data.get("processType"));
 		PO.referenceNumber(data.get("referenceNum"));
-		if(contractType.equalsIgnoreCase("Amt")) {
+		if (contractType.equalsIgnoreCase("Amt")) {
 			PO.contractCategory(data.get("AmtcontractCategoryName"));
-		}else
+		} else
 			PO.contractCategory(data.get("QtycontractCategoryName"));
-		
+
 		PO.projectName(data.get("projectDescription"));
 		PO.awardNumber(data.get("awardNumber"));
 		PO.awardDate(currentDate);
@@ -70,6 +70,7 @@ public class PurchaseOrder extends BaseClass {
 		PO.navigateToPOLinesTab();
 		PO.createNewLine();
 		PO.selectProduct(data.get("productCode"));
+		productCode = data.get("productCode");
 		PO.enterQuantity(data.get("quantity"));
 		PO.enterUnitPrice(data.get("unitPrice"));
 		PO.saveLine();
@@ -100,11 +101,35 @@ public class PurchaseOrder extends BaseClass {
 
 		// Get PO Number
 		System.out.println(PO.getPoNumber());
-
+		poDocNumber=PO.getPoNumber();
+		
+		//Get Receipt Amount and Qty
+		receiptAmount = lineNetAmount * 0.3;
+		String lineNetQty = data.get("quantity");		
+		receiptQty = Math.round(Double.parseDouble(lineNetQty) * 0.3);
+		
 		// Logout and Close driver
 		PO.logout();
-		driver.close();
+		
+		
 
+	}
+	
+	@Test(dataProvider = "poReceiptData",dependsOnMethods = "purchaseOrderCreation",retryAnalyzer = RetryAnalyzer.class)
+	public void POReceiptCreation(HashMap<String, String> data) throws SQLException, InterruptedException {
+		launchApplication();
+		POReceiptLocators receipt = new POReceiptLocators(driver, wait, action);
+		receipt.login(data.get("SingleApprovalRequester"), data.get("password"));
+		receipt.openWindow(data.get("WindowName"));
+		receipt.createNewHeader();
+		receipt.transactionType(txrnType, currentDate, data.get("department"));
+		receipt.passPO(poDocNumber);
+		receipt.saveHeader();
+		receipt.addLines(contractType);
+		receipt.popUpAction(contractType, productCode, String.valueOf(receiptAmount), String.valueOf(receiptQty));
+		receipt.submitOrApprove();
+		String actualMessage = receipt.submitMessage(poDocNumber);
+		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"), "Expected message 'Success' but got: " + actualMessage);
 	}
 
 }

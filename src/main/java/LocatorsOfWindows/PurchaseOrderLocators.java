@@ -42,7 +42,8 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 		action.sendKeys(Keys.ENTER).build().perform();
 	}
 
-	public void referenceNumber(String refereneceNum) {
+	public void referenceNumber(String refereneceNum) throws InterruptedException {
+		Thread.sleep(500);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='escmReferenceNo']")))
 				.sendKeys(refereneceNum);
 		action.sendKeys(Keys.TAB).build().perform();
@@ -104,6 +105,7 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 		WebElement supplier = null;
 		while (supplierAttempt < 2) {
 			try {
+				Thread.sleep(500);
 				supplier = wait.until(ExpectedConditions
 						.visibilityOfElementLocated(By.xpath("(//input[@name='businessPartner'])[2]")));
 				supplier.click();
@@ -455,20 +457,57 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 			applyUniqueCode(isEncumbered);
 
 			submitOrApprove();
-			successMessage();
+			submitMessage(poNumber);
 
 			logout();
 			Thread.sleep(2000);
 		}
 	}
 	
-	public void addLedgerAccount(String windowName,String product,String accountNumber) throws InterruptedException, SQLException {
+	public void addCostCenter(String windowName) throws InterruptedException, SQLException {
 		openWindow(windowName);
 		documentNoFilter(poNumber);
+		Thread.sleep(2500);
+		
+		String costCenterQuery = "select Value from C_SalesRegion where EM_Efin_Showinpo='Y'";	
+		ResultSet costCenterQueryResult = s.executeQuery(costCenterQuery);
+		List<String> costCenters = new ArrayList<>();
+		while(costCenterQueryResult.next()) {
+			costCenters.add(costCenterQueryResult.getString("Value"));
+		}
+		
+		By costCenterLocator = By.xpath("(//input[@name='efinSalesregion'])[2]");
+		wait.until(ExpectedConditions.presenceOfElementLocated(costCenterLocator));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+				driver.findElement(costCenterLocator));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+				driver.findElement(costCenterLocator));
+		WebElement costCenter = wait.until(ExpectedConditions.elementToBeClickable(costCenterLocator));
+		
+		
+		String costCenterEmptyQuery="select EM_Efin_Salesregion_ID from c_order where documentno='"+poNumber+"'";
+		ResultSet costCenterEmptyQueryResult = s.executeQuery(costCenterEmptyQuery);
+		if(costCenterEmptyQueryResult.next()) {
+			String costCenterEmpty = costCenterEmptyQueryResult.getString("EM_Efin_Salesregion_ID");
+			if(costCenterEmpty==null) {
+				costCenter.sendKeys(costCenters.get(0));
+				Thread.sleep(1500);
+				action.sendKeys(Keys.ENTER).build().perform();
+			}	
+		}
+	}
+	
+	public void addLedgerAccount(String product,String accountNumber) throws InterruptedException, SQLException {
+		
 		navigateToPOLinesTab();
 		WebElement filteredLineRow = wait.until(
 				ExpectedConditions.elementToBeClickable(By.xpath("//div/nobr[contains(text(),'" + product + "')]")));
 		action.moveToElement(filteredLineRow).doubleClick().build().perform();
+		
+		String ledgerAccountEmptyQuery ="select EM_Efin_Ledgeraccount_ID from c_orderline \r\n"
+				+ "join c_order on \r\n"
+				+ "c_order.c_order_id = c_orderline.c_order_id\r\n"
+				+ "where c_order.documentno ='"+poNumber+"'";
 		
 		String ledgerAccountsQuery ="select CEV2.value as ledger_Value\r\n"
 				+ "FROM efin_accountmap EAM\r\n"
@@ -498,7 +537,15 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 		WebElement reLoadedLedgerAccount = wait.until(ExpectedConditions.elementToBeClickable(ledgerLocator));
 		reLoadedLedgerAccount.click();
 		Thread.sleep(500);
-		reLoadedLedgerAccount.sendKeys(ledgerAccounts.get(0));
+		
+		ResultSet ledgerAccountEmptyQueryResult = s.executeQuery(ledgerAccountEmptyQuery);
+		
+		if(ledgerAccountEmptyQueryResult.next()) {
+			String ledgerAccountEmpty = ledgerAccountEmptyQueryResult.getString("EM_Efin_Ledgeraccount_ID");
+			if(ledgerAccountEmpty==null) {
+				reLoadedLedgerAccount.sendKeys(ledgerAccounts.get(0));
+			}	
+		}
 		Thread.sleep(1500);
 		action.sendKeys(Keys.ENTER).build().perform();
 		

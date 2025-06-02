@@ -8,7 +8,8 @@
 	    "poWindowName": "Purchase Order and Contracts summary",
 	    "processType": "Direct Purchasing",
 	    "referenceNum": "7904957584",
-	    "contractCategoryName": "صيانة طرق روتينية -مبلغ",
+	    "AmtcontractCategoryName": "صيانة طرق روتينية -مبلغ",
+		"QtycontractCategoryName" : "تنفيذ -كمية",
 	    "projectDescription": "Automation Testing of PO",
 	    "awardNumber": "89989898",
 	    "supplierName": "مكتب عبدالرحمن عبدالله النور لإستشارات هندسة",
@@ -16,8 +17,8 @@
 	    "accountNumber": "400200300",
 		"attachmentFilePath":"C:\\Users\\QUALIAN\\OneDrive - Qualian Technologies Pvt Ltd\\Documents\\yesh.txt",
 		"productCode":"01010001",
-		"quantity":"5",
-		"unitPrice":"2100",
+		"quantity":"10",
+		"unitPrice":"100",
 		"AccrualUser":"Openbravo"
 	}
 ]

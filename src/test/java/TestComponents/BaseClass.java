@@ -1,4 +1,4 @@
-package Base;
+package TestComponents;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,7 +46,7 @@ public class BaseClass {
 	public String hijricurrentDate = hijriToday.format(hijriFormatter);
 	public String hijrifutureDate = hijriFutureDate.format(hijriFormatter);
 
-	public String approvalType = System.getProperty("approvalType", "Single");
+	public String poApprovalType = System.getProperty("approvalType", "Single");
 
 	public BaseClass() {
 		try {
@@ -76,8 +76,11 @@ public class BaseClass {
 	}
 
 	public void launchApplication() {
+		String currentUrl =driver.getCurrentUrl();
 		String url = prop.getProperty("url");
-		driver.get(url);
+		if(currentUrl == null || currentUrl.equals("about:blank")||!currentUrl.equals(url)) {
+			driver.get(url);
+		}	
 		driver.manage().window().maximize();
 	}
 
@@ -94,11 +97,9 @@ public class BaseClass {
 
 	}
 
-	
-	@DataProvider(name = "poData")
-	public Object[][] getData() throws IOException {
+	public Object[][] getData(String filename) throws IOException {
 		List<HashMap<String, String>> data = getJSONData(
-				System.getProperty("user.dir") + "\\src\\test\\java\\TestData\\purchaseOrder.json");
+				System.getProperty("user.dir") + "\\src\\test\\java\\TestData\\" + filename);
 		Object[][] dataProvider = new Object[data.size()][];
 
 		for (int i = 0; i < data.size(); i++) {
@@ -107,7 +108,7 @@ public class BaseClass {
 
 			for (String key : originalData.keySet()) {
 				String jenkinsValue = System.getProperty(key);
-				
+
 				if (jenkinsValue != null && !jenkinsValue.isEmpty()) {
 					finalData.put(key, jenkinsValue);
 				} else {
@@ -119,6 +120,16 @@ public class BaseClass {
 		}
 
 		return dataProvider;
+	}
+
+	@DataProvider(name = "poData")
+	public Object[][] getPOData() throws IOException {
+		return getData("purchaseOrder.json");
+	}
+
+	@DataProvider(name = "poReceiptData")
+	public Object[][] getPOReceiptData() throws IOException {
+		return getData("POReceipt.json");
 	}
 
 }
