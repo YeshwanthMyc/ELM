@@ -32,7 +32,8 @@
 						<version>3.5.3</version>
 						<configuration>
 							<suiteXmlFiles>
-								<suiteXmlFile>TestFiles/PurchaseOrder.xml</suiteXmlFile>
+								<suiteXmlFile>TestFiles/PurchaseOrderCreation.xml</suiteXmlFile>
+								<suiteXmlFile>TestFiles/POReceiptCreationTest.xml</suiteXmlFile>
 							</suiteXmlFiles>
 						</configuration>
 					</plugin>

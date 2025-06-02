@@ -15,10 +15,11 @@ public class POReceipt extends BaseClass {
 	String contractType = "Qty";
 	String txrnType = "Project Receiving";
 	String poDocNumber = "";
-	String productCode="";
-	double receiptAmount=0;
-	double receiptQty=0;
-	@Test(dataProvider = "poData",retryAnalyzer = RetryAnalyzer.class)
+	String productCode = "";
+	double receiptAmount = 0;
+	double receiptQty = 0;
+
+	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class)
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
 
 		launchApplication();
@@ -87,7 +88,8 @@ public class POReceipt extends BaseClass {
 		// Submit PO
 		PO.submitOrApprove();
 		String actualMessage = PO.submitMessage(PO.getPoNumber());
-		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"), "Expected message 'Success' but got: " + actualMessage);
+		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
+				"Expected message 'Success' but got: " + actualMessage);
 		// Logout
 		PO.logout();
 
@@ -101,21 +103,19 @@ public class POReceipt extends BaseClass {
 
 		// Get PO Number
 		System.out.println(PO.getPoNumber());
-		poDocNumber=PO.getPoNumber();
-		
-		//Get Receipt Amount and Qty
+		poDocNumber = PO.getPoNumber();
+
+		// Get Receipt Amount and Qty
 		receiptAmount = lineNetAmount * 0.3;
-		String lineNetQty = data.get("quantity");		
+		String lineNetQty = data.get("quantity");
 		receiptQty = Math.round(Double.parseDouble(lineNetQty) * 0.3);
-		
+
 		// Logout and Close driver
 		PO.logout();
-		
-		
 
 	}
-	
-	@Test(dataProvider = "poReceiptData",dependsOnMethods = "purchaseOrderCreation",retryAnalyzer = RetryAnalyzer.class)
+
+	@Test(dataProvider = "poReceiptData", dependsOnMethods = "purchaseOrderCreation", retryAnalyzer = RetryAnalyzer.class)
 	public void POReceiptCreation(HashMap<String, String> data) throws SQLException, InterruptedException {
 		launchApplication();
 		POReceiptLocators receipt = new POReceiptLocators(driver, wait, action);
@@ -129,7 +129,8 @@ public class POReceipt extends BaseClass {
 		receipt.popUpAction(contractType, productCode, String.valueOf(receiptAmount), String.valueOf(receiptQty));
 		receipt.submitOrApprove();
 		String actualMessage = receipt.submitMessage(poDocNumber);
-		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"), "Expected message 'Success' but got: " + actualMessage);
+		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
+				"Expected message 'Success' but got: " + actualMessage);
 	}
 
 }
