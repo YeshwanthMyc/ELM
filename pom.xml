@@ -51,7 +51,7 @@
 						<version>3.5.3</version>
 						<configuration>
 							<suiteXmlFiles>
-								<suiteXmlFile>TestFiles/POReceiptCreationTest.xml</suiteXmlFile>
+								<suiteXmlFile>TestFiles/POReceiptCreation.xml</suiteXmlFile>
 							</suiteXmlFiles>
 						</configuration>
 					</plugin>
