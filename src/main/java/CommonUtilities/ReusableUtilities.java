@@ -103,9 +103,9 @@ public class ReusableUtilities {
 	}
 
 	public void maximizeHeader() {
-		WebElement poHeader = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+		WebElement header = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"(//div/div/table/tbody/tr/td[@class='OBTabBarButtonMainTitleSelected']//table/tbody/tr/td)[1]")));
-		action.doubleClick(poHeader).build().perform();
+		action.doubleClick(header).build().perform();
 	}
 
 	public void saveHeader() throws InterruptedException {
