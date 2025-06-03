@@ -16,6 +16,7 @@ import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -60,7 +61,12 @@ public class BaseClass {
 
 		String browserName = prop.getProperty("browser");
 		if (browserName.equalsIgnoreCase("chrome")) {
-			driver = new ChromeDriver();
+			 ChromeOptions options = new ChromeOptions();
+		        options.addArguments("--headless=new"); // "new" is recommended for Chrome 109+
+		        options.addArguments("--disable-gpu");  // Optional, good for compatibility
+		        options.addArguments("--window-size=1920,1080");
+
+			driver = new ChromeDriver(options);
 		}
 
 		else if (browserName.equalsIgnoreCase("firefox")) {

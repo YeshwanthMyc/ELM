@@ -5,8 +5,8 @@
     <classes>
       <class name="ReceiptCreationFromPO.POReceipt">
         <methods>
-          <include name="POReceiptCreation" invocation-numbers="0"/>
-          <include name="purchaseOrderCreation"/>
+          <include name="POReceiptCreation"/>
+          <include name="purchaseOrderCreation" invocation-numbers="0"/>
         </methods>
       </class> <!-- ReceiptCreationFromPO.POReceipt -->
     </classes>

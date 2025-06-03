@@ -18,7 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ReusableUtilities {
 
 	// DB Details
-	public static String DB_URL = "jdbc:postgresql://localhost:5932/mainaccrual";
+	public static String DB_URL = "jdbc:postgresql://localhost:54311/mainaccrual";
 	public static String DB_USER = "tad";
 	public static String DB_PASSWORD = "tad";
 	public Connection con;

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results retried="1" ignored="0" total="3" passed="1" failed="1" skipped="0">
+<testng-results retried="1" ignored="0" total="3" passed="0" failed="1" skipped="1">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-06-02T16:33:46 IST" name="Default suite" finished-at="2025-06-02T16:37:20 IST" duration-ms="214442">
+  <suite started-at="2025-06-03T12:42:26 IST" name="Default suite" finished-at="2025-06-03T12:42:27 IST" duration-ms="588">
     <groups>
     </groups>
-    <test started-at="2025-06-02T16:33:46 IST" name="Default test" finished-at="2025-06-02T16:37:20 IST" duration-ms="214442">
+    <test started-at="2025-06-03T12:42:26 IST" name="Default test" finished-at="2025-06-03T12:42:27 IST" duration-ms="588">
       <class name="ReceiptCreationFromPO.POReceipt">
-        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:ReceiptCreationFromPO.POReceipt@5ee2b6f9]" started-at="2025-06-02T16:33:46 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-02T16:35:42 IST" duration-ms="115321" status="PASS">
+        <test-method retried="true" signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:ReceiptCreationFromPO.POReceipt@5ee2b6f9]" started-at="2025-06-03T12:42:26 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-03T12:42:27 IST" duration-ms="365" status="SKIP">
           <params>
             <param index="0">
               <value>
@@ -15,27 +15,22 @@
               </value>
             </param>
           </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- purchaseOrderCreation -->
-        <test-method retried="true" signature="POReceiptCreation(java.util.HashMap)[pri:0, instance:ReceiptCreationFromPO.POReceipt@5ee2b6f9]" started-at="2025-06-02T16:35:42 IST" name="POReceiptCreation" data-provider="poReceiptData" finished-at="2025-06-02T16:36:26 IST" depends-on-methods="ReceiptCreationFromPO.POReceipt.purchaseOrderCreation" duration-ms="44637" status="SKIP">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
-              </value>
-            </param>
-          </params>
-          <exception class="java.lang.AssertionError">
+          <exception class="org.postgresql.util.PSQLException">
             <message>
-              <![CDATA[Expected message 'Success' but got: Posting sequence is not defined, please defined the sequence for posting the document. expected [true] but found [false]]]>
+              <![CDATA[Connection to localhost:5932 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Expected message 'Success' but got: Posting sequence is not defined, please defined the sequence for posting the document. expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failNotEquals(Assert.java:1590)
-at org.testng.Assert.assertTrue(Assert.java:57)
-at ReceiptCreationFromPO.POReceipt.POReceiptCreation(POReceipt.java:132)
+              <![CDATA[org.postgresql.util.PSQLException: Connection to localhost:5932 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:346)
+at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:273)
+at org.postgresql.Driver.makeConnection(Driver.java:446)
+at org.postgresql.Driver.connect(Driver.java:298)
+at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+at CommonUtilities.ReusableUtilities.getConnection(ReusableUtilities.java:40)
+at LocatorsOfWindows.PurchaseOrderLocators.<init>(PurchaseOrderLocators.java:36)
+at ReceiptCreationFromPO.POReceipt.purchaseOrderCreation(POReceipt.java:26)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -62,30 +57,48 @@ at org.testng.TestNG.run(TestNG.java:1079)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+at java.base/java.net.Socket.connect(Socket.java:760)
+at org.postgresql.core.PGStream.createSocket(PGStream.java:243)
+at org.postgresql.core.PGStream.<init>(PGStream.java:98)
+at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:136)
+at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:262)
+... 35 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- org.postgresql.util.PSQLException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- POReceiptCreation -->
-        <test-method signature="POReceiptCreation(java.util.HashMap)[pri:0, instance:ReceiptCreationFromPO.POReceipt@5ee2b6f9]" started-at="2025-06-02T16:36:26 IST" name="POReceiptCreation" data-provider="poReceiptData" finished-at="2025-06-02T16:37:20 IST" depends-on-methods="ReceiptCreationFromPO.POReceipt.purchaseOrderCreation" duration-ms="54273" status="FAIL">
+        </test-method> <!-- purchaseOrderCreation -->
+        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:ReceiptCreationFromPO.POReceipt@5ee2b6f9]" started-at="2025-06-03T12:42:27 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-03T12:42:27 IST" duration-ms="11" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
+                <![CDATA[{supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=100, AmtcontractCategoryName=صيانة طرق روتينية -مبلغ, quantity=10, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=تنفيذ -كمية, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}]]>
               </value>
             </param>
           </params>
-          <exception class="java.lang.AssertionError">
+          <exception class="org.postgresql.util.PSQLException">
             <message>
-              <![CDATA[Expected message 'Success' but got: Posting sequence is not defined, please defined the sequence for posting the document. expected [true] but found [false]]]>
+              <![CDATA[Connection to localhost:5932 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Expected message 'Success' but got: Posting sequence is not defined, please defined the sequence for posting the document. expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failNotEquals(Assert.java:1590)
-at org.testng.Assert.assertTrue(Assert.java:57)
-at ReceiptCreationFromPO.POReceipt.POReceiptCreation(POReceipt.java:132)
+              <![CDATA[org.postgresql.util.PSQLException: Connection to localhost:5932 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:346)
+at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:273)
+at org.postgresql.Driver.makeConnection(Driver.java:446)
+at org.postgresql.Driver.connect(Driver.java:298)
+at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+at CommonUtilities.ReusableUtilities.getConnection(ReusableUtilities.java:40)
+at LocatorsOfWindows.PurchaseOrderLocators.<init>(PurchaseOrderLocators.java:36)
+at ReceiptCreationFromPO.POReceipt.purchaseOrderCreation(POReceipt.java:26)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -112,9 +125,55 @@ at org.testng.TestNG.run(TestNG.java:1079)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+at java.base/java.net.Socket.connect(Socket.java:760)
+at org.postgresql.core.PGStream.createSocket(PGStream.java:243)
+at org.postgresql.core.PGStream.<init>(PGStream.java:98)
+at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:136)
+at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:262)
+... 35 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- org.postgresql.util.PSQLException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- purchaseOrderCreation -->
+        <test-method signature="POReceiptCreation(java.util.HashMap)[pri:0, instance:ReceiptCreationFromPO.POReceipt@5ee2b6f9]" started-at="2025-06-03T12:42:27 IST" name="POReceiptCreation" finished-at="2025-06-03T12:42:27 IST" depends-on-methods="ReceiptCreationFromPO.POReceipt.purchaseOrderCreation" duration-ms="2" status="SKIP">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method ReceiptCreationFromPO.POReceipt.POReceiptCreation() on instance ReceiptCreationFromPO.POReceipt@5ee2b6f9 depends on not successfully finished methods 
+[ReceiptCreationFromPO.POReceipt.purchaseOrderCreation() on instance ReceiptCreationFromPO.POReceipt@5ee2b6f9]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method ReceiptCreationFromPO.POReceipt.POReceiptCreation() on instance ReceiptCreationFromPO.POReceipt@5ee2b6f9 depends on not successfully finished methods 
+[ReceiptCreationFromPO.POReceipt.purchaseOrderCreation() on instance ReceiptCreationFromPO.POReceipt@5ee2b6f9]
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:159)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- POReceiptCreation -->
