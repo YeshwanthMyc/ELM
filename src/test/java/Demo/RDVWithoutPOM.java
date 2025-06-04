@@ -59,43 +59,18 @@ public class RDVWithoutPOM {
 				headerSaveIcon = wait.until(ExpectedConditions.elementToBeClickable(
 						By.xpath("//td[contains(@class,'OBToolbarIconButton_icon_save OBToolbarIconButton')]")));
 				headerSaveIcon.click();
+				wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("(//td[contains(@class,'OBToolbarIconButton_icon_save OBToolbarIconButtonDisabled')])[1]")));
 				break;
 			} catch (Exception e) {
 				headerSaveIconAttempt++;
 			}
 		}
+		
+		//undo button
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//td[@class='OBToolbarIconButton_icon_undo OBToolbarIconButton']")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@class='OBToolbarIconButton_icon_undo OBToolbarIconButton']"))).click();
 
-		// Logout
-		WebElement mainIcon = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//img[@name='isc_10main']")));
-		Thread.sleep(500);
-		action.moveToElement(mainIcon).click().build().perform();
-
-		try {
-			action.sendKeys(Keys.ENTER).pause(Duration.ofMillis(1000)).sendKeys(Keys.ENTER).build().perform();
-			WebElement userNameLocator = wait
-					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='user']")));
-			if (userNameLocator.isDisplayed()) {
-
-			}
-		} catch (Exception e) {
-
-			action.sendKeys(Keys.ENTER).pause(Duration.ofMillis(1000)).sendKeys(Keys.ENTER).build().perform();
-		}
-
-		// Login
-		driver.findElement(By.xpath("//input[@id='user']")).sendKeys("Openbravo");
-		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("12");
-		driver.findElement(By.xpath("//button[@id='buttonOK']")).click();
-
-		// Open Window
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[@class='OBNavBarComponent']/div[1])[2]")))
-				.click();
-		WebElement quickLaunchTextBox1 = wait.until(ExpectedConditions
-				.elementToBeClickable(By.xpath("//table[@role='presentation']/tbody/tr/td/div/input")));
-		quickLaunchTextBox1.sendKeys("Receipt delivery verification");
-		Thread.sleep(500);
-		action.sendKeys(Keys.ENTER).build().perform();
+		
 
 		// PO filter
 		Thread.sleep(2000);
@@ -169,7 +144,44 @@ public class RDVWithoutPOM {
 				lineSaveIconAttempt++;
 			}
 		}
+		
+		//Match All
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//td[@class='OBToolbarTextButton' and contains(text(),'Match All')]")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@class='OBToolbarTextButton' and contains(text(),'Match All')]"))).click();
+		
+		
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("OBClassicPopup_iframe")));
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("process")));
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("mainframe")));
+		WebElement okButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("buttonOK")));
+		okButton.click();
+		driver.switchTo().defaultContent();
+		
+		//Submit
+		Thread.sleep(2000);
+		WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+				"//td[@class='OBToolbarTextButton' and (contains(text(),'Submit') or contains(text(),'Approve'))]")));
+		action.moveToElement(submitButton).click().build().perform();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("OBClassicPopup_iframe")));
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("process")));
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("mainframe")));
+		WebElement okButton1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("buttonOK")));
+		okButton1.click();
+		driver.switchTo().defaultContent();
+		
+		//Generate amarsarf
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//td[@class='OBToolbarTextButton' and contains(text(),'Generate Amarsaraf')]")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@class='OBToolbarTextButton' and contains(text(),'Generate Amarsaraf')]"))).click();
 
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("OBClassicPopup_iframe")));
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("process")));
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("mainframe")));
+		WebElement okButton2 = wait.until(ExpectedConditions.elementToBeClickable(By.id("buttonOK")));
+		okButton2.click();
+		driver.switchTo().defaultContent();
 	}
 
 }

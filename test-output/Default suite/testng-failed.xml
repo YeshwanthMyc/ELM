@@ -3,10 +3,18 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
+      <class name="RDVCreation.ReceiptDeliveryVerification">
+        <methods>
+          <include name="setUpDriver"/>
+          <include name="createRDVWithDeductionHold"/>
+          <include name="launchApplication"/>
+        </methods>
+      </class> <!-- RDVCreation.ReceiptDeliveryVerification -->
       <class name="ReceiptCreationFromPO.POReceipt">
         <methods>
           <include name="POReceiptCreation"/>
-          <include name="purchaseOrderCreation" invocation-numbers="0"/>
+          <include name="setUpDriver"/>
+          <include name="launchApplication"/>
         </methods>
       </class> <!-- ReceiptCreationFromPO.POReceipt -->
     </classes>

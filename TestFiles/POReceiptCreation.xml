@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="PO Receipt Creation">
-  <test thread-count="5" name="POReceiptCreationTest">
-    <classes>
-      <class name="ReceiptCreationFromPO.POReceipt"/>
-    </classes>
-  </test> <!-- POReceiptCreation -->
-</suite> <!-- POReceiptCreationFromPO -->
+	<test thread-count="5" name="POReceiptCreationTest">
+		<classes>
+			<class name="ReceiptCreationFromPO.POReceipt">
+				<methods>
+					<include name="purchaseOrderCreation"></include>
+					<include name="POReceiptCreation1"></include>
+				</methods>
+			</class>
+
+
+		</classes>
+	</test> <!--
+	POReceiptCreation -->
+</suite> <!--
+POReceiptCreationFromPO -->

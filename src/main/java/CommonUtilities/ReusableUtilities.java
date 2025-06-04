@@ -18,7 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ReusableUtilities {
 
 	// DB Details
-	public static String DB_URL = "jdbc:postgresql://localhost:54311/mainaccrual";
+	public static String DB_URL = "jdbc:postgresql://localhost:5932/mainaccrual";
 	public static String DB_USER = "tad";
 	public static String DB_PASSWORD = "tad";
 	public Connection con;
@@ -80,7 +80,8 @@ public class ReusableUtilities {
 		action.sendKeys(Keys.ENTER).build().perform();
 	}
 
-	public void createNewHeader() {
+	public void createNewHeader() throws InterruptedException {
+		Thread.sleep(1000);
 		wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//td[contains(@class,'OBToolbarIconButton_icon_newDoc')]")))
 				.click();
@@ -117,6 +118,7 @@ public class ReusableUtilities {
 				headerSaveIcon = wait.until(ExpectedConditions.elementToBeClickable(
 						By.xpath("//td[contains(@class,'OBToolbarIconButton_icon_save OBToolbarIconButton')]")));
 				headerSaveIcon.click();
+				wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("(//td[contains(@class,'OBToolbarIconButton_icon_save OBToolbarIconButtonDisabled')])[1]")));
 				break;
 			} catch (Exception e) {
 				headerSaveIconAttempt++;
@@ -209,6 +211,21 @@ public class ReusableUtilities {
 				return "Exception:"+e.getMessage();
 			}
 		}return actualMessage;
+	}
+	
+	public void undoIcon() {
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//td[@class='OBToolbarIconButton_icon_undo OBToolbarIconButton']")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@class='OBToolbarIconButton_icon_undo OBToolbarIconButton']"))).click();
+	}
+	
+	public void popUpOkButton() throws InterruptedException {
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("OBClassicPopup_iframe")));
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("process")));
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("mainframe")));
+		WebElement okButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("buttonOK")));
+		okButton.click();
+		driver.switchTo().defaultContent();
 	}
 
 }

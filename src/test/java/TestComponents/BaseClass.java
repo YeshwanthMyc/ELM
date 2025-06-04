@@ -20,16 +20,19 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class BaseClass {
-	public WebDriver driver;
-	public WebDriverWait wait;
-	public Actions action;
-	public Properties prop;
+	public static WebDriver driver;
+	public static WebDriverWait wait;
+	public static Actions action;
+	public static Properties prop;
 
 	// Dates
 	LocalDate today = LocalDate.now();
@@ -58,15 +61,14 @@ public class BaseClass {
 		} catch (Exception e) {
 
 		}
-
+		
+	}
+	
+	@BeforeSuite
+	public void setUpDriver() {
 		String browserName = prop.getProperty("browser");
 		if (browserName.equalsIgnoreCase("chrome")) {
-			 ChromeOptions options = new ChromeOptions();
-		        options.addArguments("--headless=new"); // "new" is recommended for Chrome 109+
-		        options.addArguments("--disable-gpu");  // Optional, good for compatibility
-		        options.addArguments("--window-size=1920,1080");
-
-			driver = new ChromeDriver(options);
+			driver = new ChromeDriver();
 		}
 
 		else if (browserName.equalsIgnoreCase("firefox")) {
@@ -81,6 +83,7 @@ public class BaseClass {
 		this.action = new Actions(driver);
 	}
 
+	@BeforeMethod
 	public void launchApplication() {
 		String currentUrl =driver.getCurrentUrl();
 		String url = prop.getProperty("url");
@@ -135,7 +138,8 @@ public class BaseClass {
 
 	@DataProvider(name = "poReceiptData")
 	public Object[][] getPOReceiptData() throws IOException {
-		return getData("POReceipt.json");
+		 return getData("POReceipt.json");
+		 
 	}
 
 }
