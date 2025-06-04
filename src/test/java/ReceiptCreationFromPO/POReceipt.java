@@ -19,7 +19,7 @@ public class POReceipt extends BaseClass {
 
 	public static boolean isPoCreationSuccessfull = false;
 
-	//@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class, priority = 1)
+	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class, priority = 1)
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
 
 		PurchaseOrderLocators PO = new PurchaseOrderLocators(driver, wait, action);
@@ -90,12 +90,12 @@ public class POReceipt extends BaseClass {
 		if (!isPoCreationSuccessfull) {
 			System.out.println("PO Creation was failed");
 		}
-		if (!isPoCreationSuccessfull) {
+		if (isPoCreationSuccessfull) {
 			POReceiptLocators receipt = new POReceiptLocators(driver, wait, action);
 			receipt.login(data.get("SingleApprovalRequester"), data.get("password"));
 			receipt.openWindow(data.get("WindowName"));
 			receipt.createNewHeader();
-			receipt.transactionType(txrnType, currentDate, data.get("department"));
+			receipt.transactionType(txrnType, currentDate, data.get("Department"));
 			receipt.passPO("1018070");
 			receipt.saveHeader();
 			receipt.addLines(contractType);
@@ -109,7 +109,7 @@ public class POReceipt extends BaseClass {
 
 	}
 
-	//@Test(dataProvider = "poReceiptData", retryAnalyzer = RetryAnalyzer.class, priority = 3)
+	@Test(dataProvider = "poReceiptData", retryAnalyzer = RetryAnalyzer.class, priority = 3)
 	public void POReceiptCreation2(HashMap<String, String> data) throws SQLException, InterruptedException {
 		if (!isPoCreationSuccessfull) {
 			System.out.println("PO Creation was failed");
