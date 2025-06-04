@@ -5,7 +5,9 @@
     <classes>
       <class name="ReceiptCreationFromPO.POReceipt">
         <methods>
-          <include name="POReceiptCreation1" invocation-numbers="0"/>
+          <include name="POReceiptCreation1"/>
+          <include name="purchaseOrderCreation" invocation-numbers="0"/>
+          <include name="POReceiptCreation2"/>
           <include name="setUpDriver"/>
           <include name="launchApplication"/>
         </methods>

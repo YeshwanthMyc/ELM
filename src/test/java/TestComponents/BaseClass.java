@@ -3,7 +3,6 @@ package TestComponents;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.chrono.HijrahChronology;
@@ -16,11 +15,9 @@ import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
@@ -81,8 +78,8 @@ public class BaseClass {
 			throw new RuntimeException("Unsupported browser: " + browserName);
 		}
 
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		this.action = new Actions(driver);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		action = new Actions(driver);
 	}
 
 	@BeforeMethod

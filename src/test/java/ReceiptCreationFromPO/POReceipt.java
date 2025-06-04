@@ -95,7 +95,7 @@ public class POReceipt extends BaseClass {
 			receipt.login(data.get("SingleApprovalRequester"), data.get("password"));
 			receipt.openWindow(data.get("WindowName"));
 			receipt.createNewHeader();
-			receipt.transactionType(txrnType, currentDate, data.get("Department"));
+			receipt.transactionType(txrnType, hijricurrentDate, data.get("Department"));
 			receipt.passPO(poDocNumber);
 			receipt.saveHeader();
 			receipt.addLines(contractType);
@@ -119,7 +119,7 @@ public class POReceipt extends BaseClass {
 			receipt.login(data.get("SingleApprovalRequester"), data.get("password"));
 			receipt.openWindow(data.get("WindowName"));
 			receipt.createNewHeader();
-			receipt.transactionType(txrnType, currentDate, data.get("Department"));
+			receipt.transactionType(txrnType, hijricurrentDate, data.get("Department"));
 			receipt.passPO(poDocNumber);
 			receipt.saveHeader();
 			receipt.addLines(contractType);

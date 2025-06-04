@@ -1,12 +1,8 @@
 package RDVCreation;
 
 import java.sql.SQLException;
-import java.util.HashMap;
 
-import org.apache.commons.exec.LogOutputStream;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import LocatorsOfWindows.ReceiptDeliveryVerificationLocators;
@@ -14,7 +10,6 @@ import ReceiptCreationFromPO.POReceipt;
 import TestComponents.BaseClass;
 
 public class RDVCreation extends BaseClass {
-	POReceipt POR = new POReceipt();
 
 	@Test(dependsOnMethods = { "ReceiptCreationFromPO.POReceipt.POReceiptCreation1",
 			"ReceiptCreationFromPO.POReceipt.purchaseOrderCreation" })
