@@ -2,34 +2,36 @@
 <testng-results retried="1" ignored="0" total="2" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-06-04T16:13:48 IST" name="Default suite" finished-at="2025-06-04T16:14:15 IST" duration-ms="26837">
+  <suite started-at="2025-06-04T16:50:18 IST" name="Default suite" finished-at="2025-06-04T16:51:34 IST" duration-ms="75856">
     <groups>
     </groups>
-    <test started-at="2025-06-04T16:13:48 IST" name="Default test" finished-at="2025-06-04T16:14:15 IST" duration-ms="26837">
-      <class name="PurchaseOrderCreation.PurchaseOrder">
-        <test-method is-config="true" signature="setUpDriver()[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@757277dc]" started-at="2025-06-04T16:13:47 IST" name="setUpDriver" finished-at="2025-06-04T16:13:48 IST" duration-ms="1223" status="PASS">
+    <test started-at="2025-06-04T16:50:18 IST" name="Default test" finished-at="2025-06-04T16:51:34 IST" duration-ms="75856">
+      <class name="ReceiptCreationFromPO.POReceipt">
+        <test-method is-config="true" signature="setUpDriver()[pri:0, instance:ReceiptCreationFromPO.POReceipt@26adfd2d]" started-at="2025-06-04T16:50:17 IST" name="setUpDriver" finished-at="2025-06-04T16:50:18 IST" duration-ms="1210" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpDriver -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@757277dc]" started-at="2025-06-04T16:13:48 IST" name="launchApplication" finished-at="2025-06-04T16:13:49 IST" duration-ms="271" status="PASS">
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:ReceiptCreationFromPO.POReceipt@26adfd2d]" started-at="2025-06-04T16:50:18 IST" name="launchApplication" finished-at="2025-06-04T16:50:18 IST" duration-ms="308" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchApplication -->
-        <test-method retried="true" signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@757277dc]" started-at="2025-06-04T16:13:49 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-04T16:14:03 IST" duration-ms="13951" status="SKIP">
+        <test-method retried="true" signature="POReceiptCreation1(java.util.HashMap)[pri:2, instance:ReceiptCreationFromPO.POReceipt@26adfd2d]" started-at="2025-06-04T16:50:18 IST" name="POReceiptCreation1" data-provider="poReceiptData" finished-at="2025-06-04T16:51:28 IST" duration-ms="69407" status="SKIP">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=100, AmtcontractCategoryName=صيانة طرق روتينية -مبلغ, quantity=10, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=تنفيذ -كمية, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}]]>
+                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
               </value>
             </param>
           </params>
-          <exception class="java.lang.NullPointerException">
+          <exception class="java.lang.IllegalArgumentException">
             <message>
-              <![CDATA[Cannot invoke "String.equalsIgnoreCase(String)" because "PurchaseOrderCreation.PurchaseOrder.contractType" is null]]>
+              <![CDATA[Keys to send should be a not null CharSequence]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because "PurchaseOrderCreation.PurchaseOrder.contractType" is null
-at PurchaseOrderCreation.PurchaseOrder.purchaseOrderCreation(PurchaseOrder.java:37)
+              <![CDATA[java.lang.IllegalArgumentException: Keys to send should be a not null CharSequence
+at org.openqa.selenium.remote.RemoteWebElement.sendKeys(RemoteWebElement.java:96)
+at LocatorsOfWindows.POReceiptLocators.transactionType(POReceiptLocators.java:70)
+at ReceiptCreationFromPO.POReceipt.POReceiptCreation1(POReceipt.java:98)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -58,29 +60,42 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+          </exception> <!-- java.lang.IllegalArgumentException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- purchaseOrderCreation -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@757277dc]" started-at="2025-06-04T16:14:03 IST" name="launchApplication" finished-at="2025-06-04T16:14:03 IST" duration-ms="77" status="PASS">
+        </test-method> <!-- POReceiptCreation1 -->
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:ReceiptCreationFromPO.POReceipt@26adfd2d]" started-at="2025-06-04T16:51:28 IST" name="launchApplication" finished-at="2025-06-04T16:51:28 IST" duration-ms="80" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchApplication -->
-        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@757277dc]" started-at="2025-06-04T16:14:03 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-04T16:14:15 IST" duration-ms="12338" status="FAIL">
+        <test-method signature="POReceiptCreation1(java.util.HashMap)[pri:2, instance:ReceiptCreationFromPO.POReceipt@26adfd2d]" started-at="2025-06-04T16:51:28 IST" name="POReceiptCreation1" data-provider="poReceiptData" finished-at="2025-06-04T16:51:34 IST" duration-ms="5846" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=100, AmtcontractCategoryName=صيانة طرق روتينية -مبلغ, quantity=10, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=تنفيذ -كمية, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}]]>
+                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
               </value>
             </param>
           </params>
-          <exception class="java.lang.NullPointerException">
+          <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[Cannot invoke "String.equalsIgnoreCase(String)" because "PurchaseOrderCreation.PurchaseOrder.contractType" is null]]>
+              <![CDATA[Expected condition failed: waiting for element to be clickable: By.xpath: (//div[@class='OBNavBarComponent']/div[1])[2] (tried for 5 second(s) with 500 milliseconds interval)
+Build info: version: '4.32.0', revision: 'd17c8aa950'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '23.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 137.0.7151.55, chrome: {chromedriverVersion: 137.0.7151.68 (2989ffee9373..., userDataDir: C:\Users\QUALIAN\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63920}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63920/devtoo..., se:cdpVersion: 137.0.7151.55, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 418a6f733ddd11c00030adb4c5d6f2cb]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because "PurchaseOrderCreation.PurchaseOrder.contractType" is null
-at PurchaseOrderCreation.PurchaseOrder.purchaseOrderCreation(PurchaseOrder.java:37)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.xpath: (//div[@class='OBNavBarComponent']/div[1])[2] (tried for 5 second(s) with 500 milliseconds interval)
+Build info: version: '4.32.0', revision: 'd17c8aa950'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '23.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 137.0.7151.55, chrome: {chromedriverVersion: 137.0.7151.68 (2989ffee9373..., userDataDir: C:\Users\QUALIAN\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63920}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63920/devtoo..., se:cdpVersion: 137.0.7151.55, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 418a6f733ddd11c00030adb4c5d6f2cb
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at CommonUtilities.ReusableUtilities.openWindow(ReusableUtilities.java:72)
+at ReceiptCreationFromPO.POReceipt.POReceiptCreation1(POReceipt.java:96)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -109,11 +124,11 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- purchaseOrderCreation -->
-      </class> <!-- PurchaseOrderCreation.PurchaseOrder -->
+        </test-method> <!-- POReceiptCreation1 -->
+      </class> <!-- ReceiptCreationFromPO.POReceipt -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

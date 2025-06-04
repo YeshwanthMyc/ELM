@@ -13,15 +13,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import CommonUtilities.ReusableUtilities;
 
-public class POReceiptLocators extends ReusableUtilities{
+public class POReceiptLocators extends ReusableUtilities {
 	WebDriver driver;
+
 	public POReceiptLocators(WebDriver driver, WebDriverWait wait, Actions action) throws SQLException {
 		super(driver, wait, action);
 		this.driver = driver;
 		getConnection();
 	}
-	
-	public void transactionType(String txrnType,String hijricurrentDate,String department) throws InterruptedException {
+
+	public void transactionType(String txrnType, String hijricurrentDate, String department)
+			throws InterruptedException {
 		WebElement transactionType = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@name='escmReceivingtype'])[2]")));
 		transactionType.clear();
@@ -35,38 +37,43 @@ public class POReceiptLocators extends ReusableUtilities{
 
 		if (txrnType.equalsIgnoreCase("Site Receiving")) {
 
+			// Receiving Type
 			WebElement receivingType = wait.until(
 					ExpectedConditions.elementToBeClickable(By.xpath("(//input[@name='escmReceivingtype'])[2]")));
 			receivingType.sendKeys(txrnType);
 			action.sendKeys(Keys.ENTER).build().perform();
 
+			// Data
 			Thread.sleep(1000);
-
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='movementDate_dateTextField']")))
 					.sendKeys(hijricurrentDate);
 			action.sendKeys(Keys.TAB).build().perform();
 
+			//Warehouse
 			Thread.sleep(1000);
 			wait.until(ExpectedConditions.elementToBeClickable(
 					By.xpath("((//input[@name='warehouse'])[2]/ancestor::td/following-sibling::td)[1]"))).click();
 			Thread.sleep(1000);
-
 			action.sendKeys(Keys.DOWN).sendKeys(Keys.ENTER).build().perform();
 			Thread.sleep(1000);
-			
-			WebElement beneficiary = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='escmTobeneficiary']")));
+
+			//Beneficiary
+			WebElement beneficiary = wait
+					.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='escmTobeneficiary']")));
 			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", beneficiary);
 			beneficiary.sendKeys("Department");
 			action.sendKeys(Keys.ENTER).build().perform();
 			Thread.sleep(1000);
-			
-			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='escmTobenefiName']"))).sendKeys(department);
+
+			//Department Name
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='escmTobenefiName']")))
+					.sendKeys(department);
 			action.sendKeys(Keys.ENTER).build().perform();
 			Thread.sleep(1000);
-			
+
 		}
 	}
-	
+
 	public void passPO(String poDocNumber) throws InterruptedException {
 		WebElement poNumber = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='salesOrder']")));
@@ -75,33 +82,33 @@ public class POReceiptLocators extends ReusableUtilities{
 		poNumber.sendKeys(poDocNumber);
 		action.sendKeys(Keys.ENTER).build().perform();
 	}
-	
+
 	public void addLines(String contractType) throws InterruptedException {
 		Thread.sleep(1000);
-		if(contractType.equalsIgnoreCase("Amt")) {
-			WebElement addLines = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("(//td[normalize-space()='Add Lines'])[2]")));
+		if (contractType.equalsIgnoreCase("Amt")) {
+			WebElement addLines = wait.until(ExpectedConditions
+					.visibilityOfElementLocated(By.xpath("(//td[normalize-space()='Add Lines'])[2]")));
 			addLines.click();
 		}
-		
-		if(contractType.equalsIgnoreCase("Qty")) {
-			WebElement addLines = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("(//td[normalize-space()='Add Lines'])[1]")));
+
+		if (contractType.equalsIgnoreCase("Qty")) {
+			WebElement addLines = wait.until(ExpectedConditions
+					.visibilityOfElementLocated(By.xpath("(//td[normalize-space()='Add Lines'])[1]")));
 			addLines.click();
 		}
 	}
-	
-	public void popUpAction(String contractType,String productCode,String receiptAmount,String receiptQty) {
+
+	public void popUpAction(String contractType, String productCode, String receiptAmount, String receiptQty) {
 		WebElement popUpItem = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//td/div/nobr[.='"+productCode+"']")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//td/div/nobr[.='" + productCode + "']")));
 		popUpItem.click();
 
-		if(contractType.equalsIgnoreCase("Amt")) {
+		if (contractType.equalsIgnoreCase("Amt")) {
 			WebElement amount = wait
 					.until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@name='amount'])[1]")));
 			amount.sendKeys(receiptAmount);
 		}
-		if(contractType.equalsIgnoreCase("Qty")) {
+		if (contractType.equalsIgnoreCase("Qty")) {
 			WebElement amount = wait
 					.until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@name='requestedQty'])[1]")));
 			amount.sendKeys(receiptQty);

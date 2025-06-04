@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="PurchaseOrderCreation.PurchaseOrder">
+      <class name="ReceiptCreationFromPO.POReceipt">
         <methods>
-          <include name="purchaseOrderCreation" invocation-numbers="0"/>
+          <include name="POReceiptCreation1" invocation-numbers="0"/>
           <include name="setUpDriver"/>
           <include name="launchApplication"/>
         </methods>
-      </class> <!-- PurchaseOrderCreation.PurchaseOrder -->
+      </class> <!-- ReceiptCreationFromPO.POReceipt -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
