@@ -96,7 +96,7 @@ public class POReceipt extends BaseClass {
 			receipt.openWindow(data.get("WindowName"));
 			receipt.createNewHeader();
 			receipt.transactionType(txrnType, currentDate, data.get("Department"));
-			receipt.passPO("1018070");
+			receipt.passPO(poDocNumber);
 			receipt.saveHeader();
 			receipt.addLines(contractType);
 			receipt.popUpAction(contractType, productCode, String.valueOf(receiptAmount), String.valueOf(receiptQty));
