@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import org.apache.commons.exec.LogOutputStream;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -12,14 +13,14 @@ import LocatorsOfWindows.ReceiptDeliveryVerificationLocators;
 import ReceiptCreationFromPO.POReceipt;
 import TestComponents.BaseClass;
 
-public class RDVCreation extends BaseClass{
+public class RDVCreation extends BaseClass {
 	POReceipt POR = new POReceipt();
-	
-	@Test(dependsOnMethods = {"ReceiptCreationFromPO.POReceipt.POReceiptCreation1","ReceiptCreationFromPO.POReceipt.purchaseOrderCreation"})
+
+	@Test(dependsOnMethods = { "ReceiptCreationFromPO.POReceipt.POReceiptCreation1",
+			"ReceiptCreationFromPO.POReceipt.purchaseOrderCreation" })
 	public void createRDVWithNoDeduction() throws SQLException, InterruptedException {
-		//launchApplication();
 		ReceiptDeliveryVerificationLocators RDV = new ReceiptDeliveryVerificationLocators(driver, wait, action);
-		RDV.login("Openbravo","12");
+		RDV.login("Openbravo", "12");
 		RDV.openWindow("Receipt Delivery Verification");
 		RDV.createNewHeader();
 		System.out.println(POReceipt.poDocNumber);
@@ -35,16 +36,21 @@ public class RDVCreation extends BaseClass{
 		RDV.matchAll();
 		RDV.popUpOkButton();
 		RDV.submitOrApprove();
+		String actualMessageForSubmit = RDV.submitMessage(POReceipt.poDocNumber, "Receipt Delivery Verification");
+		Assert.assertTrue(actualMessageForSubmit.equalsIgnoreCase("Success"),
+				"Expected message 'Success' but got: " + actualMessageForSubmit);
 		RDV.generateAmarsaraf();
+		String actualMessageForInvoice = RDV.submitMessage(POReceipt.poDocNumber, "Receipt Delivery Verification");
+		Assert.assertTrue(actualMessageForInvoice.equalsIgnoreCase("Success"),
+				"Expected message 'Success' but got: " + actualMessageForInvoice);
 		RDV.popUpOkButton();
 		RDV.logout();
 	}
-	
-	@Test(dependsOnMethods = {"ReceiptCreationFromPO.POReceipt.POReceiptCreation2"})
+
+	@Test(dependsOnMethods = { "ReceiptCreationFromPO.POReceipt.POReceiptCreation2" })
 	public void createRDVWithDeductionHold() throws SQLException, InterruptedException {
-		//launchApplication();
 		ReceiptDeliveryVerificationLocators RDV = new ReceiptDeliveryVerificationLocators(driver, wait, action);
-		RDV.login("Openbravo","12");
+		RDV.login("Openbravo", "12");
 		RDV.openWindow("Receipt Delivery Verification");
 		RDV.RDVPOFilter(POReceipt.poDocNumber);
 		RDV.navigateToTransactionVersion();
@@ -54,14 +60,18 @@ public class RDVCreation extends BaseClass{
 		RDV.saveLine();
 		RDV.matchAll();
 		RDV.popUpOkButton();
+		// Hold
 		RDV.submitOrApprove();
-		
-		//I will create hold logic here 
+		String actualMessageForSubmit = RDV.submitMessage(POReceipt.poDocNumber, "Receipt Delivery Verification");
+		Assert.assertTrue(actualMessageForSubmit.equalsIgnoreCase("Success"),
+				"Expected message 'Success' but got: " + actualMessageForSubmit);
 		RDV.generateAmarsaraf();
+		String actualMessageForInvoice = RDV.submitMessage(POReceipt.poDocNumber, "Receipt Delivery Verification");
+		Assert.assertTrue(actualMessageForInvoice.equalsIgnoreCase("Success"),
+				"Expected message 'Success' but got: " + actualMessageForInvoice);
 		RDV.popUpOkButton();
 		RDV.logout();
-	
+
 	}
-	
-	
+
 }

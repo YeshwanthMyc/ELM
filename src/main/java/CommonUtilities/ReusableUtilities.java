@@ -89,17 +89,17 @@ public class ReusableUtilities {
 
 	public void createNewLine() throws InterruptedException {
 		Thread.sleep(1500);
-		int newLineAttempt =0;
-		while(newLineAttempt<2){
+		int newLineAttempt = 0;
+		while (newLineAttempt < 2) {
 			try {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(
 						By.xpath("(//td[contains(@class,'OBToolbarIconButton_icon_newDoc')])[2]"))).click();
 				break;
 			} catch (Exception e) {
-				
-			}newLineAttempt++;
+
+			}
+			newLineAttempt++;
 		}
-		
 
 	}
 
@@ -118,7 +118,8 @@ public class ReusableUtilities {
 				headerSaveIcon = wait.until(ExpectedConditions.elementToBeClickable(
 						By.xpath("//td[contains(@class,'OBToolbarIconButton_icon_save OBToolbarIconButton')]")));
 				headerSaveIcon.click();
-				wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("(//td[contains(@class,'OBToolbarIconButton_icon_save OBToolbarIconButtonDisabled')])[1]")));
+				wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(
+						"(//td[contains(@class,'OBToolbarIconButton_icon_save OBToolbarIconButtonDisabled')])[1]")));
 				break;
 			} catch (Exception e) {
 				headerSaveIconAttempt++;
@@ -177,47 +178,66 @@ public class ReusableUtilities {
 		driver.switchTo().defaultContent();
 	}
 
-	public String submitMessage(String poNumber) throws InterruptedException {
+	public String submitMessage(String poNumber, String windowName) throws InterruptedException {
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='Processing_Container']")));
 		Thread.sleep(2000);
-		WebElement successMessageLocator = null;
-		int successMessageLocatorAttempt = 0;
-		String actualMessage="";
-		while (successMessageLocatorAttempt < 2) {
+		WebElement MessageLocator = null;
+		WebElement errorMessageLocator = null;
+		int MessageLocatorAttempt = 0;
+		String actualMessage = "";
+		while (MessageLocatorAttempt < 2) {
 			try {
-				successMessageLocator = wait.until(ExpectedConditions.presenceOfElementLocated(
+				MessageLocator = wait.until(ExpectedConditions.presenceOfElementLocated(
 						By.xpath("//div[contains(@class, 'OBMessageBarDescriptionText')]/div/b")));
-				actualMessage = successMessageLocator.getText();
+				actualMessage = MessageLocator.getText();
 				String expectedMessage = "Success";
 				if (actualMessage.equalsIgnoreCase(expectedMessage)) {
-					System.out.println("Record Submitted");
+					System.out.println(windowName + ": Submitted Successfully");
 
 				} else {
-					if(actualMessage.equalsIgnoreCase("Warning")) {
-						String warningMessageQuery ="select EM_Efin_Posting_Errormsg from m_inout \r\n"
-								+ "where c_order_id in(select c_order_id from c_order where documentNo='"+poNumber+"')\r\n"
-								+ "\r\n"
-								+ "";
-						ResultSet warningMessageQueryResult = s.executeQuery(warningMessageQuery);
-						if (warningMessageQueryResult.next()) {
-							actualMessage = warningMessageQueryResult.getString("EM_Efin_Posting_Errormsg"); 
+					if (windowName.equalsIgnoreCase("PO Receipt")) {
+						if (actualMessage.equalsIgnoreCase("Warning")) {
+							String warningMessageQuery = "select EM_Efin_Posting_Errormsg from m_inout \r\n"
+									+ "where c_order_id in(select c_order_id from c_order where documentNo='" + poNumber
+									+ "')\r\n" + "\r\n" + "";
+							ResultSet warningMessageQueryResult = s.executeQuery(warningMessageQuery);
+							if (warningMessageQueryResult.next()) {
+								actualMessage = warningMessageQueryResult.getString("EM_Efin_Posting_Errormsg");
+							}
 						}
 					}
+
+					if (actualMessage.equalsIgnoreCase("Error")) {
+						errorMessageLocator = wait.until(ExpectedConditions.presenceOfElementLocated(
+								By.xpath("//div[contains(@class, 'OBMessageBarDescriptionText_error')]/div")));
+						String fullText = errorMessageLocator.getText();
+						String[] lines = fullText.split("\\n");
+						if (lines.length > 1) {
+							actualMessage = lines[1];
+						}else {
+							actualMessage = lines[0];
+						}
+						
+					}
 				}
-				
+
 				return actualMessage;
 			} catch (Exception e) {
-				successMessageLocatorAttempt++;
-				return "Exception:"+e.getMessage();
+				MessageLocatorAttempt++;
+				return "Exception:" + e.getMessage();
 			}
-		}return actualMessage;
+		}
+		return actualMessage;
 	}
-	
+
 	public void undoIcon() {
-		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//td[@class='OBToolbarIconButton_icon_undo OBToolbarIconButton']")));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@class='OBToolbarIconButton_icon_undo OBToolbarIconButton']"))).click();
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+				By.xpath("//td[@class='OBToolbarIconButton_icon_undo OBToolbarIconButton']")));
+		wait.until(ExpectedConditions
+				.elementToBeClickable(By.xpath("//td[@class='OBToolbarIconButton_icon_undo OBToolbarIconButton']")))
+				.click();
 	}
-	
+
 	public void popUpOkButton() throws InterruptedException {
 		Thread.sleep(3000);
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("OBClassicPopup_iframe")));

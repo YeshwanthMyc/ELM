@@ -214,7 +214,7 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 							ExpectedConditions.elementToBeClickable(By.xpath("(//td[@class='OBFormButton'])[3]")));
 					popUpOkButton.click();
 				} catch (Exception e) {
-					System.out.println("Popup OK button not found, proceeding to next step.");
+					//System.out.println("Popup OK button not found, proceeding to next step.");
 				}
 
 				WebElement selectUniqueCode = wait
@@ -229,6 +229,7 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 	}
 
 	public void navigateToPOLinesTab() throws InterruptedException {
+		Thread.sleep(1000);
 		WebElement linesTab = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[contains(text(),'Lines Attributes')]")));
 		action.moveToElement(linesTab).doubleClick().build().perform();
@@ -298,7 +299,7 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 		double lineNetAmount = 0;
 		if (lineTotalResult.next()) {
 			String lineNetAmtResult = lineTotalResult.getString("LineNetAmt");
-			System.out.println("LineNetAmt: " + lineNetAmtResult);
+			//System.out.println("LineNetAmt: " + lineNetAmtResult);
 			lineNetAmount = Double.parseDouble(lineNetAmtResult);
 		}
 		return lineNetAmount;
@@ -457,7 +458,7 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 			applyUniqueCode(isEncumbered);
 
 			submitOrApprove();
-			submitMessage(poNumber);
+			submitMessage(poNumber,windowName);
 
 			logout();
 			Thread.sleep(2000);

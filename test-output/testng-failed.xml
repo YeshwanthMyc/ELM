@@ -1,30 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [RDV Creation]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="RDV Creation Test(failed)">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
       <class name="ReceiptCreationFromPO.POReceipt">
         <methods>
-          <include name="purchaseOrderCreation"/>
-          <include name="POReceiptCreation"/>
+          <include name="POReceiptCreation1" invocation-numbers="0"/>
           <include name="setUpDriver"/>
           <include name="launchApplication"/>
         </methods>
       </class> <!-- ReceiptCreationFromPO.POReceipt -->
-      <class name="RDVCreation.RDVWithHold">
-        <methods>
-          <include name="createRDVWithDeductionHold"/>
-          <include name="setUpDriver"/>
-          <include name="launchApplication"/>
-        </methods>
-      </class> <!-- RDVCreation.RDVWithHold -->
-      <class name="RDVCreation.RDVWithNoDeduction">
-        <methods>
-          <include name="setUpDriver"/>
-          <include name="createRDVWithNoDeduction"/>
-          <include name="launchApplication"/>
-        </methods>
-      </class> <!-- RDVCreation.RDVWithNoDeduction -->
     </classes>
-  </test> <!-- RDV Creation Test(failed) -->
-</suite> <!-- Failed suite [RDV Creation] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

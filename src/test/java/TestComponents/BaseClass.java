@@ -50,8 +50,9 @@ public class BaseClass {
 	public String hijricurrentDate = hijriToday.format(hijriFormatter);
 	public String hijrifutureDate = hijriFutureDate.format(hijriFormatter);
 
-	public String poApprovalType = System.getProperty("approvalType", "Single");
-
+	public static String poApprovalType = System.getProperty("approvalType", "Single");
+	public static String contractType = System.getProperty("contractType");
+	
 	public BaseClass() {
 		try {
 			prop = new Properties();

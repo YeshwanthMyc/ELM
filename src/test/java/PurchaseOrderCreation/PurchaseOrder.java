@@ -16,35 +16,28 @@ import TestComponents.RetryAnalyzer;
 
 public class PurchaseOrder extends BaseClass {
 
-	String contractType ="Amt";
-	
-	@Test(dataProvider = "poData",retryAnalyzer = RetryAnalyzer.class)
-	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
+	String contractType = "Amt";
 
+	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class)
+	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
 		launchApplication();
 		PurchaseOrderLocators PO = new PurchaseOrderLocators(driver, wait, action);
 
-		// Open Window
 		if (poApprovalType.equalsIgnoreCase("Multi")) {
 			PO.login(data.get("MultiApprovalRequester"), data.get("password"));
 		}
-
 		if (poApprovalType.equalsIgnoreCase("Single")) {
 			PO.login(data.get("SingleApprovalRequester"), data.get("password"));
 		}
-
 		PO.openWindow(data.get("poWindowName"));
 		PO.createNewHeader();
 		PO.maximizeHeader();
-
-		// PO Header Fields
 		PO.processType(data.get("processType"));
 		PO.referenceNumber(data.get("referenceNum"));
-		if(contractType.equalsIgnoreCase("Amt")) {
+		if (contractType.equalsIgnoreCase("Amt")) {
 			PO.contractCategory(data.get("AmtcontractCategoryName"));
-		}else
+		} else
 			PO.contractCategory(data.get("QtycontractCategoryName"));
-		
 		PO.projectName(data.get("projectDescription"));
 		PO.awardNumber(data.get("awardNumber"));
 		PO.awardDate(currentDate);
@@ -52,56 +45,35 @@ public class PurchaseOrder extends BaseClass {
 		PO.selectSupplier(data.get("supplierName"));
 		PO.city(data.get("cityName"));
 		PO.MOFDates(currentDate);
-
-		// Select Unique Code
 		if (poApprovalType.equalsIgnoreCase("Multi")) {
 			PO.selectUniqueCode(data.get("MultiApprovalRequesterRoleId"), data.get("accountNumber"));
 		}
 		if (poApprovalType.equalsIgnoreCase("Single")) {
 			PO.selectUniqueCode(data.get("SingleApprovalRequesterRoleId"), data.get("accountNumber"));
 		}
-
 		PO.saveHeader();
-
-		// Attachment
 		PO.addAttachment(data.get("attachmentFilePath"));
-
-		// Lines Tab
 		PO.navigateToPOLinesTab();
 		PO.createNewLine();
 		PO.selectProduct(data.get("productCode"));
 		PO.enterQuantity(data.get("quantity"));
 		PO.enterUnitPrice(data.get("unitPrice"));
 		PO.saveLine();
-
-		// Contract Attributes
 		double lineNetAmount = PO.getLineNetAmount();
 		if (lineNetAmount >= 10000) {
 			PO.contractAttributes(hijricurrentDate, hijrifutureDate);
 		}
-
-		// Navigate To PO header
 		PO.navigateToPOHeader();
-
-		// Submit PO
 		PO.submitOrApprove();
-		String actualMessage = PO.submitMessage(PO.getPoNumber());
-		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"), "Expected message 'Success' but got: " + actualMessage);
-		// Logout
+		String actualMessage = PO.submitMessage(PO.getPoNumber(), data.get("poWindowName"));
+		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
+				"Expected message 'Success' but got: " + actualMessage);
 		PO.logout();
-
-		// Approval
 		PO.POApproval(data.get("poWindowName"), data.get("accountNumber"));
-
-		// Ledger account
 		PO.login(data.get("AccrualUser"), data.get("password"));
 		PO.addCostCenter(data.get("poWindowName"));
 		PO.addLedgerAccount(data.get("productCode"), data.get("accountNumber"));
-
-		// Get PO Number
 		System.out.println(PO.getPoNumber());
-
-		// Logout and Close driver
 		PO.logout();
 		driver.close();
 

@@ -20,10 +20,10 @@ public class POReceipt extends BaseClass {
 	double receiptQty = 0;
 
 	public static boolean isPoCreationSuccessfull = false;
-	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class,priority = 1)
+
+	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class, priority = 1)
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
 
-		//launchApplication();
 		PurchaseOrderLocators PO = new PurchaseOrderLocators(driver, wait, action);
 		if (poApprovalType.equalsIgnoreCase("Multi")) {
 			PO.login(data.get("MultiApprovalRequester"), data.get("password"));
@@ -69,7 +69,7 @@ public class POReceipt extends BaseClass {
 		}
 		PO.navigateToPOHeader();
 		PO.submitOrApprove();
-		String actualMessage = PO.submitMessage(PO.getPoNumber());
+		String actualMessage = PO.submitMessage(PO.getPoNumber(), data.get("poWindowName"));
 		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
 				"Expected message 'Success' but got: " + actualMessage);
 		PO.logout();
@@ -82,19 +82,17 @@ public class POReceipt extends BaseClass {
 		receiptAmount = lineNetAmount * 0.3;
 		String lineNetQty = data.get("quantity");
 		receiptQty = Math.round(Double.parseDouble(lineNetQty) * 0.3);
-		isPoCreationSuccessfull=true;
+		isPoCreationSuccessfull = true;
 		PO.logout();
 
 	}
 
-	
-	@Test(dataProvider = "poReceiptData", retryAnalyzer = RetryAnalyzer.class,priority = 2)
+	@Test(dataProvider = "poReceiptData", retryAnalyzer = RetryAnalyzer.class, priority = 2)
 	public void POReceiptCreation1(HashMap<String, String> data) throws SQLException, InterruptedException {
-		if(!isPoCreationSuccessfull) {
+		if (!isPoCreationSuccessfull) {
 			System.out.println("PO Creation was failed");
 		}
-		if(isPoCreationSuccessfull) {
-		//	launchApplication();
+		if (isPoCreationSuccessfull) {
 			POReceiptLocators receipt = new POReceiptLocators(driver, wait, action);
 			receipt.login(data.get("SingleApprovalRequester"), data.get("password"));
 			receipt.openWindow(data.get("WindowName"));
@@ -105,21 +103,20 @@ public class POReceipt extends BaseClass {
 			receipt.addLines(contractType);
 			receipt.popUpAction(contractType, productCode, String.valueOf(receiptAmount), String.valueOf(receiptQty));
 			receipt.submitOrApprove();
-			String actualMessage = receipt.submitMessage(poDocNumber);
+			String actualMessage = receipt.submitMessage(poDocNumber, data.get("WindowName"));
 			Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
 					"Expected message 'Success' but got: " + actualMessage);
 			receipt.logout();
 		}
-		
+
 	}
-	
-	@Test(dataProvider = "poReceiptData", retryAnalyzer = RetryAnalyzer.class,priority = 3)
+
+	@Test(dataProvider = "poReceiptData", retryAnalyzer = RetryAnalyzer.class, priority = 3)
 	public void POReceiptCreation2(HashMap<String, String> data) throws SQLException, InterruptedException {
-		if(!isPoCreationSuccessfull) {
+		if (!isPoCreationSuccessfull) {
 			System.out.println("PO Creation was failed");
 		}
-		if(isPoCreationSuccessfull) {
-		//	launchApplication();
+		if (isPoCreationSuccessfull) {
 			POReceiptLocators receipt = new POReceiptLocators(driver, wait, action);
 			receipt.login(data.get("SingleApprovalRequester"), data.get("password"));
 			receipt.openWindow(data.get("WindowName"));
@@ -130,12 +127,12 @@ public class POReceipt extends BaseClass {
 			receipt.addLines(contractType);
 			receipt.popUpAction(contractType, productCode, String.valueOf(receiptAmount), String.valueOf(receiptQty));
 			receipt.submitOrApprove();
-			String actualMessage = receipt.submitMessage(poDocNumber);
+			String actualMessage = receipt.submitMessage(poDocNumber, data.get("WindowName"));
 			Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
 					"Expected message 'Success' but got: " + actualMessage);
 			receipt.logout();
 		}
-		
+
 	}
 
 }
