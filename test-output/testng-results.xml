@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results retried="1" ignored="0" total="3" passed="1" failed="1" skipped="0">
+<testng-results retried="1" ignored="0" total="2" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-06-04T15:26:11 IST" name="Default suite" finished-at="2025-06-04T15:30:13 IST" duration-ms="242117">
+  <suite started-at="2025-06-04T16:13:48 IST" name="Default suite" finished-at="2025-06-04T16:14:15 IST" duration-ms="26837">
     <groups>
     </groups>
-    <test started-at="2025-06-04T15:26:11 IST" name="Default test" finished-at="2025-06-04T15:30:13 IST" duration-ms="242117">
-      <class name="ReceiptCreationFromPO.POReceipt">
-        <test-method is-config="true" signature="setUpDriver()[pri:0, instance:ReceiptCreationFromPO.POReceipt@e4487af]" started-at="2025-06-04T15:26:10 IST" name="setUpDriver" finished-at="2025-06-04T15:26:11 IST" duration-ms="1616" status="PASS">
+    <test started-at="2025-06-04T16:13:48 IST" name="Default test" finished-at="2025-06-04T16:14:15 IST" duration-ms="26837">
+      <class name="PurchaseOrderCreation.PurchaseOrder">
+        <test-method is-config="true" signature="setUpDriver()[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@757277dc]" started-at="2025-06-04T16:13:47 IST" name="setUpDriver" finished-at="2025-06-04T16:13:48 IST" duration-ms="1223" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpDriver -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:ReceiptCreationFromPO.POReceipt@e4487af]" started-at="2025-06-04T15:26:11 IST" name="launchApplication" finished-at="2025-06-04T15:26:12 IST" duration-ms="302" status="PASS">
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@757277dc]" started-at="2025-06-04T16:13:48 IST" name="launchApplication" finished-at="2025-06-04T16:13:49 IST" duration-ms="271" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchApplication -->
-        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:1, instance:ReceiptCreationFromPO.POReceipt@e4487af]" started-at="2025-06-04T15:26:12 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-04T15:28:13 IST" duration-ms="121299" status="PASS">
+        <test-method retried="true" signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@757277dc]" started-at="2025-06-04T16:13:49 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-04T16:14:03 IST" duration-ms="13951" status="SKIP">
           <params>
             <param index="0">
               <value>
@@ -23,31 +23,13 @@
               </value>
             </param>
           </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- purchaseOrderCreation -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:ReceiptCreationFromPO.POReceipt@e4487af]" started-at="2025-06-04T15:28:13 IST" name="launchApplication" finished-at="2025-06-04T15:28:13 IST" duration-ms="16" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method retried="true" signature="POReceiptCreation1(java.util.HashMap)[pri:2, instance:ReceiptCreationFromPO.POReceipt@e4487af]" started-at="2025-06-04T15:28:13 IST" name="POReceiptCreation1" data-provider="poReceiptData" finished-at="2025-06-04T15:29:18 IST" duration-ms="64903" status="SKIP">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
-              </value>
-            </param>
-          </params>
-          <exception class="java.lang.AssertionError">
+          <exception class="java.lang.NullPointerException">
             <message>
-              <![CDATA[Expected message 'Success' but got: Posting sequence is not defined, please defined the sequence for posting the document. expected [true] but found [false]]]>
+              <![CDATA[Cannot invoke "String.equalsIgnoreCase(String)" because "PurchaseOrderCreation.PurchaseOrder.contractType" is null]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Expected message 'Success' but got: Posting sequence is not defined, please defined the sequence for posting the document. expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failNotEquals(Assert.java:1590)
-at org.testng.Assert.assertTrue(Assert.java:57)
-at ReceiptCreationFromPO.POReceipt.POReceiptCreation1(POReceipt.java:109)
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because "PurchaseOrderCreation.PurchaseOrder.contractType" is null
+at PurchaseOrderCreation.PurchaseOrder.purchaseOrderCreation(PurchaseOrder.java:37)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -76,32 +58,29 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- POReceiptCreation1 -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:ReceiptCreationFromPO.POReceipt@e4487af]" started-at="2025-06-04T15:29:18 IST" name="launchApplication" finished-at="2025-06-04T15:29:18 IST" duration-ms="64" status="PASS">
+        </test-method> <!-- purchaseOrderCreation -->
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@757277dc]" started-at="2025-06-04T16:14:03 IST" name="launchApplication" finished-at="2025-06-04T16:14:03 IST" duration-ms="77" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchApplication -->
-        <test-method signature="POReceiptCreation1(java.util.HashMap)[pri:2, instance:ReceiptCreationFromPO.POReceipt@e4487af]" started-at="2025-06-04T15:29:18 IST" name="POReceiptCreation1" data-provider="poReceiptData" finished-at="2025-06-04T15:30:13 IST" duration-ms="55326" status="FAIL">
+        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@757277dc]" started-at="2025-06-04T16:14:03 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-04T16:14:15 IST" duration-ms="12338" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
+                <![CDATA[{supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=100, AmtcontractCategoryName=صيانة طرق روتينية -مبلغ, quantity=10, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=تنفيذ -كمية, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}]]>
               </value>
             </param>
           </params>
-          <exception class="java.lang.AssertionError">
+          <exception class="java.lang.NullPointerException">
             <message>
-              <![CDATA[Expected message 'Success' but got: Posting sequence is not defined, please defined the sequence for posting the document. expected [true] but found [false]]]>
+              <![CDATA[Cannot invoke "String.equalsIgnoreCase(String)" because "PurchaseOrderCreation.PurchaseOrder.contractType" is null]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Expected message 'Success' but got: Posting sequence is not defined, please defined the sequence for posting the document. expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failNotEquals(Assert.java:1590)
-at org.testng.Assert.assertTrue(Assert.java:57)
-at ReceiptCreationFromPO.POReceipt.POReceiptCreation1(POReceipt.java:109)
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because "PurchaseOrderCreation.PurchaseOrder.contractType" is null
+at PurchaseOrderCreation.PurchaseOrder.purchaseOrderCreation(PurchaseOrder.java:37)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -130,11 +109,11 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- POReceiptCreation1 -->
-      </class> <!-- ReceiptCreationFromPO.POReceipt -->
+        </test-method> <!-- purchaseOrderCreation -->
+      </class> <!-- PurchaseOrderCreation.PurchaseOrder -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

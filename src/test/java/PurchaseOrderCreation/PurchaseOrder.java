@@ -16,7 +16,7 @@ import TestComponents.RetryAnalyzer;
 
 public class PurchaseOrder extends BaseClass {
 
-	String contractType = "Amt";
+	
 
 	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class)
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {

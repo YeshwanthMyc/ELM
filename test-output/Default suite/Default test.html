@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>1/1/1</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/1/1</td>
 </tr><tr>
-<td>Started on:</td><td>Wed Jun 04 15:26:11 IST 2025</td>
+<td>Started on:</td><td>Wed Jun 04 16:13:48 IST 2025</td>
 </tr>
-<tr><td>Total time:</td><td>242 seconds (242117 ms)</td>
+<tr><td>Total time:</td><td>26 seconds (26837 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,12 +76,9 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='ReceiptCreationFromPO.POReceipt.POReceiptCreation1()'><b>POReceiptCreation1</b><br>Test class: ReceiptCreationFromPO.POReceipt<br>Parameters: {WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}</td>
-<td><div><pre>java.lang.AssertionError: Expected message &apos;Success&apos; but got: Posting sequence is not defined, please defined the sequence for posting the document. expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at ReceiptCreationFromPO.POReceipt.POReceiptCreation1(POReceipt.java:109)
+<td title='PurchaseOrderCreation.PurchaseOrder.purchaseOrderCreation()'><b>purchaseOrderCreation</b><br>Test class: PurchaseOrderCreation.PurchaseOrder<br>Parameters: {supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=100, AmtcontractCategoryName=صيانة طرق روتينية -مبلغ, quantity=10, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=تنفيذ -كمية, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}</td>
+<td><div><pre>java.lang.NullPointerException: Cannot invoke &quot;String.equalsIgnoreCase(String)&quot; because &quot;PurchaseOrderCreation.PurchaseOrder.contractType&quot; is null
+	at PurchaseOrderCreation.PurchaseOrder.purchaseOrderCreation(PurchaseOrder.java:37)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -108,12 +105,9 @@ function toggleAllBoxes() {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</pre></div><a href='#' onClick='toggleBox("stack-trace479161446", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace479161446'><pre>java.lang.AssertionError: Expected message &apos;Success&apos; but got: Posting sequence is not defined, please defined the sequence for posting the document. expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at ReceiptCreationFromPO.POReceipt.POReceiptCreation1(POReceipt.java:109)
+</pre></div><a href='#' onClick='toggleBox("stack-trace153443333", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace153443333'><pre>java.lang.NullPointerException: Cannot invoke &quot;String.equalsIgnoreCase(String)&quot; because &quot;PurchaseOrderCreation.PurchaseOrder.contractType&quot; is null
+	at PurchaseOrderCreation.PurchaseOrder.purchaseOrderCreation(PurchaseOrder.java:37)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -141,22 +135,8 @@ function toggleAllBoxes() {
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 </pre></div></td>
-<td>55</td>
-<td>ReceiptCreationFromPO.POReceipt@e4487af</td></tr>
-</table><p>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
-<tr><td><b>Test method</b></td>
-<td><b>Attribute(s)</b></td>
-<td width="30%"><b>Exception</b></td>
-<td width="10%"><b>Time (seconds)</b></td>
-<td><b>Instance</b></td>
-</tr>
-<tr>
-<td title='ReceiptCreationFromPO.POReceipt.purchaseOrderCreation()'><b>purchaseOrderCreation</b><br>Test class: ReceiptCreationFromPO.POReceipt<br>Parameters: {supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=100, AmtcontractCategoryName=صيانة طرق روتينية -مبلغ, quantity=10, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=تنفيذ -كمية, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}</td>
-<td></td>
-<td>121</td>
-<td>ReceiptCreationFromPO.POReceipt@e4487af</td></tr>
+<td>12</td>
+<td>PurchaseOrderCreation.PurchaseOrder@757277dc</td></tr>
 </table><p>
 <table width='100%' border='1' class='invocation-skipped'>
 <tr><td colspan='4' align='center'><b>SKIPPED TESTS</b></td></tr>
@@ -167,12 +147,9 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='ReceiptCreationFromPO.POReceipt.POReceiptCreation1()'><b>POReceiptCreation1</b><br>Test class: ReceiptCreationFromPO.POReceipt<br>Parameters: {WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}</td>
-<td><div><pre>java.lang.AssertionError: Expected message &apos;Success&apos; but got: Posting sequence is not defined, please defined the sequence for posting the document. expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at ReceiptCreationFromPO.POReceipt.POReceiptCreation1(POReceipt.java:109)
+<td title='PurchaseOrderCreation.PurchaseOrder.purchaseOrderCreation()'><b>purchaseOrderCreation</b><br>Test class: PurchaseOrderCreation.PurchaseOrder<br>Parameters: {supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=100, AmtcontractCategoryName=صيانة طرق روتينية -مبلغ, quantity=10, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=تنفيذ -كمية, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}</td>
+<td><div><pre>java.lang.NullPointerException: Cannot invoke &quot;String.equalsIgnoreCase(String)&quot; because &quot;PurchaseOrderCreation.PurchaseOrder.contractType&quot; is null
+	at PurchaseOrderCreation.PurchaseOrder.purchaseOrderCreation(PurchaseOrder.java:37)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -199,12 +176,9 @@ function toggleAllBoxes() {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</pre></div><a href='#' onClick='toggleBox("stack-trace601520619", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace601520619'><pre>java.lang.AssertionError: Expected message &apos;Success&apos; but got: Posting sequence is not defined, please defined the sequence for posting the document. expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at ReceiptCreationFromPO.POReceipt.POReceiptCreation1(POReceipt.java:109)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1615873578", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1615873578'><pre>java.lang.NullPointerException: Cannot invoke &quot;String.equalsIgnoreCase(String)&quot; because &quot;PurchaseOrderCreation.PurchaseOrder.contractType&quot; is null
+	at PurchaseOrderCreation.PurchaseOrder.purchaseOrderCreation(PurchaseOrder.java:37)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -232,8 +206,8 @@ function toggleAllBoxes() {
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 </pre></div></td>
-<td>64</td>
-<td>ReceiptCreationFromPO.POReceipt@e4487af</td></tr>
+<td>13</td>
+<td>PurchaseOrderCreation.PurchaseOrder@757277dc</td></tr>
 </table><p>
 </body>
 </html>

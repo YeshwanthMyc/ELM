@@ -92,6 +92,7 @@ public class BaseClass {
 			driver.get(url);
 		}	
 		driver.manage().window().maximize();
+		System.out.println("Contract Type from system property: " + System.getProperty("contractType"));
 	}
 
 	public List<HashMap<String, String>> getJSONData(String filePath) throws IOException {
