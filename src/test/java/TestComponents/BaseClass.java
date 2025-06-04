@@ -51,7 +51,8 @@ public class BaseClass {
 	public String hijrifutureDate = hijriFutureDate.format(hijriFormatter);
 
 	public static String poApprovalType = System.getProperty("approvalType", "Single");
-	public static String contractType = System.getProperty("contractType");
+	public static String contractType = System.getProperty("contractType","Amt");
+	public static String txrnType = System.getProperty("txrnType","Project Receiving");
 	
 	public BaseClass() {
 		try {

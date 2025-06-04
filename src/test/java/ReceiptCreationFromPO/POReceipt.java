@@ -12,8 +12,6 @@ import TestComponents.BaseClass;
 import TestComponents.RetryAnalyzer;
 
 public class POReceipt extends BaseClass {
-	String contractType = "Qty";
-	String txrnType = "Project Receiving";
 	public static String poDocNumber = "";
 	String productCode = "";
 	double receiptAmount = 0;
