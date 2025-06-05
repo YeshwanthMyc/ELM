@@ -67,7 +67,7 @@ public class POReceipt extends BaseClass {
 		}
 		PO.navigateToPOHeader();
 		PO.submitOrApprove();
-		String actualMessage = PO.submitMessage(PO.getPoNumber(), data.get("poWindowName"));
+		String actualMessage = PO.submitMessage(PO.getPoNumber(), data.get("poWindowName"),"Submit");
 		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
 				"Expected message 'Success' but got: " + actualMessage);
 		PO.logout();
@@ -101,7 +101,7 @@ public class POReceipt extends BaseClass {
 			receipt.addLines(contractType);
 			receipt.popUpAction(contractType, productCode, String.valueOf(receiptAmount), String.valueOf(receiptQty));
 			receipt.submitOrApprove();
-			String actualMessage = receipt.submitMessage(poDocNumber, data.get("WindowName"));
+			String actualMessage = receipt.submitMessage(poDocNumber, data.get("WindowName"),"Receipt Submit");
 			Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
 					"Expected message 'Success' but got: " + actualMessage);
 			receipt.logout();
@@ -125,7 +125,7 @@ public class POReceipt extends BaseClass {
 			receipt.addLines(contractType);
 			receipt.popUpAction(contractType, productCode, String.valueOf(receiptAmount), String.valueOf(receiptQty));
 			receipt.submitOrApprove();
-			String actualMessage = receipt.submitMessage(poDocNumber, data.get("WindowName"));
+			String actualMessage = receipt.submitMessage(poDocNumber, data.get("WindowName"),"Receipt Submit");
 			Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
 					"Expected message 'Success' but got: " + actualMessage);
 			receipt.logout();

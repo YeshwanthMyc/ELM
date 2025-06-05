@@ -31,11 +31,11 @@ public class RDVCreation extends BaseClass {
 		RDV.matchAll();
 		RDV.popUpOkButton();
 		RDV.submitOrApprove();
-		String actualMessageForSubmit = RDV.submitMessage(POReceipt.poDocNumber, "Receipt Delivery Verification");
+		String actualMessageForSubmit = RDV.submitMessage(POReceipt.poDocNumber, "Receipt Delivery Verification","Transaction Version");
 		Assert.assertTrue(actualMessageForSubmit.equalsIgnoreCase("Success"),
 				"Expected message 'Success' but got: " + actualMessageForSubmit);
 		RDV.generateAmarsaraf();
-		String actualMessageForInvoice = RDV.submitMessage(POReceipt.poDocNumber, "Receipt Delivery Verification");
+		String actualMessageForInvoice = RDV.submitMessage(POReceipt.poDocNumber, "Receipt Delivery Verification","Generate Amarsaraf");
 		Assert.assertTrue(actualMessageForInvoice.equalsIgnoreCase("Success"),
 				"Expected message 'Success' but got: " + actualMessageForInvoice);
 		RDV.popUpOkButton();
@@ -57,11 +57,11 @@ public class RDVCreation extends BaseClass {
 		RDV.popUpOkButton();
 		// Hold
 		RDV.submitOrApprove();
-		String actualMessageForSubmit = RDV.submitMessage(POReceipt.poDocNumber, "Receipt Delivery Verification");
+		String actualMessageForSubmit = RDV.submitMessage(POReceipt.poDocNumber, "Receipt Delivery Verification","Transaction Version");
 		Assert.assertTrue(actualMessageForSubmit.equalsIgnoreCase("Success"),
 				"Expected message 'Success' but got: " + actualMessageForSubmit);
 		RDV.generateAmarsaraf();
-		String actualMessageForInvoice = RDV.submitMessage(POReceipt.poDocNumber, "Receipt Delivery Verification");
+		String actualMessageForInvoice = RDV.submitMessage(POReceipt.poDocNumber, "Receipt Delivery Verification","Generate Amarsaraf");
 		Assert.assertTrue(actualMessageForInvoice.equalsIgnoreCase("Success"),
 				"Expected message 'Success' but got: " + actualMessageForInvoice);
 		RDV.popUpOkButton();

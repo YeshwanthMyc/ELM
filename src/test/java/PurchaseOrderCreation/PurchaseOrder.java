@@ -61,7 +61,7 @@ public class PurchaseOrder extends BaseClass {
 		}
 		PO.navigateToPOHeader();
 		PO.submitOrApprove();
-		String actualMessage = PO.submitMessage(PO.getPoNumber(), data.get("poWindowName"));
+		String actualMessage = PO.submitMessage(PO.getPoNumber(), data.get("poWindowName"),"Submit");
 		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
 				"Expected message 'Success' but got: " + actualMessage);
 		PO.logout();

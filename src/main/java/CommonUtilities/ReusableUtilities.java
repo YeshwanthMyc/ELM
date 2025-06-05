@@ -178,7 +178,7 @@ public class ReusableUtilities {
 		driver.switchTo().defaultContent();
 	}
 
-	public String submitMessage(String poNumber, String windowName) throws InterruptedException {
+	public String submitMessage(String poNumber, String windowName,String processName) throws InterruptedException {
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='Processing_Container']")));
 		Thread.sleep(2000);
 		WebElement MessageLocator = null;
@@ -192,7 +192,7 @@ public class ReusableUtilities {
 				actualMessage = MessageLocator.getText();
 				String expectedMessage = "Success";
 				if (actualMessage.equalsIgnoreCase(expectedMessage)) {
-					System.out.println(windowName + ": Submitted Successfully");
+					System.out.println(windowName +" :"+processName+ ": Submitted Successfully");
 
 				} else {
 					if (windowName.equalsIgnoreCase("PO Receipt")) {

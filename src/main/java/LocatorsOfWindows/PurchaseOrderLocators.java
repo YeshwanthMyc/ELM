@@ -459,7 +459,7 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 			applyUniqueCode(isEncumbered);
 
 			submitOrApprove();
-			submitMessage(poNumber,windowName);
+			submitMessage(poNumber,windowName,"Approval");
 
 			logout();
 			Thread.sleep(2000);
