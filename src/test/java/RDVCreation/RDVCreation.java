@@ -11,14 +11,12 @@ import TestComponents.BaseClass;
 
 public class RDVCreation extends BaseClass {
 
-	@Test(dependsOnMethods = { "ReceiptCreationFromPO.POReceipt.POReceiptCreation1",
-			"ReceiptCreationFromPO.POReceipt.purchaseOrderCreation" })
+	@Test(dependsOnMethods = { "ReceiptCreationFromPO.POReceipt.POReceiptCreation1"},priority = 1)
 	public void createRDVWithNoDeduction() throws SQLException, InterruptedException {
 		ReceiptDeliveryVerificationLocators RDV = new ReceiptDeliveryVerificationLocators(driver, wait, action);
 		RDV.login("Openbravo", "12");
 		RDV.openWindow("Receipt Delivery Verification");
 		RDV.createNewHeader();
-		System.out.println(POReceipt.poDocNumber);
 		RDV.enterPONumber(POReceipt.poDocNumber);
 		RDV.saveHeader();
 		RDV.undoIcon();
@@ -35,14 +33,14 @@ public class RDVCreation extends BaseClass {
 		Assert.assertTrue(actualMessageForSubmit.equalsIgnoreCase("Success"),
 				"Expected message 'Success' but got: " + actualMessageForSubmit);
 		RDV.generateAmarsaraf();
+		RDV.popUpOkButton();
 		String actualMessageForInvoice = RDV.submitMessage(POReceipt.poDocNumber, "Receipt Delivery Verification","Generate Amarsaraf");
 		Assert.assertTrue(actualMessageForInvoice.equalsIgnoreCase("Success"),
 				"Expected message 'Success' but got: " + actualMessageForInvoice);
-		RDV.popUpOkButton();
 		RDV.logout();
 	}
 
-	@Test(dependsOnMethods = { "ReceiptCreationFromPO.POReceipt.POReceiptCreation2" })
+	@Test(dependsOnMethods = { "ReceiptCreationFromPO.POReceipt.POReceiptCreation2" },priority = 2)
 	public void createRDVWithDeductionHold() throws SQLException, InterruptedException {
 		ReceiptDeliveryVerificationLocators RDV = new ReceiptDeliveryVerificationLocators(driver, wait, action);
 		RDV.login("Openbravo", "12");
@@ -61,10 +59,10 @@ public class RDVCreation extends BaseClass {
 		Assert.assertTrue(actualMessageForSubmit.equalsIgnoreCase("Success"),
 				"Expected message 'Success' but got: " + actualMessageForSubmit);
 		RDV.generateAmarsaraf();
+		RDV.popUpOkButton();
 		String actualMessageForInvoice = RDV.submitMessage(POReceipt.poDocNumber, "Receipt Delivery Verification","Generate Amarsaraf");
 		Assert.assertTrue(actualMessageForInvoice.equalsIgnoreCase("Success"),
 				"Expected message 'Success' but got: " + actualMessageForInvoice);
-		RDV.popUpOkButton();
 		RDV.logout();
 
 	}

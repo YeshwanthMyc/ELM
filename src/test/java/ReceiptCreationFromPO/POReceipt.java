@@ -19,7 +19,7 @@ public class POReceipt extends BaseClass {
 
 	public static boolean isPoCreationSuccessfull = false;
 
-	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class, priority = 1)
+	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class)
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
 
 		PurchaseOrderLocators PO = new PurchaseOrderLocators(driver, wait, action);
@@ -85,7 +85,7 @@ public class POReceipt extends BaseClass {
 
 	}
 
-	@Test(dataProvider = "poReceiptData", retryAnalyzer = RetryAnalyzer.class, priority = 2)
+	@Test(dataProvider = "poReceiptData", retryAnalyzer = RetryAnalyzer.class,dependsOnMethods = {"purchaseOrderCreation"})
 	public void POReceiptCreation1(HashMap<String, String> data) throws SQLException, InterruptedException {
 		if (!isPoCreationSuccessfull) {
 			System.out.println("PO Creation was failed");
@@ -109,7 +109,7 @@ public class POReceipt extends BaseClass {
 
 	}
 
-	@Test(dataProvider = "poReceiptData", retryAnalyzer = RetryAnalyzer.class, priority = 3)
+	@Test(dataProvider = "poReceiptData", retryAnalyzer = RetryAnalyzer.class,dependsOnMethods = {"RDVCreation.RDVCreation.createRDVWithNoDeduction"})
 	public void POReceiptCreation2(HashMap<String, String> data) throws SQLException, InterruptedException {
 		if (!isPoCreationSuccessfull) {
 			System.out.println("PO Creation was failed");

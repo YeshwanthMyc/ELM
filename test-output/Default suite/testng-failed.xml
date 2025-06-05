@@ -5,13 +5,21 @@
     <classes>
       <class name="ReceiptCreationFromPO.POReceipt">
         <methods>
+          <include name="purchaseOrderCreation"/>
           <include name="POReceiptCreation1"/>
-          <include name="purchaseOrderCreation" invocation-numbers="0"/>
           <include name="POReceiptCreation2"/>
           <include name="setUpDriver"/>
           <include name="launchApplication"/>
         </methods>
       </class> <!-- ReceiptCreationFromPO.POReceipt -->
+      <class name="RDVCreation.RDVCreation">
+        <methods>
+          <include name="createRDVWithDeductionHold"/>
+          <include name="setUpDriver"/>
+          <include name="createRDVWithNoDeduction"/>
+          <include name="launchApplication"/>
+        </methods>
+      </class> <!-- RDVCreation.RDVCreation -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
