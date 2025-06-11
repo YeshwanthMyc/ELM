@@ -64,14 +64,12 @@ public class PurchaseOrder extends BaseClass {
 		String actualMessage = PO.submitMessage(PO.getPoNumber(), data.get("poWindowName"),"Submit");
 		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
 				"Expected message 'Success' but got: " + actualMessage);
-		PO.logout();
+		logout();
 		PO.POApproval(data.get("poWindowName"), data.get("accountNumber"));
 		PO.login(data.get("AccrualUser"), data.get("password"));
 		PO.addCostCenter(data.get("poWindowName"));
 		PO.addLedgerAccount(data.get("productCode"), data.get("accountNumber"));
 		System.out.println(PO.getPoNumber());
-		PO.logout();
-		driver.close();
 
 	}
 

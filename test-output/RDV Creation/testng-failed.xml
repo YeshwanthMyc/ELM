@@ -3,28 +3,27 @@
 <suite name="Failed suite [RDV Creation]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="RDV Creation Test(failed)">
     <classes>
-      <class name="ReceiptCreationFromPO.POReceipt">
+      <class name="RDVCreation.RDVCreation">
         <methods>
-          <include name="purchaseOrderCreation"/>
-          <include name="POReceiptCreation"/>
-          <include name="setUpDriver"/>
-          <include name="launchApplication"/>
-        </methods>
-      </class> <!-- ReceiptCreationFromPO.POReceipt -->
-      <class name="RDVCreation.RDVWithHold">
-        <methods>
-          <include name="createRDVWithDeductionHold"/>
-          <include name="setUpDriver"/>
-          <include name="launchApplication"/>
-        </methods>
-      </class> <!-- RDVCreation.RDVWithHold -->
-      <class name="RDVCreation.RDVWithNoDeduction">
-        <methods>
+          <include name="createRDVWithDeductionHold" invocation-numbers="0"/>
+          <include name="logout"/>
+          <include name="quitBrowser"/>
           <include name="setUpDriver"/>
           <include name="createRDVWithNoDeduction"/>
           <include name="launchApplication"/>
         </methods>
-      </class> <!-- RDVCreation.RDVWithNoDeduction -->
+      </class> <!-- RDVCreation.RDVCreation -->
+      <class name="ReceiptCreationFromPO.POReceipt">
+        <methods>
+          <include name="POReceiptCreation1"/>
+          <include name="purchaseOrderCreation"/>
+          <include name="POReceiptCreation2"/>
+          <include name="logout"/>
+          <include name="quitBrowser"/>
+          <include name="setUpDriver"/>
+          <include name="launchApplication"/>
+        </methods>
+      </class> <!-- ReceiptCreationFromPO.POReceipt -->
     </classes>
   </test> <!-- RDV Creation Test(failed) -->
 </suite> <!-- Failed suite [RDV Creation] -->

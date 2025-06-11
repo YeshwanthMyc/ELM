@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,16 +25,16 @@ public class ReusableUtilities {
 	public Connection con;
 	public Statement s;
 
-	public WebDriver driver;
-	public WebDriverWait wait;
-	public WebDriverWait oneMinuteWait;
-	public Actions action;
+	public static WebDriver driver;
+	public static WebDriverWait wait;
+	public static WebDriverWait oneMinuteWait;
+	public static Actions action;
 
 	public ReusableUtilities(WebDriver driver, WebDriverWait wait, Actions action) {
-		this.driver = driver;
-		this.wait = wait;
-		this.oneMinuteWait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		this.action = action;
+		ReusableUtilities.driver = driver;
+		ReusableUtilities.wait = wait;
+		ReusableUtilities.oneMinuteWait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		ReusableUtilities.action = action;
 	}
 
 	public void getConnection() throws SQLException {
@@ -48,7 +49,7 @@ public class ReusableUtilities {
 		driver.findElement(By.xpath("//button[@id='buttonOK']")).click();
 	}
 
-	public void logout() throws InterruptedException {
+	public static void logout() throws InterruptedException {
 		WebElement mainIcon = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//img[@name='isc_10main']")));
 		Thread.sleep(500);
@@ -169,16 +170,31 @@ public class ReusableUtilities {
 		WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//td[@class='OBToolbarTextButton' and (contains(text(),'Submit') or contains(text(),'Approve'))]")));
 		action.moveToElement(submitButton).click().build().perform();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("OBClassicPopup_iframe")));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("process")));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("mainframe")));
 		WebElement okButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("buttonOK")));
 		okButton.click();
 		driver.switchTo().defaultContent();
+		Thread.sleep(1500);
 	}
 
-	public String submitMessage(String poNumber, String windowName,String processName) throws InterruptedException {
+	public void RDVCancel() throws InterruptedException {
+		Thread.sleep(2000);
+		WebElement cancelButton = wait.until(ExpectedConditions
+				.elementToBeClickable(By.xpath("//td[@class='OBToolbarTextButton' and (contains(text(),'Cancel'))]")));
+		action.moveToElement(cancelButton).click().build().perform();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='reason']")))
+				.sendKeys("Cancel Draft Transaction");
+		Thread.sleep(1000);
+		action.sendKeys(Keys.ENTER).build().perform();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[contains(text(),'Done')]"))).click();
+		Thread.sleep(1500);
+	}
+
+	public String submitMessage(String poNumber, String windowName, String processName) throws InterruptedException {
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='Processing_Container']")));
 		Thread.sleep(2000);
 		WebElement MessageLocator = null;
@@ -192,36 +208,52 @@ public class ReusableUtilities {
 				actualMessage = MessageLocator.getText();
 				String expectedMessage = "Success";
 				if (actualMessage.equalsIgnoreCase(expectedMessage)) {
-					System.out.println(windowName +" :"+processName+ ": Submitted Successfully");
+					actualMessage = actualMessage + " Result:" + "Submitted Successfully";
+					System.out.println(windowName + " :" + processName + ": Submitted Successfully");
+					break;
 
 				} else {
 					if (windowName.equalsIgnoreCase("PO Receipt")) {
 						if (actualMessage.equalsIgnoreCase("Warning")) {
-							String warningMessageQuery = "select EM_Efin_Posting_Errormsg from m_inout \r\n"
+							String receiptwarningMessageQuery = "select EM_Efin_Posting_Errormsg from m_inout \r\n"
 									+ "where c_order_id in(select c_order_id from c_order where documentNo='" + poNumber
 									+ "')\r\n" + "\r\n" + "";
-							ResultSet warningMessageQueryResult = s.executeQuery(warningMessageQuery);
-							if (warningMessageQueryResult.next()) {
-								actualMessage = warningMessageQueryResult.getString("EM_Efin_Posting_Errormsg");
+							ResultSet receiptwarningMessageQueryResult = s.executeQuery(receiptwarningMessageQuery);
+							if (receiptwarningMessageQueryResult.next()) {
+								actualMessage = actualMessage + " Result:"
+										+ receiptwarningMessageQueryResult.getString("EM_Efin_Posting_Errormsg");
 							}
 						}
 					}
-
-					if (actualMessage.equalsIgnoreCase("Error")) {
-						errorMessageLocator = wait.until(ExpectedConditions.presenceOfElementLocated(
-								By.xpath("//div[contains(@class, 'OBMessageBarDescriptionText_error')]/div")));
-						String fullText = errorMessageLocator.getText();
-						String[] lines = fullText.split("\\n");
-						if (lines.length > 1) {
-							actualMessage = lines[1];
-						}else {
-							actualMessage = lines[0];
+					if (windowName.equalsIgnoreCase("Receipt Delivery Verification")) {
+						if (actualMessage.equalsIgnoreCase("Warning")) {
+							String rdvwarningMessageQuery = "select Posting_Errormsg from Efin_RDVTxn where Efin_RDV_id in\r\n"
+									+ "(select Efin_RDV_id from Efin_RDV where c_order_id in\r\n"
+									+ "(select c_order_id from c_order where documentNo='" + poNumber + "'))\r\n"
+									+ "ORDER BY created DESC limit 1";
+							ResultSet rdvwarningMessageQueryResult = s.executeQuery(rdvwarningMessageQuery);
+							if (rdvwarningMessageQueryResult.next()) {
+								actualMessage = actualMessage + " Result:"
+										+ rdvwarningMessageQueryResult.getString("Posting_Errormsg");
+							}
 						}
-						
-					}
-				}
 
-				return actualMessage;
+						if (actualMessage.equalsIgnoreCase("Error")) {
+							errorMessageLocator = wait.until(ExpectedConditions.presenceOfElementLocated(
+									By.xpath("//div[contains(@class, 'OBMessageBarDescriptionText_error')]/div")));
+							String fullText = errorMessageLocator.getText();
+							String[] lines = fullText.split("\\n");
+							if (lines.length > 1) {
+								actualMessage = actualMessage + " Result:" + lines[1];
+							} else {
+								actualMessage = actualMessage + " Result:" + lines[0];
+							}
+
+						}
+					}
+
+					return actualMessage;
+				}
 			} catch (Exception e) {
 				MessageLocatorAttempt++;
 				return "Exception:" + e.getMessage();
@@ -236,6 +268,17 @@ public class ReusableUtilities {
 		wait.until(ExpectedConditions
 				.elementToBeClickable(By.xpath("//td[@class='OBToolbarIconButton_icon_undo OBToolbarIconButton']")))
 				.click();
+	}
+
+	public void deleteIcon() throws InterruptedException {
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("(//td[@class='OBToolbarIconButton_icon_eliminate OBToolbarIconButton'])[2]"))).click();
+		Thread.sleep(1500);
+		action.sendKeys(Keys.ENTER).sendKeys(Keys.ENTER).build().perform();
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//td[@class='OBDialogLabel' and contains(text(),'Deleting')]")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//td[@class='OBDialogLabel' and contains(text(),'Deleting')]")));
+
 	}
 
 	public void popUpOkButton() throws InterruptedException {

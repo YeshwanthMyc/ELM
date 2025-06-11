@@ -1,125 +1,164 @@
 package Demo;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-public class TestLine {
-	public static String DB_URL = "jdbc:postgresql://localhost:5932/mainaccrual";
-	public static String DB_USER = "tad";
-	public static String DB_PASSWORD = "tad";
-	public static Connection con;
-	public static Statement s;
-	public static void main(String[] args) throws InterruptedException, SQLException {
+import LocatorsOfWindows.ReceiptDeliveryVerificationLocators;
+import RDVCreation.RDVCreation;
+import TestComponents.BaseClass;
+import TestComponents.RetryAnalyzer;
 
-		String poNumber = "1017987";
-		String windowName = "Purchase Order and Contracts summary";
-		String product = "01010001";
-		
-		
-		
-		
-		WebDriver driver = new ChromeDriver();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		Actions action = new Actions(driver);
-		driver.get("http://qualiantracker.dyndns.org:9090/grpmain/security/Login");
-		driver.findElement(By.xpath("//input[@id='user']")).sendKeys("Openbravo");
-		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("12");
-		driver.findElement(By.xpath("//button[@id='buttonOK']")).click();
+public class TestLine extends BaseClass {
 
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[@class='OBNavBarComponent']/div[1])[2]")))
-				.click();
+	boolean matchAllSuccess = false;
+	boolean submitMessageSuccess = false;
+	boolean generateAmarsarafMessageSuccess = false;
+	boolean holdSuccess = false;
+	boolean penaltySuccess = false;
+	boolean externalpenaltySuccess = false;
+	String originalMessage = null;
+	static HashMap<String, String> currentTestData;
+	double matchedAmt = 0;
+	double holdAmt = 0;
+	double penaltyAmt = 0;
+	double externalpenaltyAmt = 0;
 
-		// select window from quick launch
-		WebElement quickLaunchTextBox = wait.until(ExpectedConditions
-				.elementToBeClickable(By.xpath("//table[@role='presentation']/tbody/tr/td/div/input")));
-		quickLaunchTextBox.sendKeys(windowName);
-		Thread.sleep(500);
-		action.sendKeys(Keys.ENTER).build().perform();
+//	@Test(dataProvider = "RDVData",retryAnalyzer = RetryAnalyzer.class)
+	public void createRDVWithAllDeductions(HashMap<String, String> data) throws SQLException, InterruptedException {
 
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='documentNo']"))).sendKeys(poNumber);
-		Thread.sleep(1000);
-		WebElement filteredRow = wait.until(ExpectedConditions
-				.elementToBeClickable(By.xpath("(//td/div/nobr[contains(text(),'" + poNumber + "')])[1]")));
+		String originalMessage = null;
+		ReceiptDeliveryVerificationLocators RDV = new ReceiptDeliveryVerificationLocators(driver, wait, action);
+		try {
 
-		action.moveToElement(filteredRow).doubleClick().build().perform();
+			RDV.login("Openbravo", "12");
+			RDV.openWindow("Receipt Delivery Verification");
+			RDV.RDVPOFilter("1018107");
+			RDV.navigateToTransactionVersion();
+			RDV.createNewLine();
+			RDV.approvalType();
+			RDV.certificateNumber();
+			RDV.saveLine();
+			RDV.matchAll();
+			RDV.popUpOkButton();
+			matchedAmt = RDV.getMatchedAmount("1018107");
 
-		WebElement linesTab = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[contains(text(),'Lines Attributes')]")));
-		action.moveToElement(linesTab).doubleClick().build().perform();
-		Thread.sleep(500);
-
-		WebElement filteredLineRow = wait.until(
-				ExpectedConditions.elementToBeClickable(By.xpath("//div/nobr[contains(text(),'" + product + "')]")));
-		action.moveToElement(filteredLineRow).doubleClick().build().perform();
-
-		con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-		s = con.createStatement();
-		String ledgerAccountsQuery ="select CEV2.value as ledger_Value\r\n"
-				+ "FROM efin_accountmap EAM\r\n"
-				+ "JOIN C_ElementValue CEV1 ON EAM.C_ElementValue_ID = CEV1.C_ElementValue_ID\r\n"
-				+ "JOIN C_ElementValue CEV2 ON EAM.GL_Account_ID = CEV2.C_ElementValue_ID\r\n"
-				+ "WHERE CEV1.value = '400200300' and CEV2.value in(select C_ElementValue.value from efin_product_acct \r\n"
-				+ "join m_product\r\n"
-				+ "on efin_product_acct.m_product_id = m_product.m_product_id\r\n"
-				+ "join C_ElementValue\r\n"
-				+ "on efin_product_acct.P_Expense_Acct = C_ElementValue.C_ElementValue_id\r\n"
-				+ "where m_product.Value ='01010001' and efin_product_acct.isactive='Y'\r\n"
-				+ ")";
-		ResultSet ledgerAccountsQueryResult = s.executeQuery(ledgerAccountsQuery);
-		List<String> ledgerAccounts = new ArrayList<>();
-
-		while(ledgerAccountsQueryResult.next()) {
-			ledgerAccounts.add(ledgerAccountsQueryResult.getString("ledger_Value"));
-		}
-		
-		By ledgerLocator = By.xpath("(//input[@name='efinLedgeraccount'])[2]");
-		wait.until(ExpectedConditions.presenceOfElementLocated(ledgerLocator));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
-				driver.findElement(ledgerLocator));
-		Thread.sleep(1500);
-		WebElement ledgerAccount = wait.until(ExpectedConditions.elementToBeClickable(ledgerLocator));
-		ledgerAccount.clear();
-		WebElement reLoadedLedgerAccount = wait.until(ExpectedConditions.elementToBeClickable(ledgerLocator));
-		reLoadedLedgerAccount.click();
-		Thread.sleep(500);
-		reLoadedLedgerAccount.sendKeys(ledgerAccounts.get(0));
-		Thread.sleep(1500);
-		action.sendKeys(Keys.ENTER).build().perform();
-		Thread.sleep(1000);
-		WebElement lineSaveIcon = null;
-		int lineSaveIconAttempt = 0;
-		while (lineSaveIconAttempt < 2) {
-			try {
-				lineSaveIcon = wait.until(ExpectedConditions
-						.elementToBeClickable(By.xpath("(//td[contains(@class,'OBToolbarIconButton_icon_save')])[3]")));
-				lineSaveIcon.click();
-				Thread.sleep(2000);
-				break;
-			} catch (Exception e) {
-				lineSaveIconAttempt++;
+			// Match All
+			if (matchedAmt > 0) {
+				matchAllSuccess = true;
+			} else {
+				matchAllSuccess = false;
+				System.out.println("Matched amount is 0, cannot proceed.");
+				Assert.fail("Match All failed. Matched amount is 0.");
 			}
-		}
 
-		
-	
-		
+			// Hold
+			double holdAmount = matchedAmt * 0.3;
+			String holdAmounttoBeEntered = String.valueOf(holdAmount);
+			RDV.enterHoldDetails(data.get("holdName"), holdAmounttoBeEntered);
+			holdAmt = RDV.getHoldAmount("1018107");
+			if (holdAmt > 0) {
+				holdSuccess = true;
+			} else {
+				holdSuccess = false;
+				System.out.println("Unable to add hold");
+				Assert.fail("Unable to add hold");
+			}
+
+			// Penalty
+			RDV.enterPenaltyDetails(data.get("10% Penalty Name"));
+			penaltyAmt = RDV.getPenaltyAmount("1018107");
+			if (penaltyAmt > 0) {
+				penaltySuccess = true;
+			} else {
+				penaltySuccess = false;
+				System.out.println("Unable to add Penalty");
+				Assert.fail("Unable to add Penalty");
+			}
+
+			// External Penalty
+			double penaltyAmount = matchedAmt*0.3;
+			String penaltyAmountToBeEntered=String.valueOf(penaltyAmount);
+			RDV.enterExternalPenaltyDetails(data.get("External Penalty Name"),penaltyAmountToBeEntered);
+			externalpenaltyAmt = RDV.getPenaltyAmount("1018107");
+			if (externalpenaltyAmt == matchedAmt * 0.4) {
+				externalpenaltySuccess = true;
+			} else {
+				externalpenaltySuccess = false;
+				System.out.println("Unable to add External Penalty");
+				Assert.fail("Unable to add External Penalty");
+			}
+
+			// Submit Transaction version
+			RDV.submitOrApprove();
+			String actualMessageForSubmit = RDV.submitMessage("1018107", "Receipt Delivery Verification",
+					"Transaction Version");
+			String actualMessageForSubmittext[] = actualMessageForSubmit.split(" Result:");
+			originalMessage = actualMessageForSubmittext[0];
+			if (originalMessage.equalsIgnoreCase("Success")) {
+				submitMessageSuccess = true;
+			} else {
+				submitMessageSuccess = false;
+				System.out.println("Expected 'Success' but got: " + actualMessageForSubmittext[1]);
+				Assert.fail("Expected 'Success' but got: " + actualMessageForSubmittext[1]);
+			}
+
+			// Generate Amarsaraf
+			RDV.generateAmarsaraf();
+			RDV.popUpOkButton();
+			String actualMessageForInvoice = RDV.submitMessage("1018107", "Receipt Delivery Verification",
+					"Generate Amarsaraf");
+			String actualMessageForInvoicetext[] = actualMessageForInvoice.split(" Result:");
+			originalMessage = actualMessageForInvoicetext[0];
+			if (originalMessage.equalsIgnoreCase("Success")) {
+				generateAmarsarafMessageSuccess = true;
+			} else {
+				generateAmarsarafMessageSuccess = false;
+				System.out.println("Expected 'Success' but got: " + actualMessageForInvoicetext[1]);
+				Assert.fail("Expected 'Success' but got: " + actualMessageForInvoicetext[1]);
+			}
+		} catch (AssertionError | Exception e) {
+
+			if (!matchAllSuccess) {
+				RDV.deleteIcon();
+			} else if (matchAllSuccess && !holdSuccess) {
+				RDV.deleteIcon();
+			} else if (matchAllSuccess && holdSuccess && !penaltySuccess) {
+				RDV.deleteIcon();
+			} else if (matchAllSuccess && holdSuccess && penaltySuccess && !externalpenaltySuccess) {
+				// RDV.removeBulkPenalty();
+				RDV.deleteIcon();
+			} else if (matchAllSuccess && holdSuccess && penaltySuccess && externalpenaltySuccess
+					&& !submitMessageSuccess) {
+				if (originalMessage.equalsIgnoreCase("Warning")) {
+					System.out.println("Check Warning Message");
+					RDV.RDVCancel();
+					Assert.fail("Check Warning Message");
+				}
+				if (originalMessage.equalsIgnoreCase("Error")) {
+					System.out.println("Record Not Submitted");
+					// RDV.removeBulkPenalty();
+					RDV.deleteIcon();
+					Assert.fail("Record Not Submitted");
+				}
+			} else if (matchAllSuccess && holdSuccess && penaltySuccess && externalpenaltySuccess
+					&& submitMessageSuccess && !generateAmarsarafMessageSuccess) {
+				System.out.println("Invoice generation failed. Stopping execution.");
+				Assert.fail("Invoice generation failed. Stopping execution.");
+			}
+
+			throw e;
+		}
 
 	}
-
+	
+	//@Test(dataProvider = "RDVData")
+	public void testing(HashMap<String, String> data) throws SQLException, InterruptedException {
+		currentTestData = data;
+		RDVCreation RDV = new RDVCreation();
+		//double extAmt = RDV.createRDVWithDeductionExternalPenalty(currentTestData);
+		//System.out.println(extAmt);
+	}
 }

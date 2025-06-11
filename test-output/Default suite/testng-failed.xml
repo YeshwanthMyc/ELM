@@ -3,23 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="ReceiptCreationFromPO.POReceipt">
+      <class name="Demo.TestLine">
         <methods>
-          <include name="purchaseOrderCreation"/>
-          <include name="POReceiptCreation1"/>
-          <include name="POReceiptCreation2"/>
+          <include name="logout"/>
+          <include name="quitBrowser"/>
+          <include name="testing" invocation-numbers="0"/>
           <include name="setUpDriver"/>
           <include name="launchApplication"/>
         </methods>
-      </class> <!-- ReceiptCreationFromPO.POReceipt -->
-      <class name="RDVCreation.RDVCreation">
-        <methods>
-          <include name="createRDVWithDeductionHold"/>
-          <include name="setUpDriver"/>
-          <include name="createRDVWithNoDeduction"/>
-          <include name="launchApplication"/>
-        </methods>
-      </class> <!-- RDVCreation.RDVCreation -->
+      </class> <!-- Demo.TestLine -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

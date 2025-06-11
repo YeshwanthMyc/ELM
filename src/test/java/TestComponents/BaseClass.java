@@ -18,12 +18,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import CommonUtilities.ReusableUtilities;
 
 public class BaseClass {
 	public static WebDriver driver;
@@ -48,9 +53,9 @@ public class BaseClass {
 	public String hijrifutureDate = hijriFutureDate.format(hijriFormatter);
 
 	public static String poApprovalType = System.getProperty("approvalType", "Single");
-	public static String contractType = System.getProperty("contractType","Amt");
-	public static String txrnType = System.getProperty("txrnType","Project Receiving");
-	
+	public static String contractType = System.getProperty("contractType", "Amt");
+	public static String txrnType = System.getProperty("txrnType", "Project Receiving");
+
 	public BaseClass() {
 		try {
 			prop = new Properties();
@@ -60,9 +65,9 @@ public class BaseClass {
 		} catch (Exception e) {
 
 		}
-		
+
 	}
-	
+
 	@BeforeSuite
 	public void setUpDriver() {
 		String browserName = prop.getProperty("browser");
@@ -82,14 +87,24 @@ public class BaseClass {
 		action = new Actions(driver);
 	}
 
+	@AfterSuite
+	public void quitBrowser() {
+		driver.quit();
+	}
+
 	@BeforeMethod
 	public void launchApplication() {
-		String currentUrl =driver.getCurrentUrl();
+		String currentUrl = driver.getCurrentUrl();
 		String url = prop.getProperty("url");
-		if(currentUrl == null || currentUrl.equals("about:blank")||!currentUrl.equals(url)) {
+		if (currentUrl == null || currentUrl.equals("about:blank") || !currentUrl.equals(url)) {
 			driver.get(url);
-		}	
+		}
 		driver.manage().window().maximize();
+	}
+
+	@AfterMethod(alwaysRun = true)
+	public void logout() throws InterruptedException {
+		ReusableUtilities.logout();
 	}
 
 	public List<HashMap<String, String>> getJSONData(String filePath) throws IOException {
@@ -137,8 +152,14 @@ public class BaseClass {
 
 	@DataProvider(name = "poReceiptData")
 	public Object[][] getPOReceiptData() throws IOException {
-		 return getData("POReceipt.json");
-		 
+		return getData("POReceipt.json");
+
+	}
+
+	@DataProvider(name = "RDVData")
+	public Object[][] getRDVData() throws IOException {
+		return getData("RDV.json");
+
 	}
 
 }

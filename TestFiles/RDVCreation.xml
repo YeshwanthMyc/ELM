@@ -4,7 +4,6 @@
 	<test thread-count="5" name="RDV Creation Test">
 		<classes>
 			<class name="RDVCreation.RDVCreation" />
-			<class name="ReceiptCreationFromPO.POReceipt" />
 		</classes>
 	</test> <!--
 	Test -->

@@ -9,6 +9,11 @@ public class RetryAnalyzer implements IRetryAnalyzer {
 
     @Override
     public boolean retry(ITestResult result) {
+    	
+    	Throwable throwable = result.getThrowable();
+    	if(throwable instanceof AssertionError) {
+    		return false;
+    	}
         if (retryCount < maxRetryCount) {
             retryCount++;
             System.out.println("Retry Attempt:"+retryCount);
