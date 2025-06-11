@@ -26,7 +26,7 @@ public class TestLine extends BaseClass {
 	double penaltyAmt = 0;
 	double externalpenaltyAmt = 0;
 
-//	@Test(dataProvider = "RDVData",retryAnalyzer = RetryAnalyzer.class)
+	@Test(dataProvider = "RDVData",retryAnalyzer = RetryAnalyzer.class)
 	public void createRDVWithAllDeductions(HashMap<String, String> data) throws SQLException, InterruptedException {
 
 		String originalMessage = null;

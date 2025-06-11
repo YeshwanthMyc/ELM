@@ -5,25 +5,23 @@
     <classes>
       <class name="RDVCreation.RDVCreation">
         <methods>
-          <include name="createRDVWithDeductionHold" invocation-numbers="0"/>
-          <include name="logout"/>
+          <include name="purchaseOrderCreation" invocation-numbers="0"/>
+          <include name="POReceiptCreationForRDVNoDeduction"/>
+          <include name="createRDVWithDeductionHold"/>
+          <include name="createRDVWithAllDeductions"/>
           <include name="quitBrowser"/>
-          <include name="setUpDriver"/>
           <include name="createRDVWithNoDeduction"/>
+          <include name="POReceiptCreationForRDVDeductionPenalty"/>
+          <include name="POReceiptCreationForRDVDeductionExternalPenalty"/>
+          <include name="createRDVWithDeductionExternalPenalty"/>
+          <include name="logout"/>
+          <include name="setUpDriver"/>
+          <include name="createRDVWithDeductionPenalty"/>
           <include name="launchApplication"/>
+          <include name="POReceiptCreationForRDVWithAllDeductions"/>
+          <include name="POReceiptCreationForRDVDeductionHold"/>
         </methods>
       </class> <!-- RDVCreation.RDVCreation -->
-      <class name="ReceiptCreationFromPO.POReceipt">
-        <methods>
-          <include name="POReceiptCreation1"/>
-          <include name="purchaseOrderCreation"/>
-          <include name="POReceiptCreation2"/>
-          <include name="logout"/>
-          <include name="quitBrowser"/>
-          <include name="setUpDriver"/>
-          <include name="launchApplication"/>
-        </methods>
-      </class> <!-- ReceiptCreationFromPO.POReceipt -->
     </classes>
   </test> <!-- RDV Creation Test(failed) -->
 </suite> <!-- Failed suite [RDV Creation] -->

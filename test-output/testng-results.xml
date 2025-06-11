@@ -1,21 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results retried="2" ignored="0" total="13" passed="11" failed="0" skipped="0">
+<testng-results retried="1" ignored="8" total="13" passed="0" failed="1" skipped="3">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-06-11T15:59:22 IST" name="Default suite" finished-at="2025-06-11T16:10:31 IST" duration-ms="668955">
+  <suite started-at="2025-06-11T18:40:14 IST" name="RDV Invoice With No Deduction" finished-at="2025-06-11T18:40:15 IST" duration-ms="636">
     <groups>
+      <group name="NoDeduction">
+        <method signature="RDVCreation.purchaseOrderCreation(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" name="purchaseOrderCreation" class="RDVCreation.RDVCreation"/>
+        <method signature="RDVCreation.POReceiptCreationForRDVNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" name="POReceiptCreationForRDVNoDeduction" class="RDVCreation.RDVCreation"/>
+        <method signature="RDVCreation.createRDVWithNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" name="createRDVWithNoDeduction" class="RDVCreation.RDVCreation"/>
+        <method signature="RDVInvoiceWithNoDeduction.InvoiceWithNoDeduction()[pri:0, instance:RDVInvoice.RDVInvoiceWithNoDeduction@19976a65]" name="InvoiceWithNoDeduction" class="RDVInvoice.RDVInvoiceWithNoDeduction"/>
+      </group> <!-- NoDeduction -->
     </groups>
-    <test started-at="2025-06-11T15:59:22 IST" name="Default test" finished-at="2025-06-11T16:10:31 IST" duration-ms="668955">
+    <test started-at="2025-06-11T18:40:14 IST" name="RDV Invoice With No Deduction Test" finished-at="2025-06-11T18:40:15 IST" duration-ms="636">
+      <class name="RDVInvoice.RDVInvoiceWithNoDeduction">
+        <test-method signature="InvoiceWithNoDeduction()[pri:0, instance:RDVInvoice.RDVInvoiceWithNoDeduction@19976a65]" started-at="2025-06-11T18:40:15 IST" name="InvoiceWithNoDeduction" depends-on-groups="NoDeduction" finished-at="2025-06-11T18:40:15 IST" duration-ms="0" status="SKIP">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method RDVInvoiceWithNoDeduction.InvoiceWithNoDeduction()[pri:0, instance:RDVInvoice.RDVInvoiceWithNoDeduction@19976a65] depends on not successfully finished methods in group "NoDeduction"]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method RDVInvoiceWithNoDeduction.InvoiceWithNoDeduction()[pri:0, instance:RDVInvoice.RDVInvoiceWithNoDeduction@19976a65] depends on not successfully finished methods in group "NoDeduction"
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:159)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- InvoiceWithNoDeduction -->
+      </class> <!-- RDVInvoice.RDVInvoiceWithNoDeduction -->
       <class name="RDVCreation.RDVCreation">
-        <test-method is-config="true" signature="setUpDriver()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T15:59:21 IST" name="setUpDriver" finished-at="2025-06-11T15:59:22 IST" duration-ms="1291" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUpDriver -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T15:59:23 IST" name="launchApplication" finished-at="2025-06-11T15:59:25 IST" duration-ms="2089" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T15:59:25 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-11T16:01:29 IST" duration-ms="124432" status="PASS">
+        <test-method retried="true" signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" started-at="2025-06-11T18:40:14 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-11T18:40:15 IST" duration-ms="244" status="SKIP">
           <params>
             <param index="0">
               <value>
@@ -23,378 +55,255 @@
               </value>
             </param>
           </params>
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)" because "CommonUtilities.ReusableUtilities.driver" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)" because "CommonUtilities.ReusableUtilities.driver" is null
+at CommonUtilities.ReusableUtilities.login(ReusableUtilities.java:46)
+at RDVCreation.RDVCreation.purchaseOrderCreation(RDVCreation.java:44)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- purchaseOrderCreation -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:01:29 IST" name="logout" finished-at="2025-06-11T16:01:31 IST" duration-ms="1823" status="PASS">
+        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" started-at="2025-06-11T18:40:15 IST" name="logout" finished-at="2025-06-11T18:40:15 IST" duration-ms="6" status="FAIL">
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "org.openqa.selenium.support.ui.WebDriverWait.until(java.util.function.Function)" because "CommonUtilities.ReusableUtilities.wait" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.support.ui.WebDriverWait.until(java.util.function.Function)" because "CommonUtilities.ReusableUtilities.wait" is null
+at CommonUtilities.ReusableUtilities.logout(ReusableUtilities.java:53)
+at TestComponents.BaseClass.logout(BaseClass.java:109)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:836)
+at org.testng.internal.invokers.TestInvoker.runAfterConfigurations(TestInvoker.java:805)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:781)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:01:31 IST" name="launchApplication" finished-at="2025-06-11T16:01:31 IST" duration-ms="15" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="POReceiptCreationForRDVNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:01:31 IST" name="POReceiptCreationForRDVNoDeduction" data-provider="poReceiptData" finished-at="2025-06-11T16:02:01 IST" depends-on-methods="RDVCreation.RDVCreation.purchaseOrderCreation" duration-ms="29932" status="PASS">
+        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" started-at="2025-06-11T18:40:15 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-11T18:40:15 IST" duration-ms="155" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
+                <![CDATA[{supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=1000, AmtcontractCategoryName=02, quantity=9, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=01, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}]]>
               </value>
             </param>
           </params>
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)" because "CommonUtilities.ReusableUtilities.driver" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)" because "CommonUtilities.ReusableUtilities.driver" is null
+at CommonUtilities.ReusableUtilities.login(ReusableUtilities.java:46)
+at RDVCreation.RDVCreation.purchaseOrderCreation(RDVCreation.java:44)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:269)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- purchaseOrderCreation -->
+        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" started-at="2025-06-11T18:40:15 IST" name="logout" finished-at="2025-06-11T18:40:15 IST" duration-ms="1" status="FAIL">
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "org.openqa.selenium.support.ui.WebDriverWait.until(java.util.function.Function)" because "CommonUtilities.ReusableUtilities.wait" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.support.ui.WebDriverWait.until(java.util.function.Function)" because "CommonUtilities.ReusableUtilities.wait" is null
+at CommonUtilities.ReusableUtilities.logout(ReusableUtilities.java:53)
+at TestComponents.BaseClass.logout(BaseClass.java:109)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:836)
+at org.testng.internal.invokers.TestInvoker.runAfterConfigurations(TestInvoker.java:805)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:781)
+at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:269)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logout -->
+        <test-method signature="POReceiptCreationForRDVNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" started-at="2025-06-11T18:40:15 IST" name="POReceiptCreationForRDVNoDeduction" finished-at="2025-06-11T18:40:15 IST" depends-on-methods="RDVCreation.RDVCreation.purchaseOrderCreation" duration-ms="0" status="SKIP">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method RDVCreation.RDVCreation.POReceiptCreationForRDVNoDeduction() on instance RDVCreation.RDVCreation@407a7f2a depends on not successfully finished methods 
+[RDVCreation.RDVCreation.purchaseOrderCreation() on instance RDVCreation.RDVCreation@407a7f2a]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method RDVCreation.RDVCreation.POReceiptCreationForRDVNoDeduction() on instance RDVCreation.RDVCreation@407a7f2a depends on not successfully finished methods 
+[RDVCreation.RDVCreation.purchaseOrderCreation() on instance RDVCreation.RDVCreation@407a7f2a]
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:159)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- POReceiptCreationForRDVNoDeduction -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:02:01 IST" name="logout" finished-at="2025-06-11T16:02:03 IST" duration-ms="1811" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:02:03 IST" name="launchApplication" finished-at="2025-06-11T16:02:03 IST" duration-ms="16" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="createRDVWithNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:02:03 IST" name="createRDVWithNoDeduction" data-provider="RDVData" finished-at="2025-06-11T16:02:57 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVNoDeduction" duration-ms="54775" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{External Penalty Name=مكتب عبدالرحمن بن عبدالله النور للاستشارات الهندسية, 10% Penalty Name=مقابل غرامة تأخير 10%, holdName=إيقاف اتعاب الإشراف}]]>
-              </value>
-            </param>
-          </params>
+        <test-method signature="createRDVWithNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" started-at="2025-06-11T18:40:15 IST" name="createRDVWithNoDeduction" finished-at="2025-06-11T18:40:15 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVNoDeduction" duration-ms="0" status="SKIP">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method RDVCreation.RDVCreation.createRDVWithNoDeduction() on instance RDVCreation.RDVCreation@407a7f2a depends on not successfully finished methods 
+[RDVCreation.RDVCreation.POReceiptCreationForRDVNoDeduction() on instance RDVCreation.RDVCreation@407a7f2a]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method RDVCreation.RDVCreation.createRDVWithNoDeduction() on instance RDVCreation.RDVCreation@407a7f2a depends on not successfully finished methods 
+[RDVCreation.RDVCreation.POReceiptCreationForRDVNoDeduction() on instance RDVCreation.RDVCreation@407a7f2a]
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:159)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createRDVWithNoDeduction -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:02:57 IST" name="logout" finished-at="2025-06-11T16:02:59 IST" duration-ms="1774" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:02:59 IST" name="launchApplication" finished-at="2025-06-11T16:02:59 IST" duration-ms="12" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="POReceiptCreationForRDVDeductionHold(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:02:59 IST" name="POReceiptCreationForRDVDeductionHold" data-provider="poReceiptData" finished-at="2025-06-11T16:03:29 IST" depends-on-methods="RDVCreation.RDVCreation.createRDVWithNoDeduction" duration-ms="29818" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- POReceiptCreationForRDVDeductionHold -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:03:29 IST" name="logout" finished-at="2025-06-11T16:03:31 IST" duration-ms="1812" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:03:31 IST" name="launchApplication" finished-at="2025-06-11T16:03:31 IST" duration-ms="22" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="createRDVWithDeductionHold(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:03:31 IST" name="createRDVWithDeductionHold" data-provider="RDVData" finished-at="2025-06-11T16:04:26 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVDeductionHold" duration-ms="55516" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{External Penalty Name=مكتب عبدالرحمن بن عبدالله النور للاستشارات الهندسية, 10% Penalty Name=مقابل غرامة تأخير 10%, holdName=إيقاف اتعاب الإشراف}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createRDVWithDeductionHold -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:04:26 IST" name="logout" finished-at="2025-06-11T16:04:28 IST" duration-ms="1772" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:04:28 IST" name="launchApplication" finished-at="2025-06-11T16:04:28 IST" duration-ms="11" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="POReceiptCreationForRDVDeductionPenalty(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:04:28 IST" name="POReceiptCreationForRDVDeductionPenalty" data-provider="poReceiptData" finished-at="2025-06-11T16:04:58 IST" depends-on-methods="RDVCreation.RDVCreation.createRDVWithDeductionHold" duration-ms="29912" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- POReceiptCreationForRDVDeductionPenalty -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:04:58 IST" name="logout" finished-at="2025-06-11T16:05:00 IST" duration-ms="1822" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:05:00 IST" name="launchApplication" finished-at="2025-06-11T16:05:00 IST" duration-ms="2" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="createRDVWithDeductionPenalty(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:05:00 IST" name="createRDVWithDeductionPenalty" data-provider="RDVData" finished-at="2025-06-11T16:05:58 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVDeductionPenalty" duration-ms="58010" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{External Penalty Name=مكتب عبدالرحمن بن عبدالله النور للاستشارات الهندسية, 10% Penalty Name=مقابل غرامة تأخير 10%, holdName=إيقاف اتعاب الإشراف}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createRDVWithDeductionPenalty -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:05:58 IST" name="logout" finished-at="2025-06-11T16:06:00 IST" duration-ms="1830" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:06:00 IST" name="launchApplication" finished-at="2025-06-11T16:06:00 IST" duration-ms="16" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="POReceiptCreationForRDVDeductionExternalPenalty(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:06:00 IST" name="POReceiptCreationForRDVDeductionExternalPenalty" data-provider="poReceiptData" finished-at="2025-06-11T16:06:27 IST" depends-on-methods="RDVCreation.RDVCreation.createRDVWithDeductionPenalty" duration-ms="27372" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- POReceiptCreationForRDVDeductionExternalPenalty -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:06:27 IST" name="logout" finished-at="2025-06-11T16:06:29 IST" duration-ms="1865" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:06:29 IST" name="launchApplication" finished-at="2025-06-11T16:06:29 IST" duration-ms="9" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method retried="true" signature="createRDVWithDeductionExternalPenalty(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:06:29 IST" name="createRDVWithDeductionExternalPenalty" data-provider="RDVData" finished-at="2025-06-11T16:06:56 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVDeductionExternalPenalty" duration-ms="26773" status="SKIP">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{External Penalty Name=مكتب عبدالرحمن بن عبدالله النور للاستشارات الهندسية, 10% Penalty Name=مقابل غرامة تأخير 10%, holdName=إيقاف اتعاب الإشراف}]]>
-              </value>
-            </param>
-          </params>
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for presence of element located by: By.xpath: (//td[@class='OBToolbarIconButton_icon_eliminate OBToolbarIconButton'])[2] (tried for 5 second(s) with 500 milliseconds interval)]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: (//td[@class='OBToolbarIconButton_icon_eliminate OBToolbarIconButton'])[2] (tried for 5 second(s) with 500 milliseconds interval)
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at CommonUtilities.ReusableUtilities.deleteIcon(ReusableUtilities.java:275)
-at RDVCreation.RDVCreation.createRDVWithDeductionExternalPenalty(RDVCreation.java:562)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"(//td[@class='OBToolbarIconButton_icon_eliminate OBToolbarIconButton'])[2]"}
-  (Session info: chrome=137.0.7151.69)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Build info: version: '4.32.0', revision: 'd17c8aa950'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '23.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [c9609f59a0222397415deacc9c557531, findElement {using=xpath, value=(//td[@class='OBToolbarIconButton_icon_eliminate OBToolbarIconButton'])[2]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 137.0.7151.69, chrome: {chromedriverVersion: 137.0.7151.70 (dfa4dc56b2ab..., userDataDir: C:\Users\QUALIAN\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52189}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52189/devtoo..., se:cdpVersion: 137.0.7151.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: c9609f59a0222397415deacc9c557531
-at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
-at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
-at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
-at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-... 28 more
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createRDVWithDeductionExternalPenalty -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:06:56 IST" name="logout" finished-at="2025-06-11T16:06:58 IST" duration-ms="1797" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:06:58 IST" name="launchApplication" finished-at="2025-06-11T16:06:58 IST" duration-ms="14" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="createRDVWithDeductionExternalPenalty(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:06:58 IST" name="createRDVWithDeductionExternalPenalty" data-provider="RDVData" finished-at="2025-06-11T16:07:55 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVDeductionExternalPenalty" duration-ms="56903" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{External Penalty Name=مكتب عبدالرحمن بن عبدالله النور للاستشارات الهندسية, 10% Penalty Name=مقابل غرامة تأخير 10%, holdName=إيقاف اتعاب الإشراف}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createRDVWithDeductionExternalPenalty -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:07:55 IST" name="logout" finished-at="2025-06-11T16:07:56 IST" duration-ms="1794" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:07:56 IST" name="launchApplication" finished-at="2025-06-11T16:07:56 IST" duration-ms="6" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="POReceiptCreationForRDVWithAllDeductions(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:07:56 IST" name="POReceiptCreationForRDVWithAllDeductions" data-provider="poReceiptData" finished-at="2025-06-11T16:08:27 IST" depends-on-methods="RDVCreation.RDVCreation.createRDVWithDeductionExternalPenalty" duration-ms="30606" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- POReceiptCreationForRDVWithAllDeductions -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:08:27 IST" name="logout" finished-at="2025-06-11T16:08:29 IST" duration-ms="1803" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:08:29 IST" name="launchApplication" finished-at="2025-06-11T16:08:29 IST" duration-ms="16" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method retried="true" signature="createRDVWithAllDeductions(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:08:29 IST" name="createRDVWithAllDeductions" data-provider="RDVData" finished-at="2025-06-11T16:09:06 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVWithAllDeductions" duration-ms="37523" status="SKIP">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{External Penalty Name=مكتب عبدالرحمن بن عبدالله النور للاستشارات الهندسية, 10% Penalty Name=مقابل غرامة تأخير 10%, holdName=إيقاف اتعاب الإشراف}]]>
-              </value>
-            </param>
-          </params>
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for frame to be available: By.name: OBClassicPopup_iframe (tried for 5 second(s) with 500 milliseconds interval)]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for frame to be available: By.name: OBClassicPopup_iframe (tried for 5 second(s) with 500 milliseconds interval)
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at LocatorsOfWindows.ReceiptDeliveryVerificationLocators.enterHoldDetails(ReceiptDeliveryVerificationLocators.java:103)
-at RDVCreation.RDVCreation.createRDVWithAllDeductions(RDVCreation.java:644)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"*[name='OBClassicPopup_iframe']"}
-  (Session info: chrome=137.0.7151.69)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Build info: version: '4.32.0', revision: 'd17c8aa950'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '23.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [c9609f59a0222397415deacc9c557531, findElement {using=name, value=OBClassicPopup_iframe}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 137.0.7151.69, chrome: {chromedriverVersion: 137.0.7151.70 (dfa4dc56b2ab..., userDataDir: C:\Users\QUALIAN\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52189}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52189/devtoo..., se:cdpVersion: 137.0.7151.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: c9609f59a0222397415deacc9c557531
-at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
-at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
-at org.openqa.selenium.support.ui.ExpectedConditions$17.apply(ExpectedConditions.java:491)
-at org.openqa.selenium.support.ui.ExpectedConditions$17.apply(ExpectedConditions.java:487)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-... 28 more
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createRDVWithAllDeductions -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:09:06 IST" name="logout" finished-at="2025-06-11T16:09:14 IST" duration-ms="7987" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:09:14 IST" name="launchApplication" finished-at="2025-06-11T16:09:14 IST" duration-ms="108" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="createRDVWithAllDeductions(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:09:14 IST" name="createRDVWithAllDeductions" data-provider="RDVData" finished-at="2025-06-11T16:10:29 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVWithAllDeductions" duration-ms="74968" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{External Penalty Name=مكتب عبدالرحمن بن عبدالله النور للاستشارات الهندسية, 10% Penalty Name=مقابل غرامة تأخير 10%, holdName=إيقاف اتعاب الإشراف}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createRDVWithAllDeductions -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:10:29 IST" name="logout" finished-at="2025-06-11T16:10:31 IST" duration-ms="1807" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="quitBrowser()[pri:0, instance:RDVCreation.RDVCreation@6f45df59]" started-at="2025-06-11T16:10:31 IST" name="quitBrowser" finished-at="2025-06-11T16:10:32 IST" duration-ms="404" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- quitBrowser -->
       </class> <!-- RDVCreation.RDVCreation -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- RDV Invoice With No Deduction Test -->
+  </suite> <!-- RDV Invoice With No Deduction -->
 </testng-results>

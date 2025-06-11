@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [RDV Invoice With No Deduction]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="RDV Invoice With No Deduction Test(failed)">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="RDV Invoice With NoDeduction Test(failed)">
     <groups>
       <run>
         <include name="NoDeduction"/>
@@ -16,12 +16,6 @@
           <include name="createRDVWithNoDeduction"/>
         </methods>
       </class> <!-- RDVCreation.RDVCreation -->
-      <class name="RDVInvoice.RDVInvoiceWithNoDeduction">
-        <methods>
-          <include name="logout"/>
-          <include name="InvoiceWithNoDeduction"/>
-        </methods>
-      </class> <!-- RDVInvoice.RDVInvoiceWithNoDeduction -->
     </classes>
-  </test> <!-- RDV Invoice With No Deduction Test(failed) -->
-</suite> <!-- Failed suite [RDV Invoice With No Deduction] -->
+  </test> <!-- RDV Invoice With NoDeduction Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

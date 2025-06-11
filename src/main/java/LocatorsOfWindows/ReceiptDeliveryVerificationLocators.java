@@ -61,13 +61,12 @@ public class ReceiptDeliveryVerificationLocators extends ReusableUtilities {
 	}
 
 	public void approvalType() throws InterruptedException {
-		Thread.sleep(1000);
 		By approvalTypeLocator = By.xpath("(//input[@name='approvalType'])[2]");
-		wait.until(ExpectedConditions.presenceOfElementLocated(approvalTypeLocator));
-		//((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(approvalTypeLocator));
-		driver.findElement(approvalTypeLocator).sendKeys("Running RDV");
-		Thread.sleep(1000);
-		action.sendKeys(Keys.ENTER).build().perform();
+		WebElement approvalTypeInput = wait.until(ExpectedConditions.elementToBeClickable(approvalTypeLocator));
+		
+		approvalTypeInput.clear(); 
+		approvalTypeInput.sendKeys("Running RDV");
+		approvalTypeInput.sendKeys(Keys.ENTER);
 	}
 
 	public void certificateNumber() throws InterruptedException {

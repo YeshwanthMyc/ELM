@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="RDV Invoice With No Deduction">
+	<test thread-count="5" name="RDV Invoice With No Deduction Test">
+		<groups>
+			<run>
+				<include name="NoDeduction" />
+			</run>
+		</groups>
+		<classes>
+			<class name="RDVInvoice.RDVInvoiceWithNoDeduction" />
+			<class name="RDVCreation.RDVCreation" />
+
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->

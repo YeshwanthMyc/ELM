@@ -4,14 +4,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import LocatorsOfWindows.POReceiptLocators;
 import LocatorsOfWindows.PurchaseOrderLocators;
 import LocatorsOfWindows.ReceiptDeliveryVerificationLocators;
-import ReceiptCreationFromPO.POReceipt;
 import TestComponents.BaseClass;
 import TestComponents.RetryAnalyzer;
 
@@ -21,11 +18,10 @@ public class RDVCreation extends BaseClass {
 	String productCode = "";
 	double receiptAmount = 0;
 	double receiptQty = 0;
-	double matchedAmt = 0;
+	public double matchedAmt = 0;
 	double holdAmt = 0;
 	double penaltyAmt = 0;
 	double externalpenaltyAmt = 0;
-	static HashMap<String, String> currentTestData;
 	boolean matchAllSuccess = false;
 	boolean submitMessageSuccess = false;
 	boolean generateAmarsarafMessageSuccess = false;
@@ -36,7 +32,7 @@ public class RDVCreation extends BaseClass {
 
 	public static boolean isPoCreationSuccessfull = false;
 
-	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class)
+	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class,groups= {"NoDeduction"})
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
 
 		PurchaseOrderLocators PO = new PurchaseOrderLocators(driver, wait, action);
@@ -108,7 +104,7 @@ public class RDVCreation extends BaseClass {
 	}
 
 	@Test(dataProvider = "poReceiptData", retryAnalyzer = RetryAnalyzer.class, dependsOnMethods = {
-			"purchaseOrderCreation" })
+			"purchaseOrderCreation" },groups= {"NoDeduction"})
 	public void POReceiptCreationForRDVNoDeduction(HashMap<String, String> data)
 			throws SQLException, InterruptedException {
 
@@ -136,7 +132,7 @@ public class RDVCreation extends BaseClass {
 	}
 
 	@Test(dataProvider = "RDVData", dependsOnMethods = {
-			"POReceiptCreationForRDVNoDeduction" }, retryAnalyzer = RetryAnalyzer.class)
+			"POReceiptCreationForRDVNoDeduction" }, retryAnalyzer = RetryAnalyzer.class,groups= {"NoDeduction"})
 	public void createRDVWithNoDeduction(HashMap<String, String> data) throws SQLException, InterruptedException {
 		ReceiptDeliveryVerificationLocators RDV = new ReceiptDeliveryVerificationLocators(driver, wait, action);
 		try {
@@ -612,7 +608,6 @@ public class RDVCreation extends BaseClass {
 	@Test(dataProvider = "RDVData", dependsOnMethods = {
 			"POReceiptCreationForRDVWithAllDeductions" }, retryAnalyzer = RetryAnalyzer.class)
 	public void createRDVWithAllDeductions(HashMap<String, String> data) throws SQLException, InterruptedException {
-		currentTestData = data;
 		String originalMessage = null;
 		ReceiptDeliveryVerificationLocators RDV = new ReceiptDeliveryVerificationLocators(driver, wait, action);
 		try {
