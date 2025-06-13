@@ -3,15 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Demo.TestLine">
+      <class name="ReceiptCreationFromPO.POReceipt">
         <methods>
-          <include name="logout"/>
+          <include name="purchaseOrderCreation"/>
+          <include name="POReceiptCreation" invocation-numbers="0"/>
           <include name="quitBrowser"/>
-          <include name="testing" invocation-numbers="0"/>
+          <include name="logout"/>
+          <include name="setupReceiptData"/>
           <include name="setUpDriver"/>
           <include name="launchApplication"/>
         </methods>
-      </class> <!-- Demo.TestLine -->
+      </class> <!-- ReceiptCreationFromPO.POReceipt -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

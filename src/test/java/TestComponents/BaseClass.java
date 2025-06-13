@@ -18,10 +18,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
@@ -32,30 +30,109 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import CommonUtilities.ReusableUtilities;
 
 public class BaseClass {
+
 	public static WebDriver driver;
 	public static WebDriverWait wait;
 	public static Actions action;
 	public static Properties prop;
 
+	// Common Data
+	public static String originalMessage;
 	// Dates
-	LocalDate today = LocalDate.now();
-	LocalDate futuredate = today.plusDays(5);
+	public static String currentDate;
+	public static String futuredate;
+	public static String futureDate;
+	public static String hijricurrentDate;
+	public static String hijrifutureDate;
 
-	// Gregorian Date
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-	public String currentDate = today.format(formatter);
-	public String futureDate = futuredate.format(formatter);
+	public static void commonData() {
+		originalMessage = null;
 
-	// Hijri Date
-	HijrahDate hijriToday = HijrahChronology.INSTANCE.date(today);
-	HijrahDate hijriFutureDate = HijrahChronology.INSTANCE.date(futuredate);
-	DateTimeFormatter hijriFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-	public String hijricurrentDate = hijriToday.format(hijriFormatter);
-	public String hijrifutureDate = hijriFutureDate.format(hijriFormatter);
+		LocalDate today = LocalDate.now();
+		LocalDate futuredate = today.plusDays(5);
 
-	public static String poApprovalType = System.getProperty("approvalType", "Single");
-	public static String contractType = System.getProperty("contractType", "Amt");
-	public static String txrnType = System.getProperty("txrnType", "Project Receiving");
+		// Gregorian Date
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+		currentDate = today.format(formatter);
+		futureDate = futuredate.format(formatter);
+
+		// Hijri Date
+		HijrahDate hijriToday = HijrahChronology.INSTANCE.date(today);
+		HijrahDate hijriFutureDate = HijrahChronology.INSTANCE.date(futuredate);
+		DateTimeFormatter hijriFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+		hijricurrentDate = hijriToday.format(hijriFormatter);
+		hijrifutureDate = hijriFutureDate.format(hijriFormatter);
+
+	}
+
+	// PO Data
+	public static String poApprovalType;
+	public static String contractType;
+	public static String txrnType;
+
+	public static void poData() {
+		poApprovalType = System.getProperty("approvalType", "Single");
+		contractType = System.getProperty("contractType", "Amt");
+		txrnType = System.getProperty("txrnType", "Project Receiving");
+	}
+
+	// Receipt Data
+	public static String poDocNumber; // Will Be used in Receipt and RDV
+	public static String productCode;
+	public static double receiptAmount;
+	public static double receiptQty;
+
+	public static void receiptData() {
+		poDocNumber = "";
+		productCode = "";
+		receiptAmount = 0;
+		receiptQty = 0;
+	}
+
+	// RDV Data
+	public static String RDVApprovalType;
+
+	public static double matchedAmt;
+	public static double holdAmt;
+	public static double penaltyAmt;
+	public static double externalpenaltyAmt;
+
+	public static double noDeductionNetMatchedAmt;
+	public static String noDeductionTxrnId;
+	public static String noDeductionInvoioceId;
+
+	public static boolean matchAllSuccess;
+	public static boolean holdSuccess;
+	public static boolean penaltySuccess;
+	public static boolean externalpenaltySuccess;
+
+	public static boolean submitMessageSuccess;
+	public static boolean generateAmarsarafMessageSuccess;
+
+	public static void rdvData() {
+		RDVApprovalType = System.getProperty("approvalType", "Single");
+
+		// Initial values of Match/Hold/Penalty/External Penalty
+		matchedAmt = 0;
+		holdAmt = 0;
+		penaltyAmt = 0;
+		externalpenaltyAmt = 0;
+
+		// No Deduction Method Result
+		noDeductionNetMatchedAmt = 0;
+		noDeductionTxrnId = null;
+		noDeductionInvoioceId = null;
+
+		// Initial Values for Verification
+		matchAllSuccess = false;
+		holdSuccess = false;
+		penaltySuccess = false;
+		externalpenaltySuccess = false;
+
+		submitMessageSuccess = false;
+		generateAmarsarafMessageSuccess = false;
+
+	}
 
 	public BaseClass() {
 		try {
@@ -66,11 +143,10 @@ public class BaseClass {
 		} catch (Exception e) {
 
 		}
-		
 
 	}
 
-	@BeforeSuite
+	@BeforeSuite(alwaysRun = true)
 	public void setUpDriver() {
 		String browserName = prop.getProperty("browser");
 		if (browserName.equalsIgnoreCase("chrome")) {
@@ -89,12 +165,12 @@ public class BaseClass {
 		action = new Actions(driver);
 	}
 
-	@AfterSuite
+	@AfterSuite(alwaysRun = true)
 	public void quitBrowser() {
 		driver.quit();
 	}
 
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void launchApplication() {
 		String currentUrl = driver.getCurrentUrl();
 		String url = prop.getProperty("url");
@@ -104,9 +180,10 @@ public class BaseClass {
 		driver.manage().window().maximize();
 	}
 
-	@AfterMethod(alwaysRun = true)
+	@AfterMethod()
 	public void logout() throws InterruptedException {
-		ReusableUtilities.logout();
+		ReusableUtilities resUse = new ReusableUtilities(driver, wait, action);
+		resUse.logout();
 	}
 
 	public List<HashMap<String, String>> getJSONData(String filePath) throws IOException {

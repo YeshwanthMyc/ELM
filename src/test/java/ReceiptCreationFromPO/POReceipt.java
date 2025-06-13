@@ -2,8 +2,10 @@ package ReceiptCreationFromPO;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import LocatorsOfWindows.POReceiptLocators;
@@ -12,13 +14,13 @@ import TestComponents.BaseClass;
 import TestComponents.RetryAnalyzer;
 
 public class POReceipt extends BaseClass {
-	public static String poDocNumber = "";
-	String productCode = "";
-	double receiptAmount = 0;
-	double receiptQty = 0;
-
-	public static boolean isPoCreationSuccessfull = false;
-
+	
+	@BeforeClass
+	public void setupReceiptData() {
+		commonData();
+		poData();
+		receiptData();
+	}
 	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class)
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
 
@@ -67,9 +69,17 @@ public class POReceipt extends BaseClass {
 		}
 		PO.navigateToPOHeader();
 		PO.submitOrApprove();
-		String actualMessage = PO.submitMessage(PO.getPoNumber(), data.get("poWindowName"), "Submit");
-		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
-				"Expected message 'Success' but got: " + actualMessage);
+		Map<String, Object> SubmitMessageresult = PO.submitMessageValidation(poDocNumber,
+				data.get("poWindowName"), "purchaseOrderCreation");
+		boolean submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
+		String actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
+		if (submitMessageSuccessResult) {
+			submitMessageSuccess = true;
+		} else {
+			submitMessageSuccess = false;
+			System.out.println("Expected 'Success' but got: " + actualMessageForSubmittext);
+			Assert.fail("Expected 'Success' but got: " + actualMessageForSubmittext);
+		}
 		logout();
 		PO.POApproval(data.get("poWindowName"), data.get("accountNumber"));
 		PO.login(data.get("AccrualUser"), data.get("password"));
@@ -80,13 +90,12 @@ public class POReceipt extends BaseClass {
 		receiptAmount = lineNetAmount * 0.3;
 		String lineNetQty = data.get("quantity");
 		receiptQty = Math.round(Double.parseDouble(lineNetQty) * 0.3);
-		isPoCreationSuccessfull = true;
-
+		
 	}
 
 	@Test(dataProvider = "poReceiptData", retryAnalyzer = RetryAnalyzer.class, dependsOnMethods = {
 			"purchaseOrderCreation" })
-	public void POReceiptCreation1(HashMap<String, String> data) throws SQLException, InterruptedException {
+	public void POReceiptCreation(HashMap<String, String> data) throws SQLException, InterruptedException {
 
 		POReceiptLocators receipt = new POReceiptLocators(driver, wait, action);
 		receipt.login(data.get("SingleApprovalRequester"), data.get("password"));
@@ -98,29 +107,19 @@ public class POReceipt extends BaseClass {
 		receipt.addLines(contractType);
 		receipt.popUpAction(contractType, productCode, String.valueOf(receiptAmount), String.valueOf(receiptQty));
 		receipt.submitOrApprove();
-		String actualMessage = receipt.submitMessage(poDocNumber, data.get("WindowName"), "Receipt Submit");
-		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
-				"Expected message 'Success' but got: " + actualMessage);
+		Map<String, Object> SubmitMessageresult = receipt.submitMessageValidation(poDocNumber,
+				data.get("WindowName"), "POReceiptCreation");
+		boolean submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
+		String actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
+		if (submitMessageSuccessResult) {
+			submitMessageSuccess = true;
+		} else {
+			submitMessageSuccess = false;
+			System.out.println("Expected 'Success' but got: " + actualMessageForSubmittext);
+			Assert.fail("Expected 'Success' but got: " + actualMessageForSubmittext);
+		}
 
 	}
 
-	@Test(dataProvider = "poReceiptData", retryAnalyzer = RetryAnalyzer.class, dependsOnMethods = {
-			"RDVCreation.RDVCreation.createRDVWithNoDeduction" })
-	public void POReceiptCreation2(HashMap<String, String> data) throws SQLException, InterruptedException {
-		POReceiptLocators receipt = new POReceiptLocators(driver, wait, action);
-		receipt.login(data.get("SingleApprovalRequester"), data.get("password"));
-		receipt.openWindow(data.get("WindowName"));
-		receipt.createNewHeader();
-		receipt.transactionType(txrnType, hijricurrentDate, data.get("Department"));
-		receipt.passPO(poDocNumber);
-		receipt.saveHeader();
-		receipt.addLines(contractType);
-		receipt.popUpAction(contractType, productCode, String.valueOf(receiptAmount), String.valueOf(receiptQty));
-		receipt.submitOrApprove();
-		String actualMessage = receipt.submitMessage(poDocNumber, data.get("WindowName"), "Receipt Submit");
-		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
-				"Expected message 'Success' but got: " + actualMessage);
-
-	}
 
 }

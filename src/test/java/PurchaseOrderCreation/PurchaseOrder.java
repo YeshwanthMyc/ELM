@@ -2,8 +2,10 @@ package PurchaseOrderCreation;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import LocatorsOfWindows.PurchaseOrderLocators;
@@ -11,14 +13,17 @@ import TestComponents.BaseClass;
 import TestComponents.RetryAnalyzer;
 
 public class PurchaseOrder extends BaseClass {
-
 	
-
+	@BeforeClass
+	public void setupPOData() {
+		commonData();
+		poData();
+	}
 	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class)
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
 		launchApplication();
 		PurchaseOrderLocators PO = new PurchaseOrderLocators(driver, wait, action);
-
+		
 		if (poApprovalType.equalsIgnoreCase("Multi")) {
 			PO.login(data.get("MultiApprovalRequester"), data.get("password"));
 		}
@@ -60,10 +65,20 @@ public class PurchaseOrder extends BaseClass {
 			PO.contractAttributes(hijricurrentDate, hijrifutureDate);
 		}
 		PO.navigateToPOHeader();
+		
 		PO.submitOrApprove();
-		String actualMessage = PO.submitMessage(PO.getPoNumber(), data.get("poWindowName"),"Submit");
-		Assert.assertTrue(actualMessage.equalsIgnoreCase("Success"),
-				"Expected message 'Success' but got: " + actualMessage);
+		Map<String, Object> SubmitMessageresult = PO.submitMessageValidation(poDocNumber,
+				data.get("poWindowName"), "purchaseOrderCreation");
+		boolean submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
+		String actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
+		if (submitMessageSuccessResult) {
+			submitMessageSuccess = true;
+		} else {
+			submitMessageSuccess = false;
+			System.out.println("Expected 'Success' but got: " + actualMessageForSubmittext);
+			Assert.fail("Expected 'Success' but got: " + actualMessageForSubmittext);
+		}
+		
 		logout();
 		PO.POApproval(data.get("poWindowName"), data.get("accountNumber"));
 		PO.login(data.get("AccrualUser"), data.get("password"));

@@ -38,7 +38,7 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 	}
 
 	public void processType(String processType) {
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='escmPoType']")))
+		oneMinuteWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='escmPoType']")))
 				.sendKeys(processType);
 		action.sendKeys(Keys.ENTER).build().perform();
 	}

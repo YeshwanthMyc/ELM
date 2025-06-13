@@ -13,15 +13,12 @@
           <include name="purchaseOrderCreation" invocation-numbers="0"/>
           <include name="POReceiptCreationForRDVNoDeduction"/>
           <include name="logout"/>
+          <include name="quitBrowser"/>
+          <include name="setUpDriver"/>
           <include name="createRDVWithNoDeduction"/>
+          <include name="launchApplication"/>
         </methods>
       </class> <!-- RDVCreation.RDVCreation -->
-      <class name="RDVInvoice.RDVInvoiceWithNoDeduction">
-        <methods>
-          <include name="logout"/>
-          <include name="InvoiceWithNoDeduction"/>
-        </methods>
-      </class> <!-- RDVInvoice.RDVInvoiceWithNoDeduction -->
     </classes>
   </test> <!-- RDV Invoice With No Deduction Test(failed) -->
 </suite> <!-- Failed suite [RDV Invoice With No Deduction] -->

@@ -1,53 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results retried="1" ignored="8" total="13" passed="0" failed="1" skipped="3">
+<testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-06-11T18:40:14 IST" name="RDV Invoice With No Deduction" finished-at="2025-06-11T18:40:15 IST" duration-ms="636">
+  <suite started-at="2025-06-13T13:38:12 IST" name="Default suite" finished-at="2025-06-13T13:41:03 IST" duration-ms="170472">
     <groups>
-      <group name="NoDeduction">
-        <method signature="RDVCreation.purchaseOrderCreation(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" name="purchaseOrderCreation" class="RDVCreation.RDVCreation"/>
-        <method signature="RDVCreation.POReceiptCreationForRDVNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" name="POReceiptCreationForRDVNoDeduction" class="RDVCreation.RDVCreation"/>
-        <method signature="RDVCreation.createRDVWithNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" name="createRDVWithNoDeduction" class="RDVCreation.RDVCreation"/>
-        <method signature="RDVInvoiceWithNoDeduction.InvoiceWithNoDeduction()[pri:0, instance:RDVInvoice.RDVInvoiceWithNoDeduction@19976a65]" name="InvoiceWithNoDeduction" class="RDVInvoice.RDVInvoiceWithNoDeduction"/>
-      </group> <!-- NoDeduction -->
     </groups>
-    <test started-at="2025-06-11T18:40:14 IST" name="RDV Invoice With No Deduction Test" finished-at="2025-06-11T18:40:15 IST" duration-ms="636">
-      <class name="RDVInvoice.RDVInvoiceWithNoDeduction">
-        <test-method signature="InvoiceWithNoDeduction()[pri:0, instance:RDVInvoice.RDVInvoiceWithNoDeduction@19976a65]" started-at="2025-06-11T18:40:15 IST" name="InvoiceWithNoDeduction" depends-on-groups="NoDeduction" finished-at="2025-06-11T18:40:15 IST" duration-ms="0" status="SKIP">
-          <exception class="java.lang.Throwable">
-            <message>
-              <![CDATA[Method RDVInvoiceWithNoDeduction.InvoiceWithNoDeduction()[pri:0, instance:RDVInvoice.RDVInvoiceWithNoDeduction@19976a65] depends on not successfully finished methods in group "NoDeduction"]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.Throwable: Method RDVInvoiceWithNoDeduction.InvoiceWithNoDeduction()[pri:0, instance:RDVInvoice.RDVInvoiceWithNoDeduction@19976a65] depends on not successfully finished methods in group "NoDeduction"
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:159)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.Throwable -->
+    <test started-at="2025-06-13T13:38:12 IST" name="Default test" finished-at="2025-06-13T13:41:03 IST" duration-ms="170472">
+      <class name="ReceiptCreationFromPO.POReceipt">
+        <test-method is-config="true" signature="setUpDriver()[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:38:11 IST" name="setUpDriver" finished-at="2025-06-13T13:38:12 IST" duration-ms="1266" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- InvoiceWithNoDeduction -->
-      </class> <!-- RDVInvoice.RDVInvoiceWithNoDeduction -->
-      <class name="RDVCreation.RDVCreation">
-        <test-method retried="true" signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" started-at="2025-06-11T18:40:14 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-11T18:40:15 IST" duration-ms="244" status="SKIP">
+        </test-method> <!-- setUpDriver -->
+        <test-method is-config="true" signature="setupReceiptData()[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:38:12 IST" name="setupReceiptData" finished-at="2025-06-13T13:38:12 IST" duration-ms="12" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupReceiptData -->
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:38:12 IST" name="launchApplication" finished-at="2025-06-13T13:38:13 IST" duration-ms="272" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApplication -->
+        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:38:13 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-13T13:40:06 IST" duration-ms="113696" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -55,14 +27,33 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
               </value>
             </param>
           </params>
-          <exception class="java.lang.NullPointerException">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- purchaseOrderCreation -->
+        <test-method is-config="true" signature="logout()[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:40:06 IST" name="logout" finished-at="2025-06-13T13:40:08 IST" duration-ms="1799" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logout -->
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:40:08 IST" name="launchApplication" finished-at="2025-06-13T13:40:08 IST" duration-ms="15" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApplication -->
+        <test-method signature="POReceiptCreation(java.util.HashMap)[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:40:08 IST" name="POReceiptCreation" data-provider="poReceiptData" finished-at="2025-06-13T13:41:01 IST" depends-on-methods="ReceiptCreationFromPO.POReceipt.purchaseOrderCreation" duration-ms="52655" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[Cannot invoke "org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)" because "CommonUtilities.ReusableUtilities.driver" is null]]>
+              <![CDATA[Expected 'Success' but got: Posting sequence is not defined, please defined the sequence for posting the document.]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)" because "CommonUtilities.ReusableUtilities.driver" is null
-at CommonUtilities.ReusableUtilities.login(ReusableUtilities.java:46)
-at RDVCreation.RDVCreation.purchaseOrderCreation(RDVCreation.java:44)
+              <![CDATA[java.lang.AssertionError: Expected 'Success' but got: Posting sequence is not defined, please defined the sequence for posting the document.
+at org.testng.Assert.fail(Assert.java:111)
+at ReceiptCreationFromPO.POReceipt.POReceiptCreation(POReceipt.java:119)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -91,219 +82,19 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- purchaseOrderCreation -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" started-at="2025-06-11T18:40:15 IST" name="logout" finished-at="2025-06-11T18:40:15 IST" duration-ms="6" status="FAIL">
-          <exception class="java.lang.NullPointerException">
-            <message>
-              <![CDATA[Cannot invoke "org.openqa.selenium.support.ui.WebDriverWait.until(java.util.function.Function)" because "CommonUtilities.ReusableUtilities.wait" is null]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.support.ui.WebDriverWait.until(java.util.function.Function)" because "CommonUtilities.ReusableUtilities.wait" is null
-at CommonUtilities.ReusableUtilities.logout(ReusableUtilities.java:53)
-at TestComponents.BaseClass.logout(BaseClass.java:109)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
-at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
-at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
-at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:836)
-at org.testng.internal.invokers.TestInvoker.runAfterConfigurations(TestInvoker.java:805)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:781)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+        </test-method> <!-- POReceiptCreation -->
+        <test-method is-config="true" signature="logout()[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:41:01 IST" name="logout" finished-at="2025-06-13T13:41:03 IST" duration-ms="1811" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logout -->
-        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" started-at="2025-06-11T18:40:15 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-11T18:40:15 IST" duration-ms="155" status="FAIL">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=1000, AmtcontractCategoryName=02, quantity=9, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=01, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}]]>
-              </value>
-            </param>
-          </params>
-          <exception class="java.lang.NullPointerException">
-            <message>
-              <![CDATA[Cannot invoke "org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)" because "CommonUtilities.ReusableUtilities.driver" is null]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)" because "CommonUtilities.ReusableUtilities.driver" is null
-at CommonUtilities.ReusableUtilities.login(ReusableUtilities.java:46)
-at RDVCreation.RDVCreation.purchaseOrderCreation(RDVCreation.java:44)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:269)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+        <test-method is-config="true" signature="quitBrowser()[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:41:03 IST" name="quitBrowser" finished-at="2025-06-13T13:41:03 IST" duration-ms="241" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- purchaseOrderCreation -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" started-at="2025-06-11T18:40:15 IST" name="logout" finished-at="2025-06-11T18:40:15 IST" duration-ms="1" status="FAIL">
-          <exception class="java.lang.NullPointerException">
-            <message>
-              <![CDATA[Cannot invoke "org.openqa.selenium.support.ui.WebDriverWait.until(java.util.function.Function)" because "CommonUtilities.ReusableUtilities.wait" is null]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.support.ui.WebDriverWait.until(java.util.function.Function)" because "CommonUtilities.ReusableUtilities.wait" is null
-at CommonUtilities.ReusableUtilities.logout(ReusableUtilities.java:53)
-at TestComponents.BaseClass.logout(BaseClass.java:109)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
-at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
-at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
-at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:836)
-at org.testng.internal.invokers.TestInvoker.runAfterConfigurations(TestInvoker.java:805)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:781)
-at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:269)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method signature="POReceiptCreationForRDVNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" started-at="2025-06-11T18:40:15 IST" name="POReceiptCreationForRDVNoDeduction" finished-at="2025-06-11T18:40:15 IST" depends-on-methods="RDVCreation.RDVCreation.purchaseOrderCreation" duration-ms="0" status="SKIP">
-          <exception class="java.lang.Throwable">
-            <message>
-              <![CDATA[Method RDVCreation.RDVCreation.POReceiptCreationForRDVNoDeduction() on instance RDVCreation.RDVCreation@407a7f2a depends on not successfully finished methods 
-[RDVCreation.RDVCreation.purchaseOrderCreation() on instance RDVCreation.RDVCreation@407a7f2a]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.Throwable: Method RDVCreation.RDVCreation.POReceiptCreationForRDVNoDeduction() on instance RDVCreation.RDVCreation@407a7f2a depends on not successfully finished methods 
-[RDVCreation.RDVCreation.purchaseOrderCreation() on instance RDVCreation.RDVCreation@407a7f2a]
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:159)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.Throwable -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- POReceiptCreationForRDVNoDeduction -->
-        <test-method signature="createRDVWithNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@407a7f2a]" started-at="2025-06-11T18:40:15 IST" name="createRDVWithNoDeduction" finished-at="2025-06-11T18:40:15 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVNoDeduction" duration-ms="0" status="SKIP">
-          <exception class="java.lang.Throwable">
-            <message>
-              <![CDATA[Method RDVCreation.RDVCreation.createRDVWithNoDeduction() on instance RDVCreation.RDVCreation@407a7f2a depends on not successfully finished methods 
-[RDVCreation.RDVCreation.POReceiptCreationForRDVNoDeduction() on instance RDVCreation.RDVCreation@407a7f2a]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.Throwable: Method RDVCreation.RDVCreation.createRDVWithNoDeduction() on instance RDVCreation.RDVCreation@407a7f2a depends on not successfully finished methods 
-[RDVCreation.RDVCreation.POReceiptCreationForRDVNoDeduction() on instance RDVCreation.RDVCreation@407a7f2a]
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:159)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.Throwable -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createRDVWithNoDeduction -->
-      </class> <!-- RDVCreation.RDVCreation -->
-    </test> <!-- RDV Invoice With No Deduction Test -->
-  </suite> <!-- RDV Invoice With No Deduction -->
+        </test-method> <!-- quitBrowser -->
+      </class> <!-- ReceiptCreationFromPO.POReceipt -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>
