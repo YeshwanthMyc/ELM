@@ -1,100 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-06-13T13:38:12 IST" name="Default suite" finished-at="2025-06-13T13:41:03 IST" duration-ms="170472">
+  <suite started-at="2025-06-13T15:51:43 IST" name="Default suite" finished-at="2025-06-13T15:57:52 IST" duration-ms="369098">
     <groups>
     </groups>
-    <test started-at="2025-06-13T13:38:12 IST" name="Default test" finished-at="2025-06-13T13:41:03 IST" duration-ms="170472">
-      <class name="ReceiptCreationFromPO.POReceipt">
-        <test-method is-config="true" signature="setUpDriver()[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:38:11 IST" name="setUpDriver" finished-at="2025-06-13T13:38:12 IST" duration-ms="1266" status="PASS">
+    <test started-at="2025-06-13T15:51:43 IST" name="Default test" finished-at="2025-06-13T15:57:52 IST" duration-ms="369098">
+      <class name="Demo.TestLine">
+        <test-method is-config="true" signature="setUpDriver()[pri:0, instance:Demo.TestLine@7d61eb55]" started-at="2025-06-13T15:51:41 IST" name="setUpDriver" finished-at="2025-06-13T15:51:43 IST" duration-ms="1360" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpDriver -->
-        <test-method is-config="true" signature="setupReceiptData()[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:38:12 IST" name="setupReceiptData" finished-at="2025-06-13T13:38:12 IST" duration-ms="12" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setupReceiptData -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:38:12 IST" name="launchApplication" finished-at="2025-06-13T13:38:13 IST" duration-ms="272" status="PASS">
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:Demo.TestLine@7d61eb55]" started-at="2025-06-13T15:51:43 IST" name="launchApplication" finished-at="2025-06-13T15:51:43 IST" duration-ms="394" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchApplication -->
-        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:38:13 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-13T13:40:06 IST" duration-ms="113696" status="PASS">
+        <test-method signature="createRDVWithDeductionHold(java.util.HashMap)[pri:0, instance:Demo.TestLine@7d61eb55]" started-at="2025-06-13T15:51:43 IST" name="createRDVWithDeductionHold" data-provider="RDVData" finished-at="2025-06-13T15:57:50 IST" duration-ms="366639" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=1000, AmtcontractCategoryName=02, quantity=9, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=01, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}]]>
+                <![CDATA[{External Penalty Name=مكتب عبدالرحمن بن عبدالله النور للاستشارات الهندسية, 10% Penalty Name=مقابل غرامة تأخير 10%, HQ RDV user=4350143, holdName=إيقاف اتعاب الإشراف}]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- purchaseOrderCreation -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:40:06 IST" name="logout" finished-at="2025-06-13T13:40:08 IST" duration-ms="1799" status="PASS">
+        </test-method> <!-- createRDVWithDeductionHold -->
+        <test-method is-config="true" signature="logout()[pri:0, instance:Demo.TestLine@7d61eb55]" started-at="2025-06-13T15:57:50 IST" name="logout" finished-at="2025-06-13T15:57:52 IST" duration-ms="1835" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:40:08 IST" name="launchApplication" finished-at="2025-06-13T13:40:08 IST" duration-ms="15" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="POReceiptCreation(java.util.HashMap)[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:40:08 IST" name="POReceiptCreation" data-provider="poReceiptData" finished-at="2025-06-13T13:41:01 IST" depends-on-methods="ReceiptCreationFromPO.POReceipt.purchaseOrderCreation" duration-ms="52655" status="FAIL">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
-              </value>
-            </param>
-          </params>
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[Expected 'Success' but got: Posting sequence is not defined, please defined the sequence for posting the document.]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Expected 'Success' but got: Posting sequence is not defined, please defined the sequence for posting the document.
-at org.testng.Assert.fail(Assert.java:111)
-at ReceiptCreationFromPO.POReceipt.POReceiptCreation(POReceipt.java:119)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- POReceiptCreation -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:41:01 IST" name="logout" finished-at="2025-06-13T13:41:03 IST" duration-ms="1811" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="quitBrowser()[pri:0, instance:ReceiptCreationFromPO.POReceipt@399c4be1]" started-at="2025-06-13T13:41:03 IST" name="quitBrowser" finished-at="2025-06-13T13:41:03 IST" duration-ms="241" status="PASS">
+        <test-method is-config="true" signature="quitBrowser()[pri:0, instance:Demo.TestLine@7d61eb55]" started-at="2025-06-13T15:57:52 IST" name="quitBrowser" finished-at="2025-06-13T15:57:52 IST" duration-ms="254" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quitBrowser -->
-      </class> <!-- ReceiptCreationFromPO.POReceipt -->
+      </class> <!-- Demo.TestLine -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

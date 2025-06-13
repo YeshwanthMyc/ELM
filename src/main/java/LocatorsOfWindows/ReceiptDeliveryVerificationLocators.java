@@ -349,7 +349,7 @@ public class ReceiptDeliveryVerificationLocators extends ReusableUtilities {
 
 	
 
-	public boolean RDVApproval(String noDeductionTxrnId,String poDocNumber,String windowName) throws SQLException, InterruptedException {
+	public boolean RDVApproval(String TxrnId,String poDocNumber,String windowName) throws SQLException, InterruptedException {
 		String rdvPendingRoleInDB = null;
 		String rdvPendingRole = null;
 		String rdvpendingUser = null;
@@ -358,7 +358,7 @@ public class ReceiptDeliveryVerificationLocators extends ReusableUtilities {
 		while (true) {
 			// Fetch pending role from DB
 			String rdvPendingRoleQuery = "SELECT pendingapproval FROM efin_rdvacthist WHERE Efin_Rdvtxn_ID = '"
-					+ noDeductionTxrnId + "'  ORDER BY created DESC LIMIT 1";
+					+ TxrnId + "'  ORDER BY created DESC LIMIT 1";
 			ResultSet rdvPendingRoleQueryResult = s.executeQuery(rdvPendingRoleQuery);
 
 			if (rdvPendingRoleQueryResult.next()) {

@@ -100,6 +100,14 @@ public class BaseClass {
 	public static double noDeductionNetMatchedAmt;
 	public static String noDeductionTxrnId;
 	public static String noDeductionInvoioceId;
+	
+	public static String holdDeductionTxrnId;
+	
+	public static String penaltyDeductionTxrnId;
+	
+	public static String extPenaltyDeductionTxrnId;
+	
+	public static String allDeductionTxrnId;
 
 	public static boolean matchAllSuccess;
 	public static boolean holdSuccess;
@@ -110,7 +118,7 @@ public class BaseClass {
 	public static boolean generateAmarsarafMessageSuccess;
 
 	public static void rdvData() {
-		RDVApprovalType = System.getProperty("RDVapprovalType", "Single");
+		RDVApprovalType = System.getProperty("RDVapprovalType", "Multi");
 
 		// Initial values of Match/Hold/Penalty/External Penalty
 		matchedAmt = 0;
@@ -122,6 +130,18 @@ public class BaseClass {
 		noDeductionNetMatchedAmt = 0;
 		noDeductionTxrnId = null;
 		noDeductionInvoioceId = null;
+		
+		//Hold Deduction Result
+		holdDeductionTxrnId=null;
+		
+		//Penalty Deduction Result
+		penaltyDeductionTxrnId=null;
+		
+		//Ext penalty Deduction Result
+		extPenaltyDeductionTxrnId=null;
+		
+		//All Deduction Result
+		allDeductionTxrnId=null;
 
 		// Initial Values for Verification
 		matchAllSuccess = false;

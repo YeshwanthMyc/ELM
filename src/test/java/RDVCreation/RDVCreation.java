@@ -182,7 +182,7 @@ public class RDVCreation extends BaseClass {
 
 			logout();
 			if (RDVApprovalType.equalsIgnoreCase("Multi")) {
-				submitMessageSuccess = RDV.RDVApproval(noDeductionTxrnId, poDocNumber, "Receipt Delivery Verification");
+				submitMessageSuccessResult = RDV.RDVApproval(noDeductionTxrnId, poDocNumber, "Receipt Delivery Verification");
 				if (submitMessageSuccessResult) {
 					submitMessageSuccess = true;
 				} else {
@@ -325,9 +325,11 @@ public class RDVCreation extends BaseClass {
 			}
 
 			// Data For Invoice
+			holdDeductionTxrnId = RDV.getTxrnId(poDocNumber);
+			
 			logout();
 			if (RDVApprovalType.equalsIgnoreCase("Multi")) {
-				submitMessageSuccess = RDV.RDVApproval(noDeductionTxrnId, poDocNumber, "Receipt Delivery Verification");
+				submitMessageSuccessResult = RDV.RDVApproval(holdDeductionTxrnId, poDocNumber, "Receipt Delivery Verification");
 				if (submitMessageSuccessResult) {
 					submitMessageSuccess = true;
 				} else {
@@ -468,10 +470,11 @@ public class RDVCreation extends BaseClass {
 			}
 
 			// Data Needed for Invoice
-
+			penaltyDeductionTxrnId = RDV.getTxrnId(poDocNumber);
+			
 			logout();
 			if (RDVApprovalType.equalsIgnoreCase("Multi")) {
-				submitMessageSuccess = RDV.RDVApproval(noDeductionTxrnId, poDocNumber, "Receipt Delivery Verification");
+				submitMessageSuccessResult = RDV.RDVApproval(penaltyDeductionTxrnId, poDocNumber, "Receipt Delivery Verification");
 				if (submitMessageSuccessResult) {
 					submitMessageSuccess = true;
 				} else {
@@ -614,10 +617,11 @@ public class RDVCreation extends BaseClass {
 			}
 
 			// Data Needed for Invoice
-
+			extPenaltyDeductionTxrnId = RDV.getTxrnId(poDocNumber);
+			
 			logout();
 			if (RDVApprovalType.equalsIgnoreCase("Multi")) {
-				submitMessageSuccess = RDV.RDVApproval(noDeductionTxrnId, poDocNumber, "Receipt Delivery Verification");
+				submitMessageSuccessResult = RDV.RDVApproval(extPenaltyDeductionTxrnId, poDocNumber, "Receipt Delivery Verification");
 				if (submitMessageSuccessResult) {
 					submitMessageSuccess = true;
 				} else {
@@ -784,10 +788,11 @@ public class RDVCreation extends BaseClass {
 			}
 
 			// Data Needed for Invoice
-
+			allDeductionTxrnId = RDV.getTxrnId(poDocNumber);
+			
 			logout();
 			if (RDVApprovalType.equalsIgnoreCase("Multi")) {
-				submitMessageSuccess = RDV.RDVApproval(noDeductionTxrnId, poDocNumber, "Receipt Delivery Verification");
+				submitMessageSuccessResult = RDV.RDVApproval(allDeductionTxrnId, poDocNumber, "Receipt Delivery Verification");
 				if (submitMessageSuccessResult) {
 					submitMessageSuccess = true;
 				} else {
