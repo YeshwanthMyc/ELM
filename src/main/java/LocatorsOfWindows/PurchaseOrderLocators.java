@@ -433,7 +433,8 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 		return isEncumbered;
 	}
 
-	public void POApproval(String windowName, String accountNumber) throws InterruptedException, SQLException {
+	public boolean POApproval(String windowName, String accountNumber) throws InterruptedException, SQLException {
+		boolean submitMessageSuccess = false;
 		while (true) {
 			poNumber = getPoNumber();
 			Map<String, String> PendingRoleResult = getPendingRole(poNumber);
@@ -459,11 +460,22 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 			applyUniqueCode(isEncumbered);
 
 			submitOrApprove();
+			Map<String, Object> SubmitMessageresult = submitMessageValidation(poNumber,windowName,"Approval");
+			boolean submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
+			
+
+			if (submitMessageSuccessResult) {
+				submitMessageSuccess = true;
+			} else {
+				submitMessageSuccess = false;
+				
+				break; 
+			}
 			submitMessage(poNumber,windowName,"Approval");
 
 			logout();
 			Thread.sleep(2000);
-		}
+		}return submitMessageSuccess;
 	}
 	
 	public void addCostCenter(String windowName) throws InterruptedException, SQLException {
@@ -550,7 +562,7 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 		}
 		Thread.sleep(1500);
 		action.sendKeys(Keys.ENTER).build().perform();
-		
+		Thread.sleep(1500);
 		saveLine();
 		
 	}
