@@ -359,22 +359,26 @@ public class RDVCreation extends BaseClass {
 		} catch (AssertionError | Exception e) {
 
 			if (!matchAllSuccess) {
-				RDV.deleteIcon();
+			    RDV.deleteIcon();
 			}
-			if (matchAllSuccess && !submitMessageSuccess) {
-				if (originalMessage.equalsIgnoreCase("Warning")) {
-					System.out.println("Check Warning Message");
-					Assert.fail("Check Warning Message");
-				}
-				if (originalMessage.equalsIgnoreCase("Error")) {
-					System.out.println("Record Not Submitted");
-					Assert.fail("Record Not Submitted");
-				}
+			if (matchAllSuccess && !holdSuccess) {
+			    RDV.deleteIcon();
 			}
-			if (matchAllSuccess && submitMessageSuccess && !generateAmarsarafMessageSuccess) {
-				System.out.println("Record Not Submitted");
-				Assert.fail("Invoice Not Generated");
+			if (matchAllSuccess && holdSuccess && !submitMessageSuccess) {
+			    if (originalMessage.equalsIgnoreCase("Warning")) {
+			        System.out.println("Check Warning Message");
+			        Assert.fail("Check Warning Message");
+			    }
+			    if (originalMessage.equalsIgnoreCase("Error")) {
+			        System.out.println("Record Not Submitted");
+			        Assert.fail("Record Not Submitted");
+			    }
 			}
+			if (matchAllSuccess && holdSuccess && submitMessageSuccess && !generateAmarsarafMessageSuccess) {
+			    System.out.println("Record Not Submitted");
+			    Assert.fail("Invoice Not Generated");
+			}
+
 			throw e;
 		}
 
@@ -504,22 +508,26 @@ public class RDVCreation extends BaseClass {
 		} catch (AssertionError | Exception e) {
 
 			if (!matchAllSuccess) {
-				RDV.deleteIcon();
+			    RDV.deleteIcon();
 			}
-			if (matchAllSuccess && !submitMessageSuccess) {
-				if (originalMessage.equalsIgnoreCase("Warning")) {
-					System.out.println("Check Warning Message");
-					Assert.fail("Check Warning Message");
-				}
-				if (originalMessage.equalsIgnoreCase("Error")) {
-					System.out.println("Record Not Submitted");
-					Assert.fail("Record Not Submitted");
-				}
+			if (matchAllSuccess && !penaltySuccess) {
+			    RDV.deleteIcon();
 			}
-			if (matchAllSuccess && submitMessageSuccess && !generateAmarsarafMessageSuccess) {
-				System.out.println("Record Not Submitted");
-				Assert.fail("Invoice Not Generated");
+			if (matchAllSuccess && penaltySuccess && !submitMessageSuccess) {
+			    if (originalMessage.equalsIgnoreCase("Warning")) {
+			        System.out.println("Check Warning Message");
+			        Assert.fail("Check Warning Message");
+			    }
+			    if (originalMessage.equalsIgnoreCase("Error")) {
+			        System.out.println("Record Not Submitted");
+			        Assert.fail("Record Not Submitted");
+			    }
 			}
+			if (matchAllSuccess && penaltySuccess && submitMessageSuccess && !generateAmarsarafMessageSuccess) {
+			    System.out.println("Record Not Submitted");
+			    Assert.fail("Invoice Not Generated");
+			}
+
 			throw e;
 		}
 
@@ -651,22 +659,26 @@ public class RDVCreation extends BaseClass {
 		} catch (AssertionError | Exception e) {
 
 			if (!matchAllSuccess) {
-				RDV.deleteIcon();
+			    RDV.deleteIcon();
 			}
-			if (matchAllSuccess && !submitMessageSuccess) {
-				if (originalMessage.equalsIgnoreCase("Warning")) {
-					System.out.println("Check Warning Message");
-					Assert.fail("Check Warning Message");
-				}
-				if (originalMessage.equalsIgnoreCase("Error")) {
-					System.out.println("Record Not Submitted");
-					Assert.fail("Record Not Submitted");
-				}
+			if (matchAllSuccess && !externalpenaltySuccess) {
+			  // RDV.removeBulkPenalty();
 			}
-			if (matchAllSuccess && submitMessageSuccess && !generateAmarsarafMessageSuccess) {
-				System.out.println("Record Not Submitted");
-				Assert.fail("Invoice Not Generated");
+			if (matchAllSuccess && externalpenaltySuccess && !submitMessageSuccess) {
+			    if (originalMessage.equalsIgnoreCase("Warning")) {
+			        System.out.println("Check Warning Message");
+			        Assert.fail("Check Warning Message");
+			    }
+			    if (originalMessage.equalsIgnoreCase("Error")) {
+			        System.out.println("Record Not Submitted");
+			        Assert.fail("Record Not Submitted");
+			    }
 			}
+			if (matchAllSuccess && externalpenaltySuccess && submitMessageSuccess && !generateAmarsarafMessageSuccess) {
+			    System.out.println("Record Not Submitted");
+			    Assert.fail("Invoice Not Generated");
+			}
+
 			throw e;
 		}
 
@@ -822,22 +834,33 @@ public class RDVCreation extends BaseClass {
 		} catch (AssertionError | Exception e) {
 
 			if (!matchAllSuccess) {
-				RDV.deleteIcon();
+			    RDV.deleteIcon();
 			}
-			if (matchAllSuccess && !submitMessageSuccess) {
-				if (originalMessage.equalsIgnoreCase("Warning")) {
-					System.out.println("Check Warning Message");
-					Assert.fail("Check Warning Message");
-				}
-				if (originalMessage.equalsIgnoreCase("Error")) {
-					System.out.println("Record Not Submitted");
-					Assert.fail("Record Not Submitted");
-				}
+			if (matchAllSuccess && !holdSuccess) {
+			    RDV.deleteIcon();
 			}
-			if (matchAllSuccess && submitMessageSuccess && !generateAmarsarafMessageSuccess) {
-				System.out.println("Record Not Submitted");
-				Assert.fail("Invoice Not Generated");
+			if (matchAllSuccess && holdSuccess && !penaltySuccess) {
+			    RDV.deleteIcon();
 			}
+			if (matchAllSuccess && holdSuccess && penaltySuccess && !externalpenaltySuccess) {
+			  //  RDV.removeBulkPenalty();
+			}
+			if (matchAllSuccess && holdSuccess && penaltySuccess && externalpenaltySuccess && !submitMessageSuccess) {
+			    if (originalMessage.equalsIgnoreCase("Warning")) {
+			        System.out.println("Check Warning Message");
+			        Assert.fail("Check Warning Message");
+			    }
+			    if (originalMessage.equalsIgnoreCase("Error")) {
+			        System.out.println("Record Not Submitted");
+			        Assert.fail("Record Not Submitted");
+			    }
+			}
+			if (matchAllSuccess && holdSuccess && penaltySuccess && externalpenaltySuccess &&
+			        submitMessageSuccess && !generateAmarsarafMessageSuccess) {
+			    System.out.println("Record Not Submitted");
+			    Assert.fail("Invoice Not Generated");
+			}
+
 			throw e;
 		}
 
