@@ -71,7 +71,7 @@ public class BaseClass {
 	public static String txrnType;
 
 	public static void poData() {
-		poApprovalType = System.getProperty("approvalType", "Single");
+		poApprovalType = System.getProperty("POapprovalType", "Single");
 		contractType = System.getProperty("contractType", "Amt");
 		txrnType = System.getProperty("txrnType", "Project Receiving");
 	}
@@ -110,7 +110,7 @@ public class BaseClass {
 	public static boolean generateAmarsarafMessageSuccess;
 
 	public static void rdvData() {
-		RDVApprovalType = System.getProperty("approvalType", "Single");
+		RDVApprovalType = System.getProperty("RDVapprovalType", "Single");
 
 		// Initial values of Match/Hold/Penalty/External Penalty
 		matchedAmt = 0;
