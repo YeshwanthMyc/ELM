@@ -19,6 +19,10 @@ public class PurchaseOrder extends BaseClass {
 		commonData();
 		poData();
 	}
+	String actualMessageForSubmittext=null;
+	Map<String, Object> SubmitMessageresult;
+	boolean submitMessageSuccessResult=false;
+	
 	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class)
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
 		launchApplication();
@@ -67,10 +71,10 @@ public class PurchaseOrder extends BaseClass {
 		PO.navigateToPOHeader();
 		
 		PO.submitOrApprove();
-		Map<String, Object> SubmitMessageresult = PO.submitMessageValidation(poDocNumber,
+		SubmitMessageresult = PO.submitMessageValidation(poDocNumber,
 				data.get("poWindowName"), "purchaseOrderCreation");
-		boolean submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
-		String actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
+		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
+		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 		if (submitMessageSuccessResult) {
 			submitMessageSuccess = true;
 		} else {

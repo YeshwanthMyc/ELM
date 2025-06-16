@@ -179,13 +179,13 @@ public class ReceiptDeliveryVerificationLocators extends ReusableUtilities {
 				driver.findElement(By.xpath("(//span[@class='select2-selection select2-selection--single'])[2]")))
 				.click().build().perform();
 
-		Thread.sleep(500);
+		Thread.sleep(1000);
 		WebElement accountNumber = wait.until(ExpectedConditions.presenceOfElementLocated(
 				By.xpath("(//span[@class='select2-search select2-search--dropdown'])/input")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", accountNumber);
 		accountNumber.sendKeys("1431");
 
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		action.sendKeys(Keys.ENTER).build().perform();
 
 		wait.until(ExpectedConditions
@@ -349,12 +349,14 @@ public class ReceiptDeliveryVerificationLocators extends ReusableUtilities {
 
 	
 
-	public boolean RDVApproval(String TxrnId,String poDocNumber,String windowName) throws SQLException, InterruptedException {
+	public Map<String, Object> RDVApproval(String TxrnId,String poDocNumber,String windowName) throws SQLException, InterruptedException {
 		String rdvPendingRoleInDB = null;
 		String rdvPendingRole = null;
 		String rdvpendingUser = null;
 		boolean submitMessageSuccess = false;
-
+		boolean submitMessageSuccessResult=false;
+		String originalMessage=null;
+		Map<String, Object> approvalMessageresult = new HashMap<>();
 		while (true) {
 			// Fetch pending role from DB
 			String rdvPendingRoleQuery = "SELECT pendingapproval FROM efin_rdvacthist WHERE Efin_Rdvtxn_ID = '"
@@ -408,14 +410,14 @@ public class ReceiptDeliveryVerificationLocators extends ReusableUtilities {
 
 				submitOrApprove();
 				Map<String, Object> SubmitMessageresult = submitMessageValidation(poDocNumber,windowName,"Approval");
-				boolean submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
+				submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
+				originalMessage = (String) SubmitMessageresult.get("originalMessage");
 				
 
 				if (submitMessageSuccessResult) {
 					submitMessageSuccess = true;
 				} else {
 					submitMessageSuccess = false;
-					
 					break; 
 				}
 
@@ -424,8 +426,9 @@ public class ReceiptDeliveryVerificationLocators extends ReusableUtilities {
 				break;
 
 		}
-
-		return submitMessageSuccess;
+		approvalMessageresult.put("submitMessageSuccessResult", submitMessageSuccessResult);
+		approvalMessageresult.put("originalMessage", originalMessage);	
+		return approvalMessageresult;
 	}
 
 }

@@ -21,6 +21,11 @@ public class POReceipt extends BaseClass {
 		poData();
 		receiptData();
 	}
+	
+	String actualMessageForSubmittext=null;
+	Map<String, Object> SubmitMessageresult;
+	boolean submitMessageSuccessResult=false;
+	
 	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class)
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
 
@@ -69,10 +74,10 @@ public class POReceipt extends BaseClass {
 		}
 		PO.navigateToPOHeader();
 		PO.submitOrApprove();
-		Map<String, Object> SubmitMessageresult = PO.submitMessageValidation(poDocNumber,
+		SubmitMessageresult = PO.submitMessageValidation(poDocNumber,
 				data.get("poWindowName"), "purchaseOrderCreation");
-		boolean submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
-		String actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
+		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
+		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 		if (submitMessageSuccessResult) {
 			submitMessageSuccess = true;
 		} else {
@@ -107,10 +112,10 @@ public class POReceipt extends BaseClass {
 		receipt.addLines(contractType);
 		receipt.popUpAction(contractType, productCode, String.valueOf(receiptAmount), String.valueOf(receiptQty));
 		receipt.submitOrApprove();
-		Map<String, Object> SubmitMessageresult = receipt.submitMessageValidation(poDocNumber,
-				data.get("WindowName"), "POReceiptCreation");
-		boolean submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
-		String actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
+		SubmitMessageresult = receipt.submitMessageValidation(poDocNumber,
+				data.get("WindowName"), "POReceiptCreationForRDVNoDeduction");
+		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
+		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 		if (submitMessageSuccessResult) {
 			submitMessageSuccess = true;
 		} else {

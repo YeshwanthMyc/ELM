@@ -275,6 +275,7 @@ public class ReusableUtilities {
 		}
 		SubmitMessageresult.put("submitMessageSuccess", submitMessageSuccess);
 		SubmitMessageresult.put("actualMessageForSubmittext[1]", actualMessageForSubmittext[1]);
+		SubmitMessageresult.put("originalMessage", actualMessageForSubmittext[0]);
 		return SubmitMessageresult;
 	}
 
