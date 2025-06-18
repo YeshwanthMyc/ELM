@@ -224,6 +224,7 @@ public class ReceiptDeliveryVerificationLocators extends ReusableUtilities {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", penaltyAmount);
 		penaltyAmount.sendKeys(penaltyAmountToBeEntered);
 
+		Thread.sleep(1500);
 		WebElement penaltyBusinessPartnerDropDown = wait.until(ExpectedConditions
 				.presenceOfElementLocated(By.xpath("(//span[@class='select2-selection__rendered'])[1]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
