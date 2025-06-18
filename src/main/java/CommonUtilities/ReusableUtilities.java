@@ -56,15 +56,16 @@ public class ReusableUtilities {
 		int attempts = 0;
 
 		while (!clicked && attempts < 3) {
-		    try {
-		        WebElement mainIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//img[@name='isc_10main']")));
-		        action.moveToElement(mainIcon).click().build().perform();
-		        clicked = true;
-		    } catch (Exception e) {
-		        System.out.println("Attempt " + (attempts + 1) + " failed: " + e.getMessage());
-		        Thread.sleep(1000);
-		        attempts++;
-		    }
+			try {
+				WebElement mainIcon = wait
+						.until(ExpectedConditions.elementToBeClickable(By.xpath("//img[@name='isc_10main']")));
+				action.moveToElement(mainIcon).click().build().perform();
+				clicked = true;
+			} catch (Exception e) {
+				System.out.println("Attempt " + (attempts + 1) + " failed: " + e.getMessage());
+				Thread.sleep(1000);
+				attempts++;
+			}
 		}
 
 		try {
@@ -73,7 +74,7 @@ public class ReusableUtilities {
 			WebElement userNameLocator = wait
 					.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='user']")));
 			if (userNameLocator.isDisplayed()) {
-				
+
 			}
 		} catch (Exception e) {
 			action.sendKeys(Keys.ENTER).pause(Duration.ofMillis(1000)).sendKeys(Keys.ENTER).build().perform();
@@ -207,7 +208,8 @@ public class ReusableUtilities {
 		Thread.sleep(1500);
 	}
 
-	public String submitMessage(String poNumber, String windowName, String processName,String invDocNumber) throws InterruptedException {
+	public String submitMessage(String poNumber, String windowName, String processName, String invDocNumber)
+			throws InterruptedException {
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='Processing_Container']")));
 		Thread.sleep(2000);
 
@@ -247,9 +249,10 @@ public class ReusableUtilities {
 							actualMessage += " Result:" + rs.getString("Posting_Errormsg");
 						}
 					}
-					
+
 					else if (windowName.equalsIgnoreCase("Purchase Invoice")) {
-						String query = "select EM_Efin_Posting_Errormsg from c_invoice where documentno='"+invDocNumber+"'";
+						String query = "select EM_Efin_Posting_Errormsg from c_invoice where documentno='"
+								+ invDocNumber + "'";
 						ResultSet rs = s.executeQuery(query);
 						if (rs.next()) {
 							actualMessage += " Result:" + rs.getString("Posting_Errormsg");
@@ -277,11 +280,12 @@ public class ReusableUtilities {
 		return actualMessage;
 	}
 
-	public Map<String, Object> submitMessageValidation(String poDocNumber, String WindowName, String methodName,String invDocNumber)
-			throws InterruptedException {
+	public Map<String, Object> submitMessageValidation(String poDocNumber, String WindowName, String methodName,
+			String invDocNumber) throws InterruptedException {
 		Map<String, Object> SubmitMessageresult = new HashMap<>();
-		String actualMessageForSubmit = submitMessage(poDocNumber, WindowName, methodName,invDocNumber);
+		String actualMessageForSubmit = submitMessage(poDocNumber, WindowName, methodName, invDocNumber);
 		boolean submitMessageSuccess = false;
+
 		String actualMessageForSubmittext[] = actualMessageForSubmit.split(" Result:");
 		String originalMessage = actualMessageForSubmittext[0];
 		if (originalMessage.equalsIgnoreCase("Success")) {
