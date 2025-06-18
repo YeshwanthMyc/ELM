@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -51,20 +52,30 @@ public class ReusableUtilities {
 	}
 
 	public void logout() throws InterruptedException {
-		WebElement mainIcon = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//img[@name='isc_10main']")));
-		Thread.sleep(500);
-		action.moveToElement(mainIcon).click().build().perform();
+		boolean clicked = false;
+		int attempts = 0;
+
+		while (!clicked && attempts < 3) {
+		    try {
+		        WebElement mainIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//img[@name='isc_10main']")));
+		        action.moveToElement(mainIcon).click().build().perform();
+		        clicked = true;
+		    } catch (Exception e) {
+		        System.out.println("Attempt " + (attempts + 1) + " failed: " + e.getMessage());
+		        Thread.sleep(1000);
+		        attempts++;
+		    }
+		}
 
 		try {
+			Thread.sleep(2000);
 			action.sendKeys(Keys.ENTER).pause(Duration.ofMillis(1000)).sendKeys(Keys.ENTER).build().perform();
 			WebElement userNameLocator = wait
-					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='user']")));
+					.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='user']")));
 			if (userNameLocator.isDisplayed()) {
-
+				
 			}
 		} catch (Exception e) {
-
 			action.sendKeys(Keys.ENTER).pause(Duration.ofMillis(1000)).sendKeys(Keys.ENTER).build().perform();
 		}
 	}
@@ -196,7 +207,7 @@ public class ReusableUtilities {
 		Thread.sleep(1500);
 	}
 
-	public String submitMessage(String poNumber, String windowName, String processName) throws InterruptedException {
+	public String submitMessage(String poNumber, String windowName, String processName,String invDocNumber) throws InterruptedException {
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='Processing_Container']")));
 		Thread.sleep(2000);
 
@@ -236,6 +247,14 @@ public class ReusableUtilities {
 							actualMessage += " Result:" + rs.getString("Posting_Errormsg");
 						}
 					}
+					
+					else if (windowName.equalsIgnoreCase("Purchase Invoice")) {
+						String query = "select EM_Efin_Posting_Errormsg from c_invoice where documentno='"+invDocNumber+"'";
+						ResultSet rs = s.executeQuery(query);
+						if (rs.next()) {
+							actualMessage += " Result:" + rs.getString("Posting_Errormsg");
+						}
+					}
 					break;
 				}
 
@@ -258,10 +277,10 @@ public class ReusableUtilities {
 		return actualMessage;
 	}
 
-	public Map<String, Object> submitMessageValidation(String poDocNumber, String WindowName, String methodName)
+	public Map<String, Object> submitMessageValidation(String poDocNumber, String WindowName, String methodName,String invDocNumber)
 			throws InterruptedException {
 		Map<String, Object> SubmitMessageresult = new HashMap<>();
-		String actualMessageForSubmit = submitMessage(poDocNumber, WindowName, methodName);
+		String actualMessageForSubmit = submitMessage(poDocNumber, WindowName, methodName,invDocNumber);
 		boolean submitMessageSuccess = false;
 		String actualMessageForSubmittext[] = actualMessageForSubmit.split(" Result:");
 		String originalMessage = actualMessageForSubmittext[0];
@@ -279,7 +298,8 @@ public class ReusableUtilities {
 		return SubmitMessageresult;
 	}
 
-	public void undoIcon() {
+	public void undoIcon() throws InterruptedException {
+		Thread.sleep(1000);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 				By.xpath("//td[@class='OBToolbarIconButton_icon_undo OBToolbarIconButton']")));
 		wait.until(ExpectedConditions
@@ -308,6 +328,7 @@ public class ReusableUtilities {
 		WebElement okButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("buttonOK")));
 		okButton.click();
 		driver.switchTo().defaultContent();
+		Thread.sleep(3000);
 	}
 
 }

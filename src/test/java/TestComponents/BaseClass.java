@@ -10,6 +10,7 @@ import java.time.chrono.HijrahDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -44,7 +45,11 @@ public class BaseClass {
 	public static String futureDate;
 	public static String hijricurrentDate;
 	public static String hijrifutureDate;
-
+	
+	public static String actualMessageForSubmittext;
+	public static Map<String, Object> SubmitMessageresult;
+	public static boolean submitMessageSuccessResult;
+	public static Map<String, Object> approvalresult;
 	public static void commonData() {
 		originalMessage = null;
 
@@ -62,6 +67,12 @@ public class BaseClass {
 		DateTimeFormatter hijriFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
 		hijricurrentDate = hijriToday.format(hijriFormatter);
 		hijrifutureDate = hijriFutureDate.format(hijriFormatter);
+		
+
+		actualMessageForSubmittext=null;
+		SubmitMessageresult=null;
+		submitMessageSuccessResult=false;
+		approvalresult=null;
 
 	}
 
@@ -118,7 +129,7 @@ public class BaseClass {
 	public static boolean generateAmarsarafMessageSuccess;
 
 	public static void rdvData() {
-		RDVApprovalType = System.getProperty("RDVapprovalType", "Multi");
+		RDVApprovalType = System.getProperty("RDVapprovalType", "Single");
 
 		// Initial values of Match/Hold/Penalty/External Penalty
 		matchedAmt = 0;
@@ -128,7 +139,7 @@ public class BaseClass {
 
 		// No Deduction Method Result
 		noDeductionNetMatchedAmt = 0;
-		noDeductionTxrnId = null;
+		noDeductionTxrnId =null;
 		noDeductionInvoioceId = null;
 		
 		//Hold Deduction Result
@@ -152,6 +163,11 @@ public class BaseClass {
 		submitMessageSuccess = false;
 		generateAmarsarafMessageSuccess = false;
 
+	}
+	
+	public static String invDocNumber;
+	public static void invData() {
+		 invDocNumber=null;
 	}
 
 	public BaseClass() {
@@ -258,6 +274,12 @@ public class BaseClass {
 	@DataProvider(name = "RDVData")
 	public Object[][] getRDVData() throws IOException {
 		return getData("RDV.json");
+
+	}
+	
+	@DataProvider(name = "RDVInvoiceData")
+	public Object[][] RDVInvoiceData() throws IOException {
+		return getData("RDVInvoiceData.json");
 
 	}
 

@@ -1,49 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="11" passed="11" failed="0" skipped="0">
+<testng-results retried="1" ignored="8" total="13" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-06-13T19:09:14 IST" name="Default suite" finished-at="2025-06-13T19:26:13 IST" duration-ms="1019697">
+  <suite started-at="2025-06-18T12:59:36 IST" name="RDV Invoice With No Deduction" finished-at="2025-06-18T13:07:20 IST" duration-ms="464332">
     <groups>
       <group name="NoDeduction">
-        <method signature="RDVCreation.purchaseOrderCreation(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@1e178745]" name="purchaseOrderCreation" class="RDVCreation.RDVCreation"/>
-        <method signature="RDVCreation.POReceiptCreationForRDVNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@1e178745]" name="POReceiptCreationForRDVNoDeduction" class="RDVCreation.RDVCreation"/>
-        <method signature="RDVCreation.createRDVWithNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@1e178745]" name="createRDVWithNoDeduction" class="RDVCreation.RDVCreation"/>
+        <method signature="RDVCreation.purchaseOrderCreation(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@291caca8]" name="purchaseOrderCreation" class="RDVCreation.RDVCreation"/>
+        <method signature="RDVCreation.POReceiptCreationForRDVNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@291caca8]" name="POReceiptCreationForRDVNoDeduction" class="RDVCreation.RDVCreation"/>
+        <method signature="RDVCreation.createRDVWithNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@291caca8]" name="createRDVWithNoDeduction" class="RDVCreation.RDVCreation"/>
+        <method signature="RDVInvoiceWithNoDeduction.InvoiceWithNoDeduction(java.util.HashMap)[pri:0, instance:RDVInvoice.RDVInvoiceWithNoDeduction@6ab778a]" name="InvoiceWithNoDeduction" class="RDVInvoice.RDVInvoiceWithNoDeduction"/>
       </group> <!-- NoDeduction -->
     </groups>
-    <test started-at="2025-06-13T19:09:14 IST" name="Default test" finished-at="2025-06-13T19:26:13 IST" duration-ms="1019697">
-      <class name="RDVCreation.RDVCreation">
-        <test-method is-config="true" signature="setUpDriver()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:09:13 IST" name="setUpDriver" finished-at="2025-06-13T19:09:14 IST" duration-ms="1252" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUpDriver -->
-        <test-method is-config="true" signature="setupRdvData()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:09:14 IST" name="setupRdvData" finished-at="2025-06-13T19:09:14 IST" duration-ms="10" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setupRdvData -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:09:14 IST" name="launchApplication" finished-at="2025-06-13T19:09:14 IST" duration-ms="313" status="PASS">
+    <test started-at="2025-06-18T12:59:36 IST" name="RDV Invoice With No Deduction Test" finished-at="2025-06-18T13:07:20 IST" duration-ms="464332">
+      <class name="RDVInvoice.RDVInvoiceWithNoDeduction">
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVInvoice.RDVInvoiceWithNoDeduction@6ab778a]" started-at="2025-06-18T13:04:59 IST" name="launchApplication" finished-at="2025-06-18T13:04:59 IST" duration-ms="64" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchApplication -->
-        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:09:14 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-13T19:11:07 IST" duration-ms="112514" status="PASS">
+        <test-method signature="InvoiceWithNoDeduction(java.util.HashMap)[pri:0, instance:RDVInvoice.RDVInvoiceWithNoDeduction@6ab778a]" started-at="2025-06-18T13:04:59 IST" name="InvoiceWithNoDeduction" data-provider="RDVInvoiceData" depends-on-groups="NoDeduction" finished-at="2025-06-18T13:07:20 IST" duration-ms="141193" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=1000, AmtcontractCategoryName=02, quantity=9, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=01, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}]]>
+                <![CDATA[{userName=4350143, mofRequestNo=0, taxMethod=احتساب على الوزارة 15%}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- InvoiceWithNoDeduction -->
+      </class> <!-- RDVInvoice.RDVInvoiceWithNoDeduction -->
+      <class name="RDVCreation.RDVCreation">
+        <test-method is-config="true" signature="setUpDriver()[pri:0, instance:RDVCreation.RDVCreation@291caca8]" started-at="2025-06-18T12:59:34 IST" name="setUpDriver" finished-at="2025-06-18T12:59:36 IST" duration-ms="1252" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpDriver -->
+        <test-method is-config="true" signature="setupRdvData()[pri:0, instance:RDVCreation.RDVCreation@291caca8]" started-at="2025-06-18T12:59:36 IST" name="setupRdvData" finished-at="2025-06-18T12:59:36 IST" duration-ms="13" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupRdvData -->
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@291caca8]" started-at="2025-06-18T12:59:36 IST" name="launchApplication" finished-at="2025-06-18T12:59:36 IST" duration-ms="407" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApplication -->
+        <test-method retried="true" signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@291caca8]" started-at="2025-06-18T12:59:36 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-18T13:01:24 IST" duration-ms="107784" status="SKIP">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=1000, AmtcontractCategoryName=02, quantity=9, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=01, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, windowName=Purchase Order, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for presence of element located by: By.xpath: (//input[@name='efinLedgeraccount'])[2] (tried for 5 second(s) with 500 milliseconds interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: (//input[@name='efinLedgeraccount'])[2] (tried for 5 second(s) with 500 milliseconds interval)
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at LocatorsOfWindows.PurchaseOrderLocators.addLedgerAccount(PurchaseOrderLocators.java:545)
+at RDVCreation.RDVCreation.purchaseOrderCreation(RDVCreation.java:93)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"(//input[@name='efinLedgeraccount'])[2]"}
+  (Session info: chrome=137.0.7151.104)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.32.0', revision: 'd17c8aa950'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '23.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [a7b4f4d3223c2d4267e3e6c3e73becfd, findElement {using=xpath, value=(//input[@name='efinLedgeraccount'])[2]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 137.0.7151.104, chrome: {chromedriverVersion: 137.0.7151.119 (e0ac9d12dff..., userDataDir: C:\Users\QUALIAN\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:55778}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:55778/devtoo..., se:cdpVersion: 137.0.7151.104, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: a7b4f4d3223c2d4267e3e6c3e73becfd
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+... 28 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- purchaseOrderCreation -->
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@291caca8]" started-at="2025-06-18T13:01:24 IST" name="launchApplication" finished-at="2025-06-18T13:01:24 IST" duration-ms="71" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApplication -->
+        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@291caca8]" started-at="2025-06-18T13:01:24 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-18T13:03:19 IST" duration-ms="115237" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=1000, AmtcontractCategoryName=02, quantity=9, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=01, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, windowName=Purchase Order, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- purchaseOrderCreation -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:11:07 IST" name="logout" finished-at="2025-06-13T19:11:09 IST" duration-ms="1785" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:11:09 IST" name="launchApplication" finished-at="2025-06-13T19:11:09 IST" duration-ms="16" status="PASS">
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@291caca8]" started-at="2025-06-18T13:03:19 IST" name="launchApplication" finished-at="2025-06-18T13:03:19 IST" duration-ms="66" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchApplication -->
-        <test-method signature="POReceiptCreationForRDVNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:11:09 IST" name="POReceiptCreationForRDVNoDeduction" data-provider="poReceiptData" finished-at="2025-06-13T19:11:37 IST" depends-on-methods="RDVCreation.RDVCreation.purchaseOrderCreation" duration-ms="27945" status="PASS">
+        <test-method signature="POReceiptCreationForRDVNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@291caca8]" started-at="2025-06-18T13:03:19 IST" name="POReceiptCreationForRDVNoDeduction" data-provider="poReceiptData" finished-at="2025-06-18T13:03:48 IST" depends-on-methods="RDVCreation.RDVCreation.purchaseOrderCreation" duration-ms="28762" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -54,15 +149,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- POReceiptCreationForRDVNoDeduction -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:11:37 IST" name="logout" finished-at="2025-06-13T19:11:38 IST" duration-ms="1801" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:11:38 IST" name="launchApplication" finished-at="2025-06-13T19:11:38 IST" duration-ms="23" status="PASS">
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@291caca8]" started-at="2025-06-18T13:03:48 IST" name="launchApplication" finished-at="2025-06-18T13:03:48 IST" duration-ms="72" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchApplication -->
-        <test-method signature="createRDVWithNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:11:38 IST" name="createRDVWithNoDeduction" data-provider="RDVData" finished-at="2025-06-13T19:13:59 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVNoDeduction" duration-ms="140766" status="PASS">
+        <test-method signature="createRDVWithNoDeduction(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@291caca8]" started-at="2025-06-18T13:03:48 IST" name="createRDVWithNoDeduction" data-provider="RDVData" finished-at="2025-06-18T13:04:59 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVNoDeduction" duration-ms="70322" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -73,167 +164,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createRDVWithNoDeduction -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:13:59 IST" name="logout" finished-at="2025-06-13T19:14:01 IST" duration-ms="1855" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:14:01 IST" name="launchApplication" finished-at="2025-06-13T19:14:01 IST" duration-ms="21" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="POReceiptCreationForRDVDeductionHold(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:14:01 IST" name="POReceiptCreationForRDVDeductionHold" data-provider="poReceiptData" finished-at="2025-06-13T19:14:33 IST" depends-on-methods="RDVCreation.RDVCreation.createRDVWithNoDeduction" duration-ms="32165" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- POReceiptCreationForRDVDeductionHold -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:14:33 IST" name="logout" finished-at="2025-06-13T19:14:35 IST" duration-ms="1834" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:14:35 IST" name="launchApplication" finished-at="2025-06-13T19:14:35 IST" duration-ms="12" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="createRDVWithDeductionHold(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:14:35 IST" name="createRDVWithDeductionHold" data-provider="RDVData" finished-at="2025-06-13T19:17:01 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVDeductionHold" duration-ms="145779" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{External Penalty Name=مكتب عبدالرحمن بن عبدالله النور للاستشارات الهندسية, 10% Penalty Name=مقابل غرامة تأخير 10%, HQ RDV user=4350143, holdName=إيقاف اتعاب الإشراف}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createRDVWithDeductionHold -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:17:01 IST" name="logout" finished-at="2025-06-13T19:17:03 IST" duration-ms="1757" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:17:03 IST" name="launchApplication" finished-at="2025-06-13T19:17:03 IST" duration-ms="6" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="POReceiptCreationForRDVDeductionPenalty(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:17:03 IST" name="POReceiptCreationForRDVDeductionPenalty" data-provider="poReceiptData" finished-at="2025-06-13T19:17:33 IST" depends-on-methods="RDVCreation.RDVCreation.createRDVWithDeductionHold" duration-ms="30174" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- POReceiptCreationForRDVDeductionPenalty -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:17:33 IST" name="logout" finished-at="2025-06-13T19:17:35 IST" duration-ms="1805" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:17:35 IST" name="launchApplication" finished-at="2025-06-13T19:17:35 IST" duration-ms="17" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="createRDVWithDeductionPenalty(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:17:35 IST" name="createRDVWithDeductionPenalty" data-provider="RDVData" finished-at="2025-06-13T19:20:02 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVDeductionPenalty" duration-ms="147786" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{External Penalty Name=مكتب عبدالرحمن بن عبدالله النور للاستشارات الهندسية, 10% Penalty Name=مقابل غرامة تأخير 10%, HQ RDV user=4350143, holdName=إيقاف اتعاب الإشراف}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createRDVWithDeductionPenalty -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:20:02 IST" name="logout" finished-at="2025-06-13T19:20:04 IST" duration-ms="1779" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:20:04 IST" name="launchApplication" finished-at="2025-06-13T19:20:04 IST" duration-ms="16" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="POReceiptCreationForRDVDeductionExternalPenalty(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:20:04 IST" name="POReceiptCreationForRDVDeductionExternalPenalty" data-provider="poReceiptData" finished-at="2025-06-13T19:20:32 IST" depends-on-methods="RDVCreation.RDVCreation.createRDVWithDeductionPenalty" duration-ms="27690" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- POReceiptCreationForRDVDeductionExternalPenalty -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:20:32 IST" name="logout" finished-at="2025-06-13T19:20:34 IST" duration-ms="1812" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method signature="createRDVWithDeductionExternalPenalty(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:20:34 IST" name="createRDVWithDeductionExternalPenalty" data-provider="RDVData" finished-at="2025-06-13T19:22:58 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVDeductionExternalPenalty" duration-ms="144330" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{External Penalty Name=مكتب عبدالرحمن بن عبدالله النور للاستشارات الهندسية, 10% Penalty Name=مقابل غرامة تأخير 10%, HQ RDV user=4350143, holdName=إيقاف اتعاب الإشراف}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createRDVWithDeductionExternalPenalty -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:20:34 IST" name="launchApplication" finished-at="2025-06-13T19:20:34 IST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:22:58 IST" name="logout" finished-at="2025-06-13T19:23:00 IST" duration-ms="1775" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:23:00 IST" name="launchApplication" finished-at="2025-06-13T19:23:00 IST" duration-ms="16" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="POReceiptCreationForRDVWithAllDeductions(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:23:00 IST" name="POReceiptCreationForRDVWithAllDeductions" data-provider="poReceiptData" finished-at="2025-06-13T19:23:28 IST" depends-on-methods="RDVCreation.RDVCreation.createRDVWithDeductionExternalPenalty" duration-ms="28153" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- POReceiptCreationForRDVWithAllDeductions -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:23:28 IST" name="logout" finished-at="2025-06-13T19:23:30 IST" duration-ms="1769" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:23:30 IST" name="launchApplication" finished-at="2025-06-13T19:23:30 IST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="createRDVWithAllDeductions(java.util.HashMap)[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:23:30 IST" name="createRDVWithAllDeductions" data-provider="RDVData" finished-at="2025-06-13T19:26:12 IST" depends-on-methods="RDVCreation.RDVCreation.POReceiptCreationForRDVWithAllDeductions" duration-ms="161961" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{External Penalty Name=مكتب عبدالرحمن بن عبدالله النور للاستشارات الهندسية, 10% Penalty Name=مقابل غرامة تأخير 10%, HQ RDV user=4350143, holdName=إيقاف اتعاب الإشراف}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createRDVWithAllDeductions -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:26:12 IST" name="logout" finished-at="2025-06-13T19:26:13 IST" duration-ms="1789" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logout -->
-        <test-method is-config="true" signature="quitBrowser()[pri:0, instance:RDVCreation.RDVCreation@1e178745]" started-at="2025-06-13T19:26:14 IST" name="quitBrowser" finished-at="2025-06-13T19:26:14 IST" duration-ms="327" status="PASS">
+        <test-method is-config="true" signature="quitBrowser()[pri:0, instance:RDVCreation.RDVCreation@291caca8]" started-at="2025-06-18T13:07:20 IST" name="quitBrowser" finished-at="2025-06-18T13:07:20 IST" duration-ms="380" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quitBrowser -->
       </class> <!-- RDVCreation.RDVCreation -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- RDV Invoice With No Deduction Test -->
+  </suite> <!-- RDV Invoice With No Deduction -->
 </testng-results>

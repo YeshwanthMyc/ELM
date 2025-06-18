@@ -8,9 +8,8 @@
 			</run>
 		</groups>
 		<classes>
-			<class name="RDVInvoice.RDVInvoiceWithNoDeduction" />
 			<class name="RDVCreation.RDVCreation" />
-
+			<class name="RDVInvoice.RDVInvoiceWithNoDeduction" />
 		</classes>
 	</test> <!--
 	Test -->

@@ -460,7 +460,7 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 			applyUniqueCode(isEncumbered);
 
 			submitOrApprove();
-			Map<String, Object> SubmitMessageresult = submitMessageValidation(poNumber,windowName,"Approval");
+			Map<String, Object> SubmitMessageresult = submitMessageValidation(poNumber,windowName,"Approval",null);
 			boolean submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 			
 
@@ -471,7 +471,7 @@ public class PurchaseOrderLocators extends ReusableUtilities {
 				
 				break; 
 			}
-			submitMessage(poNumber,windowName,"Approval");
+			submitMessage(poNumber,windowName,"Approval",null);
 
 			logout();
 			Thread.sleep(2000);

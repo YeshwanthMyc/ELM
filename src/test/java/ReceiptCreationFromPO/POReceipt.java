@@ -21,10 +21,7 @@ public class POReceipt extends BaseClass {
 		poData();
 		receiptData();
 	}
-	
-	String actualMessageForSubmittext=null;
-	Map<String, Object> SubmitMessageresult;
-	boolean submitMessageSuccessResult=false;
+
 	
 	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class)
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
@@ -75,7 +72,7 @@ public class POReceipt extends BaseClass {
 		PO.navigateToPOHeader();
 		PO.submitOrApprove();
 		SubmitMessageresult = PO.submitMessageValidation(poDocNumber,
-				data.get("poWindowName"), "purchaseOrderCreation");
+				data.get("poWindowName"), "purchaseOrderCreation",null);
 		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 		if (submitMessageSuccessResult) {
@@ -113,7 +110,7 @@ public class POReceipt extends BaseClass {
 		receipt.popUpAction(contractType, productCode, String.valueOf(receiptAmount), String.valueOf(receiptQty));
 		receipt.submitOrApprove();
 		SubmitMessageresult = receipt.submitMessageValidation(poDocNumber,
-				data.get("WindowName"), "POReceiptCreationForRDVNoDeduction");
+				data.get("WindowName"), "POReceiptCreationForRDVNoDeduction",null);
 		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 		if (submitMessageSuccessResult) {

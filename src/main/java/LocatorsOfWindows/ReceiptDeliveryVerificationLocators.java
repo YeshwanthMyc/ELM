@@ -409,7 +409,7 @@ public class ReceiptDeliveryVerificationLocators extends ReusableUtilities {
 				openTransactionVersion();
 
 				submitOrApprove();
-				Map<String, Object> SubmitMessageresult = submitMessageValidation(poDocNumber,windowName,"Approval");
+				Map<String, Object> SubmitMessageresult = submitMessageValidation(poDocNumber,windowName,"Approval",null);
 				submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 				originalMessage = (String) SubmitMessageresult.get("originalMessage");
 				

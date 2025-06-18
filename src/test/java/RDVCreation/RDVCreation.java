@@ -16,17 +16,14 @@ import TestComponents.RetryAnalyzer;
 
 public class RDVCreation extends BaseClass {
 
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public void setupRdvData() {
 		commonData();
 		poData();
 		receiptData();
 		rdvData();
 	}
-	String actualMessageForSubmittext=null;
-	Map<String, Object> SubmitMessageresult;
-	boolean submitMessageSuccessResult=false;
-	Map<String, Object> approvalresult;
+	
 	
 	@Test(dataProvider = "poData", retryAnalyzer = RetryAnalyzer.class, groups = { "NoDeduction" })
 	public void purchaseOrderCreation(HashMap<String, String> data) throws InterruptedException, SQLException {
@@ -78,7 +75,7 @@ public class RDVCreation extends BaseClass {
 		PO.submitOrApprove();
 		
 		SubmitMessageresult = PO.submitMessageValidation(poDocNumber,
-				data.get("poWindowName"), "purchaseOrderCreation");
+				data.get("poWindowName"), "purchaseOrderCreation",null);
 		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 		if (submitMessageSuccessResult) {
@@ -118,7 +115,7 @@ public class RDVCreation extends BaseClass {
 		receipt.popUpAction(contractType, productCode, String.valueOf(receiptAmount), String.valueOf(receiptQty));
 		receipt.submitOrApprove();
 		SubmitMessageresult = receipt.submitMessageValidation(poDocNumber,
-				data.get("WindowName"), "POReceiptCreationForRDVNoDeduction");
+				data.get("WindowName"), "POReceiptCreationForRDVNoDeduction",null);
 		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 		if (submitMessageSuccessResult) {
@@ -170,7 +167,7 @@ public class RDVCreation extends BaseClass {
 			RDV.submitOrApprove();
 			
 			SubmitMessageresult = RDV.submitMessageValidation(poDocNumber,
-					"Receipt Delivery Verification", "createRDVWithNoDeduction");
+					"Receipt Delivery Verification", "createRDVWithNoDeduction",null);
 			submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 			actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 			if (submitMessageSuccessResult) {
@@ -208,7 +205,7 @@ public class RDVCreation extends BaseClass {
 			RDV.popUpOkButton();
 			
 			SubmitMessageresult = RDV.submitMessageValidation(poDocNumber,
-					"Receipt Delivery Verification", "Generate Amasaraf");
+					"Receipt Delivery Verification", "Generate Amasaraf",null);
 			submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 			actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 			if (submitMessageSuccessResult) {
@@ -259,7 +256,7 @@ public class RDVCreation extends BaseClass {
 		receipt.submitOrApprove();
 		
 		SubmitMessageresult = receipt.submitMessageValidation(poDocNumber,
-				data.get("WindowName"), "POReceiptCreationForRDVDeductionHold");
+				data.get("WindowName"), "POReceiptCreationForRDVDeductionHold",null);
 		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 		if (submitMessageSuccessResult) {
@@ -324,7 +321,7 @@ public class RDVCreation extends BaseClass {
 			RDV.submitOrApprove();
 			
 			SubmitMessageresult = RDV.submitMessageValidation(poDocNumber,
-					"Receipt Delivery Verification", "createRDVWithDeductionHold");
+					"Receipt Delivery Verification", "createRDVWithDeductionHold",null);
 			submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 			actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 			if (submitMessageSuccessResult) {
@@ -360,7 +357,7 @@ public class RDVCreation extends BaseClass {
 			RDV.generateAmarsaraf("Receipt Delivery Verification", poDocNumber);
 			RDV.popUpOkButton();
 			SubmitMessageresult = RDV.submitMessageValidation(poDocNumber,
-					"Receipt Delivery Verification", "Generate Amasaraf");
+					"Receipt Delivery Verification", "Generate Amasaraf",null);
 			submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 			actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 			if (submitMessageSuccessResult) {
@@ -415,7 +412,7 @@ public class RDVCreation extends BaseClass {
 		receipt.submitOrApprove();
 		
 		SubmitMessageresult = receipt.submitMessageValidation(poDocNumber,
-				data.get("WindowName"), "POReceiptCreationForRDVDeductionPenalty");
+				data.get("WindowName"), "POReceiptCreationForRDVDeductionPenalty",null);
 		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 		if (submitMessageSuccessResult) {
@@ -477,7 +474,7 @@ public class RDVCreation extends BaseClass {
 			// Submit Transaction version
 			RDV.submitOrApprove();
 			SubmitMessageresult = RDV.submitMessageValidation(poDocNumber,
-					"Receipt Delivery Verification", "createRDVWithDeductionPenalty");
+					"Receipt Delivery Verification", "createRDVWithDeductionPenalty",null);
 			submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 			actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 			if (submitMessageSuccessResult) {
@@ -513,7 +510,7 @@ public class RDVCreation extends BaseClass {
 			RDV.generateAmarsaraf("Receipt Delivery Verification", poDocNumber);
 			RDV.popUpOkButton();
 			SubmitMessageresult = RDV.submitMessageValidation(poDocNumber,
-					"Receipt Delivery Verification", "Generate Amasaraf");
+					"Receipt Delivery Verification", "Generate Amasaraf",null);
 			submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 			actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 			if (submitMessageSuccessResult) {
@@ -567,7 +564,7 @@ public class RDVCreation extends BaseClass {
 		receipt.popUpAction(contractType, productCode, String.valueOf(receiptAmount), String.valueOf(receiptQty));
 		receipt.submitOrApprove();
 		SubmitMessageresult = receipt.submitMessageValidation(poDocNumber,
-				data.get("WindowName"), "POReceiptCreationForRDVDeductionExternalPenalty");
+				data.get("WindowName"), "POReceiptCreationForRDVDeductionExternalPenalty",null);
 		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 		if (submitMessageSuccessResult) {
@@ -631,7 +628,7 @@ public class RDVCreation extends BaseClass {
 			// Submit Transaction version
 			RDV.submitOrApprove();
 			SubmitMessageresult = RDV.submitMessageValidation(poDocNumber,
-					"Receipt Delivery Verification", "createRDVWithDeductionExternalPenalty");
+					"Receipt Delivery Verification", "createRDVWithDeductionExternalPenalty",null);
 			submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 			actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 			if (submitMessageSuccessResult) {
@@ -667,7 +664,7 @@ public class RDVCreation extends BaseClass {
 			RDV.generateAmarsaraf("Receipt Delivery Verification", poDocNumber);
 			RDV.popUpOkButton();
 			SubmitMessageresult = RDV.submitMessageValidation(poDocNumber,
-					"Receipt Delivery Verification", "Generate Amasaraf");
+					"Receipt Delivery Verification", "Generate Amasaraf",null);
 			submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 			actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 			if (submitMessageSuccessResult) {
@@ -721,7 +718,7 @@ public class RDVCreation extends BaseClass {
 		receipt.popUpAction(contractType, productCode, String.valueOf(receiptAmount), String.valueOf(receiptQty));
 		receipt.submitOrApprove();
 		SubmitMessageresult = receipt.submitMessageValidation(poDocNumber,
-				data.get("WindowName"), "POReceiptCreationForRDVWithAllDeductions");
+				data.get("WindowName"), "POReceiptCreationForRDVWithAllDeductions",null);
 		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 		if (submitMessageSuccessResult) {
@@ -809,7 +806,7 @@ public class RDVCreation extends BaseClass {
 			// Submit Transaction version
 			RDV.submitOrApprove();
 			SubmitMessageresult = RDV.submitMessageValidation(poDocNumber,
-					"Receipt Delivery Verification", "createRDVWithAllDeductions");
+					"Receipt Delivery Verification", "createRDVWithAllDeductions",null);
 			submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 			actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 			if (submitMessageSuccessResult) {
@@ -845,7 +842,7 @@ public class RDVCreation extends BaseClass {
 			RDV.generateAmarsaraf("Receipt Delivery Verification", poDocNumber);
 			RDV.popUpOkButton();
 			SubmitMessageresult = RDV.submitMessageValidation(poDocNumber,
-					"Receipt Delivery Verification", "Generate Amasaraf");
+					"Receipt Delivery Verification", "Generate Amasaraf",null);
 			submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 			actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 			if (submitMessageSuccessResult) {

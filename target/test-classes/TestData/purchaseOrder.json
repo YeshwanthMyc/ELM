@@ -5,6 +5,7 @@
 	    "password": "12",
 	    "MultiApprovalRequesterRoleId": "860E5C820A6E4CFF8AD41C1639D8A59C",
 		"SingleApprovalRequesterRoleId": "D276B8C8F5984648A4A144CA7D07A3C2",
+		"windowName":"Purchase Order",
 	    "poWindowName": "Purchase Order and Contracts summary",
 	    "processType": "Direct Purchasing",
 	    "referenceNum": "7904957584",

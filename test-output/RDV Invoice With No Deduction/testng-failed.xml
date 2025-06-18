@@ -8,17 +8,15 @@
       </run>
     </groups>
     <classes>
-      <class name="RDVCreation.RDVCreation">
+      <class name="RDVInvoice.RDVInvoiceWithNoDeduction">
         <methods>
-          <include name="purchaseOrderCreation" invocation-numbers="0"/>
-          <include name="POReceiptCreationForRDVNoDeduction"/>
-          <include name="logout"/>
           <include name="quitBrowser"/>
+          <include name="logout"/>
           <include name="setUpDriver"/>
-          <include name="createRDVWithNoDeduction"/>
+          <include name="InvoiceWithNoDeduction" invocation-numbers="0"/>
           <include name="launchApplication"/>
         </methods>
-      </class> <!-- RDVCreation.RDVCreation -->
+      </class> <!-- RDVInvoice.RDVInvoiceWithNoDeduction -->
     </classes>
   </test> <!-- RDV Invoice With No Deduction Test(failed) -->
 </suite> <!-- Failed suite [RDV Invoice With No Deduction] -->
