@@ -16,26 +16,26 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import CommonUtilities.ReusableUtilities;
 
-public class RDVInvoiceWithNoDeductionLocators extends ReusableUtilities {
+public class InvoiceLocators extends ReusableUtilities {
 	WebDriver driver;
 
-	public RDVInvoiceWithNoDeductionLocators(WebDriver driver, WebDriverWait wait, Actions action) throws SQLException {
+	public InvoiceLocators(WebDriver driver, WebDriverWait wait, Actions action) throws SQLException {
 		super(driver, wait, action);
 		this.driver = driver;
 		getConnection();
 	}
 
-	public String getTempDocNumber(String noDeductionTxrnId) throws SQLException {
-		String tempDocNumber = null;
+	public String getDocNumber(String TxrnId) throws SQLException {
+		String DocNumber = null;
 		String documentNoQuery = "select DocumentNo from C_Invoice where C_Invoice_id in \r\n"
-				+ "(select C_Invoice_ID from Efin_RDVTxn where Efin_RDVTxn_id ='" + noDeductionTxrnId + "')";
-		ResultSet tempDocNumQueryResult = s.executeQuery(documentNoQuery);
-		while (tempDocNumQueryResult.next()) {
-			tempDocNumber = tempDocNumQueryResult.getString("DocumentNo");
-			System.out.println(tempDocNumber);
+				+ "(select C_Invoice_ID from Efin_RDVTxn where Efin_RDVTxn_id ='" + TxrnId + "')";
+		ResultSet DocNumQueryResult = s.executeQuery(documentNoQuery);
+		while (DocNumQueryResult.next()) {
+			DocNumber = DocNumQueryResult.getString("DocumentNo");
+			System.out.println(DocNumber);
 			break;
 		}
-		return tempDocNumber;
+		return DocNumber;
 	}
 
 	public void openInvoiceWindow() throws InterruptedException {
@@ -65,7 +65,7 @@ public class RDVInvoiceWithNoDeductionLocators extends ReusableUtilities {
 				.elementToBeClickable(By.xpath("//div[@role='presentation']/nobr[text()='" + tempDocNumber + "']")));
 		action.moveToElement(filteredRow).doubleClick().build().perform();
 
-		WebElement mofReqNum = wait
+		WebElement mofReqNum = oneMinuteWait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='efinMofreqno']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", mofReqNum);
 		mofReqNum.sendKeys(mofNumber);
@@ -130,6 +130,7 @@ public class RDVInvoiceWithNoDeductionLocators extends ReusableUtilities {
 						ExpectedConditions.presenceOfElementLocated(By.xpath("(//input[@name='efinInwardno'])[2]")));
 				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", inwardNo);
 				inwardNo.sendKeys("12345");
+				action.sendKeys(Keys.TAB).build().perform();
 				break;
 			} catch (Exception e) {
 				Thread.sleep(500);
@@ -138,12 +139,12 @@ public class RDVInvoiceWithNoDeductionLocators extends ReusableUtilities {
 
 		for (int i = 0; i < 3; i++) {
 			try {
-				Thread.sleep(1000);
-				WebElement inwardDate = wait.until(ExpectedConditions
-						.presenceOfElementLocated(By.xpath("//input[@name='efinInwarddateGreg_dateTextField']")));
+				Thread.sleep(2000);
+				By dateFieldLocator = By.xpath("//input[@name='efinInwarddateGreg_dateTextField']");
+				WebElement inwardDate = wait
+						.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(dateFieldLocator)));
 				inwardDate.click();
 				inwardDate.sendKeys(currentDate);
-				Thread.sleep(500);
 				action.sendKeys(Keys.TAB).build().perform();
 				break;
 			} catch (Exception e) {
@@ -163,11 +164,11 @@ public class RDVInvoiceWithNoDeductionLocators extends ReusableUtilities {
 			}
 		}
 
-		Thread.sleep(1000);
-		WebElement inwardDate = wait.until(ExpectedConditions
+		Thread.sleep(2000);
+		WebElement supplierInvoiceDate = wait.until(ExpectedConditions
 				.presenceOfElementLocated(By.xpath("//input[@name='efinSupinvdateG_dateTextField']")));
-		inwardDate.click();
-		inwardDate.sendKeys(currentDate);
+		supplierInvoiceDate.sendKeys(currentDate);
+
 		Thread.sleep(500);
 		action.sendKeys(Keys.TAB).build().perform();
 	}
@@ -193,46 +194,100 @@ public class RDVInvoiceWithNoDeductionLocators extends ReusableUtilities {
 		}
 	}
 
-	public boolean amountValidations(String noDeductionTxrnId, String tempDocNumber)
+	private double getAmountFromQuery(String query) throws SQLException {
+		double amount = 0;
+		ResultSet rs = s.executeQuery(query);
+		if (rs.next()) {
+			String value = rs.getString(1);
+			amount = Double.parseDouble(value);
+			System.out.println(amount);
+
+		}
+		return amount;
+	}
+
+	public boolean amountValidations(String TxrnId, String tempDocNumber, String Deduction, String PenaltyName,
+			String revenueAccount, String ExternalPenaltyName, String externalBusinessPartnerName)
 			throws NumberFormatException, SQLException {
-		double netMatchAmount = 0;
-		double mainLine = 0;
-		double taxLine = 0;
+
 		boolean amountValidations = false;
-		String netMatchAmtQuery = "select Netmatch_Amt from Efin_RDVTxn where Efin_RDVTxn_id ='" + noDeductionTxrnId
-				+ "'";
-		ResultSet netMatchAmtQueryResult = s.executeQuery(netMatchAmtQuery);
-		while (netMatchAmtQueryResult.next()) {
-			String Netmatch_Amt = netMatchAmtQueryResult.getString("Netmatch_Amt");
-			netMatchAmount = Double.parseDouble(Netmatch_Amt);
-			System.out.println(netMatchAmount);
-			break;
+
+		double netMatchAmount = getAmountFromQuery(
+				"select Netmatch_Amt from Efin_RDVTxn where Efin_RDVTxn_id ='" + TxrnId + "'");
+
+		double mainLineAmt = getAmountFromQuery("select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
+				+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber + "') and EM_Efin_Istax='N' "
+				+ "and EM_Efin_C_Elementvalue_ID in (select C_ElementValue_ID from C_ElementValue where value!='"
+				+ revenueAccount + "') "
+				+ "and coalesce(C_Bpartner_ID,'') not in (select C_BPartner_id from C_BPartner where Name ='"
+				+ externalBusinessPartnerName + "')");
+
+		double taxLine = getAmountFromQuery("select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
+				+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber + "') and EM_Efin_Istax='Y' "
+				+ "and coalesce(EM_Efin_Beneficiary2_ID,'') not in (select C_BPartner_id from C_BPartner where Name ='"
+				+ externalBusinessPartnerName + "')");
+
+		if (Deduction.equalsIgnoreCase("None") || Deduction.equalsIgnoreCase("Hold")) {
+			if (netMatchAmount >0 && mainLineAmt >0 && taxLine >0) {
+				if (netMatchAmount == mainLineAmt && taxLine == mainLineAmt * 0.15) {
+					amountValidations = true;
+				}
+			}
+
+		} else if (Deduction.equalsIgnoreCase("Penalty")) {
+			Double penaltyAmt = getAmountFromQuery("select Sum from efin_penalty_detail where Efin_Rdvtxn_ID='" + TxrnId
+					+ "'\r\n"
+					+ "and Deductiontype in(select EUT_Deflookups_TypeLn.Value from EUT_Deflookups_TypeLn \r\n"
+					+ "join EUT_Deflookups_Type on EUT_Deflookups_TypeLn.EUT_Deflookups_Type_ID = EUT_Deflookups_Type.EUT_Deflookups_Type_ID\r\n"
+					+ "where EUT_Deflookups_Type.Value='PENALTY_TYPE' and EUT_Deflookups_TypeLn.Arabicname ='"
+					+ PenaltyName + "')");
+
+			Double penaltyLineAmt = getAmountFromQuery("select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
+					+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber
+					+ "') and EM_Efin_Istax='N' "
+					+ "and EM_Efin_C_Elementvalue_ID in (select C_ElementValue_ID from C_ElementValue where value='"
+					+ revenueAccount + "')");
+
+			if (mainLineAmt >0 && netMatchAmount >0 && penaltyAmt >0 && taxLine >0) {
+				if (mainLineAmt == netMatchAmount + penaltyAmt && -penaltyLineAmt == penaltyAmt
+						&& taxLine == netMatchAmount * 0.15) {
+					amountValidations = true;
+				}
+			}
+
+		} else if (Deduction.equalsIgnoreCase("External Penalty")) {
+			Double externalPenaltyAmt = getAmountFromQuery("select Sum from efin_penalty_detail where Efin_Rdvtxn_ID='"
+					+ TxrnId + "'\r\n"
+					+ "and Deductiontype in(select EUT_Deflookups_TypeLn.Value from EUT_Deflookups_TypeLn \r\n"
+					+ "join EUT_Deflookups_Type on EUT_Deflookups_TypeLn.EUT_Deflookups_Type_ID = EUT_Deflookups_Type.EUT_Deflookups_Type_ID\r\n"
+					+ "where EUT_Deflookups_Type.Value='PENALTY_TYPE' and EUT_Deflookups_TypeLn.Arabicname ='"
+					+ ExternalPenaltyName + "')");
+
+			Double lineExternalPenaltyAmt = getAmountFromQuery(
+					"select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
+							+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber
+							+ "') and EM_Efin_Istax='N' "
+							+ "and EM_Efin_C_Elementvalue_ID in (select C_ElementValue_ID from C_ElementValue where value!='"
+							+ revenueAccount + "') "
+							+ "and coalesce(C_Bpartner_ID,'') in (select C_BPartner_id from C_BPartner where Name ='"
+							+ externalBusinessPartnerName + "')");
+
+			Double extPenaltytaxLine = getAmountFromQuery("select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
+					+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber
+					+ "') and EM_Efin_Istax='Y' "
+					+ "and coalesce(EM_Efin_Beneficiary2_ID,'') in (select C_BPartner_id from C_BPartner where Name ='"
+					+ externalBusinessPartnerName + "')");
+
+			if (mainLineAmt >0 && netMatchAmount >0 && externalPenaltyAmt >0
+					&& lineExternalPenaltyAmt >0 && taxLine >0 && extPenaltytaxLine >0) {
+				if (mainLineAmt == netMatchAmount && externalPenaltyAmt == lineExternalPenaltyAmt
+						&& taxLine == mainLineAmt * 0.15 && extPenaltytaxLine == lineExternalPenaltyAmt * 0.15) {
+					amountValidations = true;
+				}
+			}
+
 		}
 
-		String noDeductionLineNetAmountWithoutTaxQuery = "select LineNetAmt from C_InvoiceLine where C_Invoice_id in \r\n"
-				+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber + "') and EM_Efin_Istax='N'";
-		ResultSet noDeductionLineNetAmountWithoutTaxQueryResult = s
-				.executeQuery(noDeductionLineNetAmountWithoutTaxQuery);
-		while (noDeductionLineNetAmountWithoutTaxQueryResult.next()) {
-			String Line_Net_Amt = noDeductionLineNetAmountWithoutTaxQueryResult.getString("LineNetAmt");
-			mainLine = Double.parseDouble(Line_Net_Amt);
-			System.out.println(mainLine);
-			break;
-		}
-
-		String noDeductionLineNetAmountWithTaxQuery = "select LineNetAmt from C_InvoiceLine where C_Invoice_id in \r\n"
-				+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber + "') and EM_Efin_Istax='Y'";
-		ResultSet noDeductionLineNetAmountWithTaxQueryResult = s.executeQuery(noDeductionLineNetAmountWithTaxQuery);
-		while (noDeductionLineNetAmountWithTaxQueryResult.next()) {
-			String Line_Net_Amt = noDeductionLineNetAmountWithTaxQueryResult.getString("LineNetAmt");
-			taxLine = Double.parseDouble(Line_Net_Amt);
-			System.out.println(taxLine);
-			break;
-		}
-
-		if (netMatchAmount == mainLine && taxLine == mainLine * 0.15) {
-			amountValidations = true;
-		}
 		return amountValidations;
 	}
 
@@ -279,7 +334,7 @@ public class RDVInvoiceWithNoDeductionLocators extends ReusableUtilities {
 						} else {
 							throw new RuntimeException("No active user found for role: " + invoicePendingRole);
 						}
-						
+
 					}
 				} else {
 					invoicePendingRole = pending_Role_In_Db;

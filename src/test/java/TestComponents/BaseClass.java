@@ -127,6 +127,11 @@ public class BaseClass {
 
 	public static boolean submitMessageSuccess;
 	public static boolean generateAmarsarafMessageSuccess;
+	
+	public static String penaltyName;
+	public static String revenueAccount;
+	public static String externalPenaltyName;
+	public static String externalPenaltySupplierName;
 
 	public static void rdvData() {
 		RDVApprovalType = System.getProperty("RDVapprovalType", "Single");
@@ -162,12 +167,20 @@ public class BaseClass {
 
 		submitMessageSuccess = false;
 		generateAmarsarafMessageSuccess = false;
+		
+		//Data For Invoice
+		penaltyName=null;
+		revenueAccount=null;
+		externalPenaltyName=null;
+		externalPenaltySupplierName=null;
 
 	}
 	
 	public static String invDocNumber;
+	public static String Deduction;
 	public static void invData() {
 		 invDocNumber=null;
+		 Deduction=System.getProperty("Deduction", "Penalty");
 	}
 
 	public BaseClass() {

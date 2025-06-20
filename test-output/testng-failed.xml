@@ -3,16 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Demo.TestLine">
+      <class name="Demo.Testing">
         <methods>
           <include name="quitBrowser"/>
           <include name="logout"/>
           <include name="setUpDriver"/>
-          <include name="setupPOData"/>
-          <include name="launchApplication"/>
           <include name="InvoiceWithNoDeduction" invocation-numbers="0"/>
+          <include name="setupData"/>
+          <include name="launchApplication"/>
         </methods>
-      </class> <!-- Demo.TestLine -->
+      </class> <!-- Demo.Testing -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

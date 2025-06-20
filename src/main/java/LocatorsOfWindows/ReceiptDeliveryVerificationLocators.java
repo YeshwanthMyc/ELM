@@ -142,7 +142,7 @@ public class ReceiptDeliveryVerificationLocators extends ReusableUtilities {
 				.click();
 	}
 
-	public void enterPenaltyDetails(String penaltyName) throws InterruptedException {
+	public void enterPenaltyDetails(String penaltyName,String revenueAccount) throws InterruptedException {
 		// Penalty Action(10% penalty)
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.presenceOfElementLocated(
@@ -183,7 +183,7 @@ public class ReceiptDeliveryVerificationLocators extends ReusableUtilities {
 		WebElement accountNumber = wait.until(ExpectedConditions.presenceOfElementLocated(
 				By.xpath("(//span[@class='select2-search select2-search--dropdown'])/input")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", accountNumber);
-		accountNumber.sendKeys("1431");
+		accountNumber.sendKeys(revenueAccount);
 
 		Thread.sleep(1500);
 		action.sendKeys(Keys.ENTER).build().perform();
@@ -196,7 +196,7 @@ public class ReceiptDeliveryVerificationLocators extends ReusableUtilities {
 		driver.switchTo().defaultContent();
 	}
 
-	public void enterExternalPenaltyDetails(String externalPenaltyName, String penaltyAmountToBeEntered)
+	public void enterExternalPenaltyDetails(String External_Penalty_Name, String penaltyAmountToBeEntered,String externalPenaltySupplierName)
 			throws InterruptedException {
 		// Penalty Action(External Penalty)
 		Thread.sleep(1000);
@@ -217,7 +217,7 @@ public class ReceiptDeliveryVerificationLocators extends ReusableUtilities {
 		WebElement penaltyPopUpDropDown1 = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@name='penaltytype']")));
 		Select penaltyName1 = new Select(penaltyPopUpDropDown1);
-		penaltyName1.selectByContainsVisibleText("In exchange for payments to another contractor");
+		penaltyName1.selectByContainsVisibleText(External_Penalty_Name);
 
 		WebElement penaltyAmount = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[@name='penaltyamount'])[2]")));
@@ -236,7 +236,7 @@ public class ReceiptDeliveryVerificationLocators extends ReusableUtilities {
 		Thread.sleep(500);
 		WebElement externalContractorName = wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath("(//span[@class='select2-search select2-search--dropdown'])/input")));
-		externalContractorName.sendKeys(externalPenaltyName);
+		externalContractorName.sendKeys(externalPenaltySupplierName);
 
 		Thread.sleep(500);
 		action.sendKeys(Keys.ENTER).build().perform();

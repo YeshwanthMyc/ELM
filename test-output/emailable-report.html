@@ -8,45 +8,42 @@
 <body>
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
-<tr><th colspan="8">RDV Invoice With No Deduction</th></tr>
-<tr><td><a href="#t0">RDV Invoice With No Deduction Test</a></td><td class="num">4</td><td class="num">0</td><td class="num attn">1</td><td class="num">0</td><td class="num">464,332</td><td>NoDeduction</td><td></td></tr>
+<tr><th colspan="8">Default suite</th></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">110,179</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">RDV Invoice With No Deduction</th></tr></tbody><tbody id="t0"><tr><th colspan="4">RDV Invoice With No Deduction Test &#8212; retried</th></tr><tr class="retriedeven"><td rowspan="1">RDVCreation.RDVCreation</td><td><a href="#m0">purchaseOrderCreation</a></td><td rowspan="1">1750231776717</td><td rowspan="1">107784</td></tr><tr><th colspan="4">RDV Invoice With No Deduction Test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="3">RDVCreation.RDVCreation</td><td><a href="#m1">POReceiptCreationForRDVNoDeduction</a></td><td rowspan="1">1750231999933</td><td rowspan="1">28762</td></tr><tr class="passedeven"><td><a href="#m2">createRDVWithNoDeduction</a></td><td rowspan="1">1750232028777</td><td rowspan="1">70322</td></tr><tr class="passedeven"><td><a href="#m3">purchaseOrderCreation</a></td><td rowspan="1">1750231884599</td><td rowspan="1">115237</td></tr><tr class="passedodd"><td rowspan="1">RDVInvoice.RDVInvoiceWithNoDeduction</td><td><a href="#m4">InvoiceWithNoDeduction</a></td><td rowspan="1">1750232099180</td><td rowspan="1">141193</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">Demo.Testing</td><td><a href="#m0">InvoiceWithNoDeduction</a></td><td rowspan="1">1750409463198</td><td rowspan="1">105836</td></tr></tbody>
 </table>
-<h2>RDV Invoice With No Deduction Test</h2><h3 id="m0">RDVCreation.RDVCreation#purchaseOrderCreation</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=1000, AmtcontractCategoryName=02, quantity=9, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=01, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, windowName=Purchase Order, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}</td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: (//input[@name=&apos;efinLedgeraccount&apos;])[2] (tried for 5 second(s) with 500 milliseconds interval)
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at LocatorsOfWindows.PurchaseOrderLocators.addLedgerAccount(PurchaseOrderLocators.java:545)
-	at RDVCreation.RDVCreation.purchaseOrderCreation(RDVCreation.java:93)
+<h2>Default test</h2><h3 id="m0">Demo.Testing#InvoiceWithNoDeduction</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{userName=4350143, mofRequestNo=0, taxMethod=احتساب على الوزارة 15%}</td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: Amount validation failed expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at Demo.Testing.InvoiceWithNoDeduction(Testing.java:40)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;(//input[@name=&apos;efinLedgeraccount&apos;])[2]&quot;}
-  (Session info: chrome=137.0.7151.104)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Build info: version: &apos;4.32.0&apos;, revision: &apos;d17c8aa950&apos;
-System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;23.0.2&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [a7b4f4d3223c2d4267e3e6c3e73becfd, findElement {using=xpath, value=(//input[@name=&apos;efinLedgeraccount&apos;])[2]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 137.0.7151.104, chrome: {chromedriverVersion: 137.0.7151.119 (e0ac9d12dff..., userDataDir: C:\Users\QUALIAN\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:55778}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:55778/devtoo..., se:cdpVersion: 137.0.7151.104, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: a7b4f4d3223c2d4267e3e6c3e73becfd
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
-	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
-	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	... 28 more
-... Removed 28 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">RDVCreation.RDVCreation#POReceiptCreationForRDVNoDeduction</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">RDVCreation.RDVCreation#createRDVWithNoDeduction</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{External Penalty Name=مكتب عبدالرحمن بن عبدالله النور للاستشارات الهندسية, 10% Penalty Name=مقابل غرامة تأخير 10%, HQ RDV user=4350143, holdName=إيقاف اتعاب الإشراف}</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m3">RDVCreation.RDVCreation#purchaseOrderCreation</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=1000, AmtcontractCategoryName=02, quantity=9, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=01, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, windowName=Purchase Order, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m4">RDVInvoice.RDVInvoiceWithNoDeduction#InvoiceWithNoDeduction</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{userName=4350143, mofRequestNo=0, taxMethod=احتساب على الوزارة 15%}</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+	at org.testng.TestRunner.privateRun(TestRunner.java:741)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>
