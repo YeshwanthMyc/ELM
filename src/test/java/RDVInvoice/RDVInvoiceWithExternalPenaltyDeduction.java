@@ -258,7 +258,7 @@ public class RDVInvoiceWithExternalPenaltyDeduction extends BaseClass {
 	}
 	
 	@Test(dataProvider = "RDVInvoiceData", dependsOnMethods = { "createRDVWithDeductionExternalPenalty" })
-	public void InvoiceWithPenaltyDeduction(HashMap<String, String> data) throws SQLException, InterruptedException {
+	public void InvoiceWithExternalPenaltyDeduction(HashMap<String, String> data) throws SQLException, InterruptedException {
 		InvoiceLocators RDVInv = new InvoiceLocators(driver, wait, action);
 		invDocNumber = RDVInv.getDocNumber(extPenaltyDeductionTxrnId);
 		RDVInv.login(data.get("userName"), "12");

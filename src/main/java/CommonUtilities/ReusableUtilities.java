@@ -55,7 +55,7 @@ public class ReusableUtilities {
 		boolean clicked = false;
 		int attempts = 0;
 
-		while (!clicked && attempts < 3) {
+		while (!clicked && attempts < 2) {
 			try {
 				WebElement mainIcon = wait
 						.until(ExpectedConditions.elementToBeClickable(By.xpath("//img[@name='isc_10main']")));
