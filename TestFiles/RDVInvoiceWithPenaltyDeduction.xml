@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="RDV Invoice With Penalty Deduction">
+	<test thread-count="5" name="RDV Invoice With Penalty Deduction Test">
+			<classes>
+			<class name="RDVInvoice.RDVInvoiceWithPenaltyDeduction" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
