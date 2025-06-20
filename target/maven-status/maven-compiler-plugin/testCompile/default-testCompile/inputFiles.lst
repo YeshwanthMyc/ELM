@@ -1,9 +1,16 @@
 C:\Users\QUALIAN\.eclipse\ELM\src\test\java\Demo\POReceiptWithoutPOM.java
 C:\Users\QUALIAN\.eclipse\ELM\src\test\java\Demo\POWithoutPOM.java
+C:\Users\QUALIAN\.eclipse\ELM\src\test\java\Demo\RDVInvoiceWithNoDeductionWithoutPOM.java
 C:\Users\QUALIAN\.eclipse\ELM\src\test\java\Demo\RDVWithoutPOM.java
-C:\Users\QUALIAN\.eclipse\ELM\src\test\java\Demo\Test.java
+C:\Users\QUALIAN\.eclipse\ELM\src\test\java\Demo\Testing.java
 C:\Users\QUALIAN\.eclipse\ELM\src\test\java\Demo\TestLine.java
 C:\Users\QUALIAN\.eclipse\ELM\src\test\java\PurchaseOrderCreation\PurchaseOrder.java
+C:\Users\QUALIAN\.eclipse\ELM\src\test\java\RDVCreation\RDVCreation.java
+C:\Users\QUALIAN\.eclipse\ELM\src\test\java\RDVInvoice\RDVInvoiceWithExternalPenaltyDeduction.java
+C:\Users\QUALIAN\.eclipse\ELM\src\test\java\RDVInvoice\RDVInvoiceWithHoldDeduction.java
+C:\Users\QUALIAN\.eclipse\ELM\src\test\java\RDVInvoice\RDVInvoiceWithNoDeduction.java
+C:\Users\QUALIAN\.eclipse\ELM\src\test\java\RDVInvoice\RDVInvoiceWithPenaltyDeduction.java
 C:\Users\QUALIAN\.eclipse\ELM\src\test\java\ReceiptCreationFromPO\POReceipt.java
 C:\Users\QUALIAN\.eclipse\ELM\src\test\java\TestComponents\BaseClass.java
 C:\Users\QUALIAN\.eclipse\ELM\src\test\java\TestComponents\RetryAnalyzer.java
+C:\Users\QUALIAN\.eclipse\ELM\src\test\java\TestComponents\TriggerSuiteSetup.java

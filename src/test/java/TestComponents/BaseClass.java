@@ -180,7 +180,7 @@ public class BaseClass {
 	public static String Deduction;
 	public static void invData() {
 		 invDocNumber=null;
-		 Deduction=System.getProperty("Deduction", "Penalty");
+		 Deduction=System.getProperty("Deduction", "None");
 	}
 
 	public BaseClass() {
