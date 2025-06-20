@@ -231,8 +231,11 @@ public class BaseClass {
 
 	@AfterMethod()
 	public void logout() throws InterruptedException {
-		ReusableUtilities resUse = new ReusableUtilities(driver, wait, action);
-		resUse.logout();
+		if(driver!=null) {
+			ReusableUtilities resUse = new ReusableUtilities(driver, wait, action);
+			resUse.logout();
+		}
+		
 	}
 
 	public List<HashMap<String, String>> getJSONData(String filePath) throws IOException {
