@@ -235,14 +235,14 @@ public class InvoiceLocators extends ReusableUtilities {
 			}
 
 		} else if (Deduction.equalsIgnoreCase("Penalty")) {
-			Double penaltyAmt = getAmountFromQuery("select Sum from efin_penalty_detail where Efin_Rdvtxn_ID='" + TxrnId
+			double penaltyAmt = getAmountFromQuery("select Sum from efin_penalty_detail where Efin_Rdvtxn_ID='" + TxrnId
 					+ "'\r\n"
 					+ "and Deductiontype in(select EUT_Deflookups_TypeLn.Value from EUT_Deflookups_TypeLn \r\n"
 					+ "join EUT_Deflookups_Type on EUT_Deflookups_TypeLn.EUT_Deflookups_Type_ID = EUT_Deflookups_Type.EUT_Deflookups_Type_ID\r\n"
 					+ "where EUT_Deflookups_Type.Value='PENALTY_TYPE' and EUT_Deflookups_TypeLn.Arabicname ='"
 					+ PenaltyName + "')");
 
-			Double penaltyLineAmt = getAmountFromQuery("select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
+			double penaltyLineAmt = getAmountFromQuery("select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
 					+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber
 					+ "') and EM_Efin_Istax='N' "
 					+ "and EM_Efin_C_Elementvalue_ID in (select C_ElementValue_ID from C_ElementValue where value='"
@@ -256,14 +256,14 @@ public class InvoiceLocators extends ReusableUtilities {
 			}
 
 		} else if (Deduction.equalsIgnoreCase("External Penalty")) {
-			Double externalPenaltyAmt = getAmountFromQuery("select Sum from efin_penalty_detail where Efin_Rdvtxn_ID='"
+			double externalPenaltyAmt = getAmountFromQuery("select Sum from efin_penalty_detail where Efin_Rdvtxn_ID='"
 					+ TxrnId + "'\r\n"
 					+ "and Deductiontype in(select EUT_Deflookups_TypeLn.Value from EUT_Deflookups_TypeLn \r\n"
 					+ "join EUT_Deflookups_Type on EUT_Deflookups_TypeLn.EUT_Deflookups_Type_ID = EUT_Deflookups_Type.EUT_Deflookups_Type_ID\r\n"
 					+ "where EUT_Deflookups_Type.Value='PENALTY_TYPE' and EUT_Deflookups_TypeLn.Arabicname ='"
 					+ ExternalPenaltyName + "')");
 
-			Double lineExternalPenaltyAmt = getAmountFromQuery(
+			double lineExternalPenaltyAmt = getAmountFromQuery(
 					"select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
 							+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber
 							+ "') and EM_Efin_Istax='N' "
@@ -272,7 +272,7 @@ public class InvoiceLocators extends ReusableUtilities {
 							+ "and coalesce(C_Bpartner_ID,'') in (select C_BPartner_id from C_BPartner where Name ='"
 							+ externalBusinessPartnerName + "')");
 
-			Double extPenaltytaxLine = getAmountFromQuery("select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
+			double extPenaltytaxLine = getAmountFromQuery("select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
 					+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber
 					+ "') and EM_Efin_Istax='Y' "
 					+ "and coalesce(EM_Efin_Beneficiary2_ID,'') in (select C_BPartner_id from C_BPartner where Name ='"

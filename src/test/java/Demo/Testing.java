@@ -21,12 +21,12 @@ public class Testing extends BaseClass{
 	}
 	@Test(dataProvider ="RDVInvoiceData")
 	public void InvoiceWithNoDeduction(HashMap<String, String> data) throws SQLException, InterruptedException {
-		InvoiceLocators RDVInv = new InvoiceLocators(driver,wait,action);
-		invDocNumber = RDVInv.getDocNumber(noDeductionTxrnId);
+		InvoiceLocators RDVInv = new InvoiceLocators(driver, wait, action);
+		invDocNumber = RDVInv.getDocNumber(extPenaltyDeductionTxrnId);
 		RDVInv.login(data.get("userName"), "12");
 		RDVInv.openInvoiceWindow();
 		RDVInv.documentNoFilter(invDocNumber);
-		RDVInv.mofRequestNumber(data.get("mofRequestNo"),invDocNumber);
+		RDVInv.mofRequestNumber(data.get("mofRequestNo"), invDocNumber);
 		RDVInv.description("Automation Testing");
 		RDVInv.enterTaxDetails(data.get("taxMethod"));
 		RDVInv.enterNoClaimDetails(currentDate);
@@ -35,13 +35,13 @@ public class Testing extends BaseClass{
 		RDVInv.undoIcon();
 		RDVInv.addTaxLines();
 		Thread.sleep(3000);
-		boolean amountValidations = RDVInv.amountValidations(noDeductionTxrnId, 
+		boolean amountValidations = RDVInv.amountValidations(extPenaltyDeductionTxrnId, 
 				invDocNumber, Deduction,penaltyName,revenueAccount,externalPenaltyName,externalPenaltySupplierName);
-		Assert.assertTrue(amountValidations,"Amount validation failed");
+		Assert.assertTrue(amountValidations, "Amount validation failed");
 		RDVInv.submitOrApprove();
-		
-		SubmitMessageresult = RDVInv.submitMessageValidation(poDocNumber,
-				"Purchase Invoice", "InvoiceWithNoDeduction",invDocNumber);
+
+		SubmitMessageresult = RDVInv.submitMessageValidation(poDocNumber, "Purchase Invoice", "InvoiceWithNoDeduction",
+				invDocNumber);
 		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 		if (submitMessageSuccessResult) {
@@ -52,13 +52,13 @@ public class Testing extends BaseClass{
 			Assert.fail("Expected 'Success' but got: " + actualMessageForSubmittext);
 		}
 		RDVInv.logout();
-		
-		invDocNumber = RDVInv.getDocNumber(noDeductionTxrnId);
-		
-		approvalresult = RDVInv.invoiceApproval(poDocNumber,invDocNumber);
-		submitMessageSuccessResult =(boolean) approvalresult.get("submitMessageSuccessResult");
+
+		invDocNumber = RDVInv.getDocNumber(extPenaltyDeductionTxrnId);
+
+		approvalresult = RDVInv.invoiceApproval(poDocNumber, invDocNumber);
+		submitMessageSuccessResult = (boolean) approvalresult.get("submitMessageSuccessResult");
 		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
-		
+
 		if (submitMessageSuccessResult) {
 			submitMessageSuccess = true;
 		} else {
@@ -66,7 +66,7 @@ public class Testing extends BaseClass{
 			System.out.println("Expected 'Success' but got: " + actualMessageForSubmittext);
 			Assert.fail("Expected 'Success' but got: " + actualMessageForSubmittext);
 		}
-		
+
 	}
 
 }

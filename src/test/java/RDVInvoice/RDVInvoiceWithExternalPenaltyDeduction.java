@@ -190,7 +190,7 @@ public class RDVInvoiceWithExternalPenaltyDeduction extends BaseClass {
 
 			// Data Needed for Invoice
 			extPenaltyDeductionTxrnId = RDV.getTxrnId(poDocNumber);
-			penaltyName=data.get("");
+			penaltyName=data.get("10% Penalty Name");
 			revenueAccount=data.get("Revenue Account");
 			externalPenaltyName=data.get("External Penalty Name");
 			externalPenaltySupplierName=data.get("External Penalty Supplier Name");
