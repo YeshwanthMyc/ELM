@@ -2,7 +2,6 @@ package PurchaseOrderCreation;
 
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Map;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -70,7 +69,7 @@ public class PurchaseOrder extends BaseClass {
 		
 		PO.submitOrApprove();
 		SubmitMessageresult = PO.submitMessageValidation(poDocNumber,
-				data.get("poWindowName"), "purchaseOrderCreation",null);
+				data.get("poWindowName"), "purchaseOrderCreation",invDocNumber);
 		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
 		if (submitMessageSuccessResult) {

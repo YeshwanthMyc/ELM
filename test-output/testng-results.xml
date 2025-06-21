@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-06-21T11:10:09 IST" name="Default suite" finished-at="2025-06-21T11:22:01 IST" duration-ms="711861">
+  <suite started-at="2025-06-21T11:56:42 IST" name="Default suite" finished-at="2025-06-21T12:01:03 IST" duration-ms="260946">
     <groups>
     </groups>
-    <test started-at="2025-06-21T11:10:09 IST" name="Default test" finished-at="2025-06-21T11:22:01 IST" duration-ms="711861">
-      <class name="RDVInvoice.RDVInvoiceWithAllDeduction">
-        <test-method is-config="true" signature="setUpDriver()[pri:0, instance:RDVInvoice.RDVInvoiceWithAllDeduction@1169afe1]" started-at="2025-06-21T11:10:08 IST" name="setUpDriver" finished-at="2025-06-21T11:10:09 IST" duration-ms="1333" status="PASS">
+    <test started-at="2025-06-21T11:56:42 IST" name="Default test" finished-at="2025-06-21T12:01:03 IST" duration-ms="260946">
+      <class name="PurchaseOrderCreation.PurchaseOrder">
+        <test-method is-config="true" signature="setUpDriver()[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@b86de0d]" started-at="2025-06-21T11:56:41 IST" name="setUpDriver" finished-at="2025-06-21T11:56:42 IST" duration-ms="1372" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpDriver -->
-        <test-method is-config="true" signature="setupData()[pri:0, instance:RDVInvoice.RDVInvoiceWithAllDeduction@1169afe1]" started-at="2025-06-21T11:10:09 IST" name="setupData" finished-at="2025-06-21T11:10:09 IST" duration-ms="12" status="PASS">
+        <test-method is-config="true" signature="setupPOData()[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@b86de0d]" started-at="2025-06-21T11:56:42 IST" name="setupPOData" finished-at="2025-06-21T11:56:42 IST" duration-ms="9" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setupData -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVInvoice.RDVInvoiceWithAllDeduction@1169afe1]" started-at="2025-06-21T11:10:09 IST" name="launchApplication" finished-at="2025-06-21T11:10:10 IST" duration-ms="306" status="PASS">
+        </test-method> <!-- setupPOData -->
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@b86de0d]" started-at="2025-06-21T11:56:42 IST" name="launchApplication" finished-at="2025-06-21T11:56:43 IST" duration-ms="400" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchApplication -->
-        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:RDVInvoice.RDVInvoiceWithAllDeduction@1169afe1]" started-at="2025-06-21T11:10:10 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-21T11:12:57 IST" duration-ms="167031" status="PASS">
+        <test-method signature="purchaseOrderCreation(java.util.HashMap)[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@b86de0d]" started-at="2025-06-21T11:56:43 IST" name="purchaseOrderCreation" data-provider="poData" finished-at="2025-06-21T12:00:25 IST" duration-ms="222157" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -30,56 +30,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- purchaseOrderCreation -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVInvoice.RDVInvoiceWithAllDeduction@1169afe1]" started-at="2025-06-21T11:12:57 IST" name="launchApplication" finished-at="2025-06-21T11:12:57 IST" duration-ms="16" status="PASS">
+        <test-method is-config="true" signature="logout()[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@b86de0d]" started-at="2025-06-21T12:00:35 IST" name="logout" finished-at="2025-06-21T12:01:03 IST" duration-ms="28160" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="POReceiptCreationForRDVWithAllDeductions(java.util.HashMap)[pri:0, instance:RDVInvoice.RDVInvoiceWithAllDeduction@1169afe1]" started-at="2025-06-21T11:12:57 IST" name="POReceiptCreationForRDVWithAllDeductions" data-provider="poReceiptData" finished-at="2025-06-21T11:13:34 IST" depends-on-methods="RDVInvoice.RDVInvoiceWithAllDeduction.purchaseOrderCreation" duration-ms="37267" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- POReceiptCreationForRDVWithAllDeductions -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVInvoice.RDVInvoiceWithAllDeduction@1169afe1]" started-at="2025-06-21T11:13:34 IST" name="launchApplication" finished-at="2025-06-21T11:13:34 IST" duration-ms="16" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="createRDVWithAllDeductions(java.util.HashMap)[pri:0, instance:RDVInvoice.RDVInvoiceWithAllDeduction@1169afe1]" started-at="2025-06-21T11:13:34 IST" name="createRDVWithAllDeductions" data-provider="RDVData" finished-at="2025-06-21T11:15:34 IST" depends-on-methods="RDVInvoice.RDVInvoiceWithAllDeduction.POReceiptCreationForRDVWithAllDeductions" duration-ms="119841" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{External Penalty Name=In exchange for payments to another contractor, 10% Penalty Name=مقابل غرامة تأخير 10%, External Penalty Supplier Name=الشركة العربية الحديثة للإنشاءات المحدودة, HQ RDV user=4350143, Revenue Account=1431, holdName=إيقاف اتعاب الإشراف}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createRDVWithAllDeductions -->
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:RDVInvoice.RDVInvoiceWithAllDeduction@1169afe1]" started-at="2025-06-21T11:15:34 IST" name="launchApplication" finished-at="2025-06-21T11:15:34 IST" duration-ms="19" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApplication -->
-        <test-method signature="InvoiceWithAllDeductions(java.util.HashMap)[pri:0, instance:RDVInvoice.RDVInvoiceWithAllDeduction@1169afe1]" started-at="2025-06-21T11:15:34 IST" name="InvoiceWithAllDeductions" data-provider="RDVInvoiceData" finished-at="2025-06-21T11:22:01 IST" depends-on-methods="RDVInvoice.RDVInvoiceWithAllDeduction.createRDVWithAllDeductions" duration-ms="387079" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{userName=4350143, mofRequestNo=0, taxMethod=احتساب على الوزارة 15%}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- InvoiceWithAllDeductions -->
-        <test-method is-config="true" signature="quitBrowser()[pri:0, instance:RDVInvoice.RDVInvoiceWithAllDeduction@1169afe1]" started-at="2025-06-21T11:22:01 IST" name="quitBrowser" finished-at="2025-06-21T11:22:01 IST" duration-ms="445" status="PASS">
+        </test-method> <!-- logout -->
+        <test-method is-config="true" signature="quitBrowser()[pri:0, instance:PurchaseOrderCreation.PurchaseOrder@b86de0d]" started-at="2025-06-21T12:01:03 IST" name="quitBrowser" finished-at="2025-06-21T12:01:03 IST" duration-ms="259" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quitBrowser -->
-      </class> <!-- RDVInvoice.RDVInvoiceWithAllDeduction -->
+      </class> <!-- PurchaseOrderCreation.PurchaseOrder -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
