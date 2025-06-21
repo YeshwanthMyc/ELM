@@ -3,16 +3,19 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Demo.Testing">
+      <class name="RDVInvoice.RDVInvoiceWithAllDeduction">
         <methods>
           <include name="quitBrowser"/>
           <include name="logout"/>
+          <include name="POReceiptCreationForRDVWithAllDeductions"/>
           <include name="setUpDriver"/>
-          <include name="InvoiceWithNoDeduction" invocation-numbers="0"/>
+          <include name="createRDVWithAllDeductions"/>
+          <include name="InvoiceWithAllDeductions"/>
+          <include name="purchaseOrderCreation" invocation-numbers="0"/>
           <include name="setupData"/>
           <include name="launchApplication"/>
         </methods>
-      </class> <!-- Demo.Testing -->
+      </class> <!-- RDVInvoice.RDVInvoiceWithAllDeduction -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

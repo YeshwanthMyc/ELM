@@ -180,7 +180,7 @@ public class BaseClass {
 	public static String Deduction;
 	public static void invData() {
 		 invDocNumber=null;
-		 Deduction=System.getProperty("Deduction", "External Penalty");
+		 Deduction=System.getProperty("Deduction", "All Deductions");
 	}
 
 	public BaseClass() {
@@ -231,10 +231,8 @@ public class BaseClass {
 
 	@AfterMethod()
 	public void logout() throws InterruptedException {
-		if(driver!=null) {
 			ReusableUtilities resUse = new ReusableUtilities(driver, wait, action);
 			resUse.logout();
-		}
 		
 	}
 

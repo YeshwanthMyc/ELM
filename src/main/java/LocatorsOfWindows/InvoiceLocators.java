@@ -227,28 +227,46 @@ public class InvoiceLocators extends ReusableUtilities {
 				+ "and coalesce(EM_Efin_Beneficiary2_ID,'') not in (select C_BPartner_id from C_BPartner where Name ='"
 				+ externalBusinessPartnerName + "')");
 
+		double penaltyAmt = getAmountFromQuery("select Sum from efin_penalty_detail where Efin_Rdvtxn_ID='" + TxrnId
+				+ "'\r\n" + "and Deductiontype in(select EUT_Deflookups_TypeLn.Value from EUT_Deflookups_TypeLn \r\n"
+				+ "join EUT_Deflookups_Type on EUT_Deflookups_TypeLn.EUT_Deflookups_Type_ID = EUT_Deflookups_Type.EUT_Deflookups_Type_ID\r\n"
+				+ "where EUT_Deflookups_Type.Value='PENALTY_TYPE' and EUT_Deflookups_TypeLn.Arabicname ='" + PenaltyName
+				+ "')");
+
+		double penaltyLineAmt = getAmountFromQuery("select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
+				+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber + "') and EM_Efin_Istax='N' "
+				+ "and EM_Efin_C_Elementvalue_ID in (select C_ElementValue_ID from C_ElementValue where value='"
+				+ revenueAccount + "')");
+
+		double externalPenaltyAmt = getAmountFromQuery("select Sum from efin_penalty_detail where Efin_Rdvtxn_ID='"
+				+ TxrnId + "'\r\n"
+				+ "and Deductiontype in(select EUT_Deflookups_TypeLn.Value from EUT_Deflookups_TypeLn \r\n"
+				+ "join EUT_Deflookups_Type on EUT_Deflookups_TypeLn.EUT_Deflookups_Type_ID = EUT_Deflookups_Type.EUT_Deflookups_Type_ID\r\n"
+				+ "where EUT_Deflookups_Type.Value='PENALTY_TYPE' and EUT_Deflookups_TypeLn.Arabicname ='"
+				+ ExternalPenaltyName + "')");
+
+		double lineExternalPenaltyAmt = getAmountFromQuery("select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
+				+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber + "') and EM_Efin_Istax='N' "
+				+ "and EM_Efin_C_Elementvalue_ID in (select C_ElementValue_ID from C_ElementValue where value!='"
+				+ revenueAccount + "') "
+				+ "and coalesce(C_Bpartner_ID,'') in (select C_BPartner_id from C_BPartner where Name ='"
+				+ externalBusinessPartnerName + "')");
+
+		double extPenaltytaxLine = getAmountFromQuery("select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
+				+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber + "') and EM_Efin_Istax='Y' "
+				+ "and coalesce(EM_Efin_Beneficiary2_ID,'') in (select C_BPartner_id from C_BPartner where Name ='"
+				+ externalBusinessPartnerName + "')");
+
 		if (Deduction.equalsIgnoreCase("None") || Deduction.equalsIgnoreCase("Hold")) {
-			if (netMatchAmount >0 && mainLineAmt >0 && taxLine >0) {
+			if (netMatchAmount > 0 && mainLineAmt > 0 && taxLine > 0) {
 				if (netMatchAmount == mainLineAmt && taxLine == mainLineAmt * 0.15) {
 					amountValidations = true;
 				}
 			}
 
 		} else if (Deduction.equalsIgnoreCase("Penalty")) {
-			double penaltyAmt = getAmountFromQuery("select Sum from efin_penalty_detail where Efin_Rdvtxn_ID='" + TxrnId
-					+ "'\r\n"
-					+ "and Deductiontype in(select EUT_Deflookups_TypeLn.Value from EUT_Deflookups_TypeLn \r\n"
-					+ "join EUT_Deflookups_Type on EUT_Deflookups_TypeLn.EUT_Deflookups_Type_ID = EUT_Deflookups_Type.EUT_Deflookups_Type_ID\r\n"
-					+ "where EUT_Deflookups_Type.Value='PENALTY_TYPE' and EUT_Deflookups_TypeLn.Arabicname ='"
-					+ PenaltyName + "')");
 
-			double penaltyLineAmt = getAmountFromQuery("select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
-					+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber
-					+ "') and EM_Efin_Istax='N' "
-					+ "and EM_Efin_C_Elementvalue_ID in (select C_ElementValue_ID from C_ElementValue where value='"
-					+ revenueAccount + "')");
-
-			if (mainLineAmt >0 && netMatchAmount >0 && penaltyAmt >0 && taxLine >0) {
+			if (mainLineAmt > 0 && netMatchAmount > 0 && penaltyAmt > 0 && taxLine > 0) {
 				if (mainLineAmt == netMatchAmount + penaltyAmt && -penaltyLineAmt == penaltyAmt
 						&& taxLine == netMatchAmount * 0.15) {
 					amountValidations = true;
@@ -256,36 +274,22 @@ public class InvoiceLocators extends ReusableUtilities {
 			}
 
 		} else if (Deduction.equalsIgnoreCase("External Penalty")) {
-			double externalPenaltyAmt = getAmountFromQuery("select Sum from efin_penalty_detail where Efin_Rdvtxn_ID='"
-					+ TxrnId + "'\r\n"
-					+ "and Deductiontype in(select EUT_Deflookups_TypeLn.Value from EUT_Deflookups_TypeLn \r\n"
-					+ "join EUT_Deflookups_Type on EUT_Deflookups_TypeLn.EUT_Deflookups_Type_ID = EUT_Deflookups_Type.EUT_Deflookups_Type_ID\r\n"
-					+ "where EUT_Deflookups_Type.Value='PENALTY_TYPE' and EUT_Deflookups_TypeLn.Arabicname ='"
-					+ ExternalPenaltyName + "')");
 
-			double lineExternalPenaltyAmt = getAmountFromQuery(
-					"select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
-							+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber
-							+ "') and EM_Efin_Istax='N' "
-							+ "and EM_Efin_C_Elementvalue_ID in (select C_ElementValue_ID from C_ElementValue where value!='"
-							+ revenueAccount + "') "
-							+ "and coalesce(C_Bpartner_ID,'') in (select C_BPartner_id from C_BPartner where Name ='"
-							+ externalBusinessPartnerName + "')");
-
-			double extPenaltytaxLine = getAmountFromQuery("select LineNetAmt from C_InvoiceLine where C_Invoice_id in "
-					+ "(select C_Invoice_id from C_Invoice where DocumentNo='" + tempDocNumber
-					+ "') and EM_Efin_Istax='Y' "
-					+ "and coalesce(EM_Efin_Beneficiary2_ID,'') in (select C_BPartner_id from C_BPartner where Name ='"
-					+ externalBusinessPartnerName + "')");
-
-			if (mainLineAmt >0 && netMatchAmount >0 && externalPenaltyAmt >0
-					&& lineExternalPenaltyAmt >0 && taxLine >0 && extPenaltytaxLine >0) {
+			if (mainLineAmt > 0 && netMatchAmount > 0 && externalPenaltyAmt > 0 && lineExternalPenaltyAmt > 0
+					&& taxLine > 0 && extPenaltytaxLine > 0) {
 				if (mainLineAmt == netMatchAmount && externalPenaltyAmt == lineExternalPenaltyAmt
 						&& taxLine == mainLineAmt * 0.15 && extPenaltytaxLine == lineExternalPenaltyAmt * 0.15) {
 					amountValidations = true;
 				}
 			}
 
+		} else if (Deduction.equalsIgnoreCase("All Deductions")) {
+			if(mainLineAmt > 0 &&lineExternalPenaltyAmt > 0 && taxLine > 0 && extPenaltytaxLine > 0 && penaltyAmt > 0) {
+				if(mainLineAmt==netMatchAmount+penaltyAmt&&externalPenaltyAmt == lineExternalPenaltyAmt&&taxLine==netMatchAmount*0.15
+						&&extPenaltytaxLine == lineExternalPenaltyAmt * 0.15&&-penaltyLineAmt == penaltyAmt) {
+					amountValidations = true;
+				}
+			}
 		}
 
 		return amountValidations;

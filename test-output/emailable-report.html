@@ -9,41 +9,13 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">110,179</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">4</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">711,861</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">Demo.Testing</td><td><a href="#m0">InvoiceWithNoDeduction</a></td><td rowspan="1">1750409463198</td><td rowspan="1">105836</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="4">RDVInvoice.RDVInvoiceWithAllDeduction</td><td><a href="#m0">InvoiceWithAllDeductions</a></td><td rowspan="1">1750484734304</td><td rowspan="1">387079</td></tr><tr class="passedeven"><td><a href="#m1">POReceiptCreationForRDVWithAllDeductions</a></td><td rowspan="1">1750484577124</td><td rowspan="1">37267</td></tr><tr class="passedeven"><td><a href="#m2">createRDVWithAllDeductions</a></td><td rowspan="1">1750484614430</td><td rowspan="1">119841</td></tr><tr class="passedeven"><td><a href="#m3">purchaseOrderCreation</a></td><td rowspan="1">1750484410051</td><td rowspan="1">167031</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">Demo.Testing#InvoiceWithNoDeduction</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{userName=4350143, mofRequestNo=0, taxMethod=احتساب على الوزارة 15%}</td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: Amount validation failed expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at Demo.Testing.InvoiceWithNoDeduction(Testing.java:40)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at org.testng.TestRunner.privateRun(TestRunner.java:741)
-	at org.testng.TestRunner.run(TestRunner.java:616)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Default test</h2><h3 id="m0">RDVInvoice.RDVInvoiceWithAllDeduction#InvoiceWithAllDeductions</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{userName=4350143, mofRequestNo=0, taxMethod=احتساب على الوزارة 15%}</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">RDVInvoice.RDVInvoiceWithAllDeduction#POReceiptCreationForRDVWithAllDeductions</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{WindowName=PO Receipt, password=12, Department=0200100, SingleApprovalRequester=Openbravo}</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">RDVInvoice.RDVInvoiceWithAllDeduction#createRDVWithAllDeductions</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{External Penalty Name=In exchange for payments to another contractor, 10% Penalty Name=مقابل غرامة تأخير 10%, External Penalty Supplier Name=الشركة العربية الحديثة للإنشاءات المحدودة, HQ RDV user=4350143, Revenue Account=1431, holdName=إيقاف اتعاب الإشراف}</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">RDVInvoice.RDVInvoiceWithAllDeduction#purchaseOrderCreation</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{supplierName=مكتب عبدالرحمن عبدالله النور لإستشارات هندسة, unitPrice=1000, AmtcontractCategoryName=02, quantity=9, SingleApprovalRequesterRoleId=D276B8C8F5984648A4A144CA7D07A3C2, MultiApprovalRequester=4370141, awardNumber=89989898, accountNumber=400200300, attachmentFilePath=C:\Users\QUALIAN\OneDrive - Qualian Technologies Pvt Ltd\Documents\yesh.txt, poWindowName=Purchase Order and Contracts summary, referenceNum=7904957584, MultiApprovalRequesterRoleId=860E5C820A6E4CFF8AD41C1639D8A59C, QtycontractCategoryName=01, password=12, productCode=01010001, cityName=الباحة, AccrualUser=Openbravo, projectDescription=Automation Testing of PO, windowName=Purchase Order, processType=Direct Purchasing, SingleApprovalRequester=Openbravo}</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>
