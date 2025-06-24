@@ -244,12 +244,12 @@ public class RDVInvoiceWithNoDeduction extends BaseClass{
 
 	}
 	
-	@Test(dataProvider ="RDVInvoiceData",dependsOnMethods = {"createRDVWithNoDeduction"})
+	@Test(dataProvider ="RDVInvoiceData",dependsOnMethods = {"createRDVWithNoDeduction"},groups = "invNoDeduction")
 	public void InvoiceWithNoDeduction(HashMap<String, String> data) throws SQLException, InterruptedException {
 		InvoiceLocators RDVInv = new InvoiceLocators(driver,wait,action);
 		invDocNumber = RDVInv.getDocNumber(noDeductionTxrnId);
 		RDVInv.login(data.get("userName"), "12");
-		RDVInv.openInvoiceWindow();
+		RDVInv.openWindow("Purchase Invoice");
 		RDVInv.documentNoFilter(invDocNumber);
 		RDVInv.mofRequestNumber(data.get("mofRequestNo"),invDocNumber);
 		RDVInv.description("Automation Testing");

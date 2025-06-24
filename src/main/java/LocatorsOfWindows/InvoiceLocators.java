@@ -38,15 +38,15 @@ public class InvoiceLocators extends ReusableUtilities {
 		return DocNumber;
 	}
 
-	public void openInvoiceWindow() throws InterruptedException {
+	public void openWindow(String windowName) throws InterruptedException {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[@class='OBNavBarComponent']/div[1])[2]")))
 				.click();
 		WebElement quickLaunchTextBox = wait.until(ExpectedConditions
 				.elementToBeClickable(By.xpath("//table[@role='presentation']/tbody/tr/td/div/input")));
-		quickLaunchTextBox.sendKeys("Purchase Invoice");
+		quickLaunchTextBox.sendKeys(windowName);
 		Thread.sleep(500);
 		wait.until(ExpectedConditions
-				.elementToBeClickable(By.xpath("//table[@class='listTable']//td/div/nobr[text()='Purchase Invoice']")))
+				.elementToBeClickable(By.xpath("//table[@class='listTable']//td/div/nobr[text()='"+windowName+"']")))
 				.click();
 	}
 
@@ -284,9 +284,11 @@ public class InvoiceLocators extends ReusableUtilities {
 			}
 
 		} else if (Deduction.equalsIgnoreCase("All Deductions")) {
-			if(mainLineAmt > 0 &&lineExternalPenaltyAmt > 0 && taxLine > 0 && extPenaltytaxLine > 0 && penaltyAmt > 0) {
-				if(mainLineAmt==netMatchAmount+penaltyAmt&&externalPenaltyAmt == lineExternalPenaltyAmt&&taxLine==netMatchAmount*0.15
-						&&extPenaltytaxLine == lineExternalPenaltyAmt * 0.15&&-penaltyLineAmt == penaltyAmt) {
+			if (mainLineAmt > 0 && lineExternalPenaltyAmt > 0 && taxLine > 0 && extPenaltytaxLine > 0
+					&& penaltyAmt > 0) {
+				if (mainLineAmt == netMatchAmount + penaltyAmt && externalPenaltyAmt == lineExternalPenaltyAmt
+						&& taxLine == netMatchAmount * 0.15 && extPenaltytaxLine == lineExternalPenaltyAmt * 0.15
+						&& -penaltyLineAmt == penaltyAmt) {
 					amountValidations = true;
 				}
 			}
@@ -364,7 +366,7 @@ public class InvoiceLocators extends ReusableUtilities {
 				s.executeUpdate(updateDefaultRoleQuery);
 
 				login(invpendingUser, "12");
-				openInvoiceWindow();
+				openWindow("Purchase Invoice");
 				documentNoFilter(docNumber);
 				submitOrApprove();
 

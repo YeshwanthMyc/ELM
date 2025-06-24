@@ -458,7 +458,7 @@ public class RDVCreation extends BaseClass {
 			}
 
 			// Penalty
-			RDV.enterPenaltyDetails(data.get("10% Penalty Name"),data.get("Revenue Account"));
+			RDV.enterPenaltyDetails(data.get("10% Penalty Name"), data.get("Revenue Account"));
 			penaltyAmt = RDV.getPenaltyAmount(poDocNumber);
 			if (penaltyAmt > 0) {
 				penaltySuccess = true;
@@ -612,7 +612,8 @@ public class RDVCreation extends BaseClass {
 			// External Penalty
 			double penaltyAmount = matchedAmt * 0.3;
 			String penaltyAmountToBeEntered = String.valueOf(penaltyAmount);
-			RDV.enterExternalPenaltyDetails(data.get("External Penalty Name"), penaltyAmountToBeEntered,data.get("External Penalty Supplier Name"));
+			RDV.enterExternalPenaltyDetails(data.get("External Penalty Name"), penaltyAmountToBeEntered,
+					data.get("External Penalty Supplier Name"));
 			externalpenaltyAmt = RDV.getPenaltyAmount(poDocNumber);
 			if (externalpenaltyAmt > 0) {
 				externalpenaltySuccess = true;
@@ -778,7 +779,7 @@ public class RDVCreation extends BaseClass {
 			}
 
 			// Penalty
-			RDV.enterPenaltyDetails(data.get("10% Penalty Name"),data.get("Revenue Account"));
+			RDV.enterPenaltyDetails(data.get("10% Penalty Name"), data.get("Revenue Account"));
 			penaltyAmt = RDV.getPenaltyAmount(poDocNumber);
 			if (penaltyAmt > 0) {
 				penaltySuccess = true;
@@ -791,7 +792,8 @@ public class RDVCreation extends BaseClass {
 			// External Penalty
 			double penaltyAmount = matchedAmt * 0.3;
 			String penaltyAmountToBeEntered = String.valueOf(penaltyAmount);
-			RDV.enterExternalPenaltyDetails(data.get("External Penalty Name"), penaltyAmountToBeEntered,data.get("External Penalty Supplier Name"));
+			RDV.enterExternalPenaltyDetails(data.get("External Penalty Name"), penaltyAmountToBeEntered,
+					data.get("External Penalty Supplier Name"));
 			externalpenaltyAmt = RDV.getPenaltyAmount(poDocNumber);
 			if (externalpenaltyAmt == matchedAmt * 0.4) {
 				externalpenaltySuccess = true;

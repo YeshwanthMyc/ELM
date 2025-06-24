@@ -264,7 +264,7 @@ public class RDVInvoiceWithHoldDeduction extends BaseClass {
 		InvoiceLocators RDVInv = new InvoiceLocators(driver, wait, action);
 		invDocNumber = RDVInv.getDocNumber(holdDeductionTxrnId);
 		RDVInv.login(data.get("userName"), "12");
-		RDVInv.openInvoiceWindow();
+		RDVInv.openWindow("Purchase Invoice");
 		RDVInv.documentNoFilter(invDocNumber);
 		RDVInv.mofRequestNumber(data.get("mofRequestNo"), invDocNumber);
 		RDVInv.description("Automation Testing");

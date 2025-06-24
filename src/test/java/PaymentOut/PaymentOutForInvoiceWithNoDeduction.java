@@ -1,27 +1,27 @@
-package Demo;
+package PaymentOut;
 
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.testng.Assert;
+
 import LocatorsOfWindows.InvoiceLocators;
 import LocatorsOfWindows.PaymentOutLocators;
 import TestComponents.BaseClass;
-import TestComponents.RetryAnalyzer;
 
-public class Testing extends BaseClass{
+public class PaymentOutForInvoiceWithNoDeduction extends BaseClass{
+
 	@BeforeClass
 	public void setupData() {
 		commonData();
 		poData();
 		receiptData();
 		rdvData();
-		invData();
 	}
-	@Test(dataProvider ="PaymentOutData")
-	public void InvoiceWithNoDeduction(HashMap<String, String> data) throws SQLException, InterruptedException {
+	@Test(dataProvider = "PaymentOutData",dependsOnGroups = "invNoDeduction")
+	public void paymentOutForInvWithNoDed(HashMap<String, String> data) throws SQLException, InterruptedException {
 		PaymentOutLocators paymentOut = new PaymentOutLocators(driver,wait,action);
 		InvoiceLocators RDVInv = new InvoiceLocators(driver,wait,action);
 		paymentOut.setDefaultRoleForLogin(data.get("Login_User_Name"), data.get("Login_Role"));
@@ -44,5 +44,4 @@ public class Testing extends BaseClass{
 		
 		
 	}
-
 }

@@ -41,7 +41,7 @@ public class ReusableUtilities {
 
 	public void getConnection() throws SQLException {
 		con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-		s = con.createStatement();
+		this.s = con.createStatement();
 	}
 
 	public void login(String userName, String password) {
@@ -217,6 +217,7 @@ public class ReusableUtilities {
 		WebElement errorMessageLocator = null;
 		int MessageLocatorAttempt = 0;
 		String actualMessage = "";
+		
 
 		while (MessageLocatorAttempt < 2) {
 			try {
@@ -253,6 +254,14 @@ public class ReusableUtilities {
 					else if (windowName.equalsIgnoreCase("Purchase Invoice")) {
 						String query = "select EM_Efin_Posting_Errormsg from c_invoice where documentno='"
 								+ invDocNumber + "'";
+						ResultSet rs = s.executeQuery(query);
+						if (rs.next()) {
+							actualMessage += " Result:" + rs.getString("Posting_Errormsg");
+						}
+					}else if(windowName.equalsIgnoreCase("Payment Out")) {
+						String query = "select EM_Efin_Posting_Errormsg from FIN_Payment where FIN_Payment_ID in \r\n"
+								+ "(select FIN_Payment_ID from FIN_Payment where EM_Efin_Invoice_ID in\r\n"
+								+ "(select c_invoice_id from c_invoice where documentno='"+invDocNumber+"'))";
 						ResultSet rs = s.executeQuery(query);
 						if (rs.next()) {
 							actualMessage += " Result:" + rs.getString("Posting_Errormsg");

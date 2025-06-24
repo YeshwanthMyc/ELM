@@ -57,14 +57,14 @@ public class BaseClass {
 		LocalDate futuredate = today.plusDays(5);
 
 		// Gregorian Date
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		currentDate = today.format(formatter);
 		futureDate = futuredate.format(formatter);
 
 		// Hijri Date
 		HijrahDate hijriToday = HijrahChronology.INSTANCE.date(today);
 		HijrahDate hijriFutureDate = HijrahChronology.INSTANCE.date(futuredate);
-		DateTimeFormatter hijriFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+		DateTimeFormatter hijriFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		hijricurrentDate = hijriToday.format(hijriFormatter);
 		hijrifutureDate = hijriFutureDate.format(hijriFormatter);
 		
@@ -180,7 +180,7 @@ public class BaseClass {
 	public static String Deduction;
 	public static void invData() {
 		 invDocNumber=null;
-		 Deduction=System.getProperty("Deduction", "All Deductions");
+		 Deduction=System.getProperty("Deduction", "None");
 	}
 
 	public BaseClass() {
@@ -294,6 +294,12 @@ public class BaseClass {
 	@DataProvider(name = "RDVInvoiceData")
 	public Object[][] RDVInvoiceData() throws IOException {
 		return getData("RDVInvoiceData.json");
+
+	}
+	
+	@DataProvider(name="PaymentOutData")
+	public Object[][] PaymentOutData() throws IOException {
+		return getData("PaymentOutData.json");
 
 	}
 

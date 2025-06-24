@@ -230,7 +230,25 @@
 				</plugins>
 			</build>
 		</profile>
-		
+		<profile>
+			<id>PaymentOutWithNoDeduction</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>3.5.3</version>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>
+									TestFiles/PaymentOutWithNoDeduction.xml</suiteXmlFile>
+
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 		
 	</profiles>
 

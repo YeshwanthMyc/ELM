@@ -1,12 +1,7 @@
-package Demo;
+package LocatorsOfWindows;
 
-import static org.testng.Assert.expectThrows;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,77 +9,43 @@ import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import CommonUtilities.ReusableUtilities;
-import LocatorsOfWindows.InvoiceLocators;
-import TestComponents.BaseClass;
 
-public class TestLine extends BaseClass {
-	public static String DB_URL = "jdbc:postgresql://localhost:5932/mainaccrual";
-	public static String DB_USER = "tad";
-	public static String DB_PASSWORD = "tad";
-	public static Connection con;
-	public static Statement s;
+public class PaymentOutLocators extends ReusableUtilities {
 
-	@BeforeClass
-	public void getConnection() throws SQLException {
-		con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-		s = con.createStatement();
+	WebDriver driver;
+
+	public PaymentOutLocators(WebDriver driver, WebDriverWait wait, Actions action) throws SQLException {
+		super(driver, wait, action);
+		this.driver = driver;
+		getConnection();
 	}
 
-	@Test
-	public void paymentOut() throws InterruptedException, SQLException {
-
-		driver.findElement(By.xpath("//input[@id='user']")).sendKeys("404011");
-		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("12");
-		driver.findElement(By.xpath("//button[@id='buttonOK']")).click();
-
-		// Set Default role
+	public void setDefaultRoleForLogin(String Login_User_Name, String Login_Role) throws SQLException {
 		String updateDefaultRoleForPaymentLogin = "UPDATE ad_user SET Default_Ad_Role_ID = \r\n"
-				+ "(SELECT ad_role_id FROM ad_role WHERE name = 'موظف إدارة المدفوعات - Payments Employee')\r\n"
-				+ "WHERE username = '404011'";
+				+ "(SELECT ad_role_id FROM ad_role WHERE name = '" + Login_Role + "')\r\n" + "WHERE username = '"
+				+ Login_User_Name + "'";
 		s.executeUpdate(updateDefaultRoleForPaymentLogin);
+	}
 
-		// Open Invoice window
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[@class='OBNavBarComponent']/div[1])[2]")))
-				.click();
-
-		WebElement quickLaunchTextBox = wait.until(ExpectedConditions
-				.elementToBeClickable(By.xpath("//table[@role='presentation']/tbody/tr/td/div/input")));
-		quickLaunchTextBox.sendKeys("Purchase Invoice");
-		Thread.sleep(500);
-		wait.until(ExpectedConditions
-				.elementToBeClickable(By.xpath("//table[@class='listTable']//td/div/nobr[text()='Purchase Invoice']")))
-				.click();
-
-		// Clear Filter
-		wait.until(ExpectedConditions
-				.elementToBeClickable(By.xpath("(//td[@class='OBGridFilterFunnelIcon']/div/div/img)[1]"))).click();
-
-		// Document No Filter
-		WebElement documentNoFilter = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='documentNo']")));
-		documentNoFilter.sendKeys("250000155");
-
-		WebElement filteredRow = wait.until(ExpectedConditions
-				.elementToBeClickable(By.xpath("//div[@role='presentation']/nobr[text()='" + 250000155 + "']")));
-		action.moveToElement(filteredRow).click().build().perform();
-
-		// create/view payment
+	public void create_View_Payment() throws InterruptedException {
 		WebElement create_ViewPayment = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//td[@class='OBToolbarTextButton' and contains(., 'Create') and contains(., 'View Payments')]")));
 		create_ViewPayment.click();
 
+	}
+
+	public void select_PaymentInstr_ParentSeq() throws InterruptedException {
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("OBClassicPopup_iframe")));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("process")));
-
 		List<WebElement> paymentsList = wait.until(ExpectedConditions
 				.presenceOfAllElementsLocatedBy(By.xpath("//table[@class='ui-jqgrid-btable']/tbody/tr[@role='row']")));
 		Select select;
@@ -99,7 +60,7 @@ public class TestLine extends BaseClass {
 			WebElement paymentInstruction = row.findElement(By.xpath(".//select[contains(@id,'inpPaymentInst')]"));
 			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", paymentInstruction);
 			select = new Select(paymentInstruction);
-			select.selectByValue("C"); // Select شيك وزاري
+			select.selectByValue("C");
 			Thread.sleep(1000);
 
 			// Parent Sequence
@@ -109,35 +70,29 @@ public class TestLine extends BaseClass {
 			select.selectByVisibleText("1000 - 10000");
 		}
 
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@id='Save_BTNname']"))).click();	
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@id='Save_BTNname']"))).click();
 		driver.switchTo().defaultContent();
 		Thread.sleep(3000);
-		
-		logout();
-		approvalresult = payment_Approval();
-		String Original_Message = (String) approvalresult.get("originalMessage");
-		if (Original_Message.equalsIgnoreCase("Success")) {
-			submitMessageSuccess = true;
-		} else {
-			submitMessageSuccess = false;
-			System.out.println("Expected 'Success' but got: " + actualMessageForSubmittext);
-			Assert.fail("Expected 'Success' but got: " + actualMessageForSubmittext);
-		}
-
 	}
 
-	public Map<String, Object> payment_Approval() throws SQLException, InterruptedException {
-		String pending_Role_In_Db;
+	public Map<String, Object> payment_Approval(String poDocNumber, String invDocNumber, String currentDate)
+			throws SQLException, InterruptedException {
+
+		String pending_Role_In_Db = null;
 		String paymentPendingRole;
 		String paymentpendingUserResult;
 		String paymentpendingUser;
 
+		boolean submitMessageSuccess = false;
+		boolean submitMessageSuccessResult = false;
+		String originalMessage = null;
 		Map<String, Object> approvalMessageresult = new HashMap<>();
+
 		while (true) {
 			String paymentApprovalQuery = "select Pendingapproval from efin_po_approval where FIN_Payment_ID in \r\n"
 					+ "(select FIN_Payment_ID from FIN_Payment where EM_Efin_Invoice_ID in\r\n"
-					+ "(select c_invoice_id from c_invoice where documentno='250000155') and EM_Efin_Status='EFIN_WFA')\r\n"
-					+ "ORDER BY created DESC LIMIT 1";
+					+ "(select c_invoice_id from c_invoice where documentno='" + invDocNumber
+					+ "') and EM_Efin_Status='EFIN_WFA')\r\n" + "ORDER BY created DESC LIMIT 1";
 			ResultSet paymentApprovalQueryResult = s.executeQuery(paymentApprovalQuery);
 			if (paymentApprovalQueryResult.next()) {
 				pending_Role_In_Db = paymentApprovalQueryResult.getString("Pendingapproval");
@@ -160,7 +115,8 @@ public class TestLine extends BaseClass {
 					} else {
 						String pendingUserQuery = "select Pendingapproval from efin_po_approval where FIN_Payment_ID in \r\n"
 								+ "(select FIN_Payment_ID from FIN_Payment where EM_Efin_Invoice_ID in\r\n"
-								+ "(select c_invoice_id from c_invoice where documentno='250000155') ) ORDER BY created DESC LIMIT 1";
+								+ "(select c_invoice_id from c_invoice where documentno='" + invDocNumber
+								+ "') ) ORDER BY created DESC LIMIT 1";
 						ResultSet pendingUserQueryResult = s.executeQuery(pendingUserQuery);
 						if (pendingUserQueryResult.next()) {
 							paymentpendingUser = pendingUserQueryResult.getString("Pendingapproval");
@@ -192,52 +148,34 @@ public class TestLine extends BaseClass {
 						+ "WHERE username = '" + paymentpendingUser + "'";
 				s.executeUpdate(updateDefaultRoleQuery);
 
-				driver.findElement(By.xpath("//input[@id='user']")).sendKeys(paymentpendingUser);
-				driver.findElement(By.xpath("//input[@id='password']")).sendKeys("12");
-				driver.findElement(By.xpath("//button[@id='buttonOK']")).click();
+				// Login
+				login(paymentpendingUser, "12");
 
 				// Approval
-				wait.until(ExpectedConditions
-						.elementToBeClickable(By.xpath("(//div[@class='OBNavBarComponent']/div[1])[2]"))).click();
-				WebElement quickLaunchTextBox2 = wait.until(ExpectedConditions
-						.elementToBeClickable(By.xpath("//table[@role='presentation']/tbody/tr/td/div/input")));
-				quickLaunchTextBox2.sendKeys("Payment Out");
-				Thread.sleep(500);
-				wait.until(ExpectedConditions.elementToBeClickable(
-						By.xpath("//table[@class='listTable']//td/div/nobr[text()='Payment Out']"))).click();
-
-				// Invoice filter
+				InvoiceLocators RDVInv = new InvoiceLocators(driver, wait, action);
+				RDVInv.openWindow("Payment Out");
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='efinInvoice']")))
-						.sendKeys("250000155");
+						.sendKeys(invDocNumber);
 				Thread.sleep(1000);
 				action.sendKeys(Keys.ENTER).build().perform();
 
 				Thread.sleep(3000);
-				List<WebElement> paymentsToBeApproved = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By
-						.xpath("//table[@class='listTable']/tbody/tr/td/div/nobr[contains(text(),'250000155 - 20-06-2025')]")));
+				List<WebElement> paymentsToBeApproved = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+						By.xpath("//table[@class='listTable']/tbody/tr/td/div/nobr[contains(text(),'" + invDocNumber
+								+ " - " + currentDate + "')]")));
+
 				for (int i = 0; i < paymentsToBeApproved.size() - 1; i++) {
-					paymentsToBeApproved = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(
-							"//table[@class='listTable']/tbody/tr/td/div/nobr[contains(text(),'250000155 - 20-06-2025')]")));
+					paymentsToBeApproved = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+							By.xpath("//table[@class='listTable']/tbody/tr/td/div/nobr[contains(text(),'" + invDocNumber
+									+ " - " + currentDate + "')]")));
 					WebElement invoiceRow = paymentsToBeApproved.get(i);
 					invoiceRow.click();
 
 					// Approve
-					Thread.sleep(2000);
-					WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-							"//td[@class='OBToolbarTextButton' and (contains(text(),'Submit') or contains(text(),'Approve'))]")));
-					action.moveToElement(submitButton).click().build().perform();
-					Thread.sleep(2000);
-					wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("OBClassicPopup_iframe")));
-					wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("process")));
-					wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("mainframe")));
-					WebElement okButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("buttonOK")));
-					okButton.click();
-					driver.switchTo().defaultContent();
-					Thread.sleep(1500);
+					submitOrApprove();
 
-					ReusableUtilities rs = new ReusableUtilities(driver, wait, action);
-					Map<String, Object> SubmitMessageresult = rs.submitMessageValidation(poDocNumber, "Payment Out",
-							"Approval", "250000155");
+					Map<String, Object> SubmitMessageresult = submitMessageValidation(poDocNumber, "Payment Out",
+							"Approval", invDocNumber);
 					submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 					originalMessage = (String) SubmitMessageresult.get("originalMessage");
 					if (submitMessageSuccessResult) {
@@ -249,10 +187,13 @@ public class TestLine extends BaseClass {
 
 				}
 
-			}else break;
+			} else
+				break;
 
 		}
-		logout();
+		if (pending_Role_In_Db == null || pending_Role_In_Db.isEmpty()) {
+			logout();
+		}
 		approvalMessageresult.put("submitMessageSuccessResult", submitMessageSuccessResult);
 		approvalMessageresult.put("originalMessage", originalMessage);
 		return approvalMessageresult;
