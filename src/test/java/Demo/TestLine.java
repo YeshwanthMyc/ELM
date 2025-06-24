@@ -35,7 +35,7 @@ public class TestLine extends BaseClass {
 	@BeforeClass
 	public void getConnection() throws SQLException {
 		con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-		s = con.createStatement();
+		s = con.createStatement(); //
 	}
 
 	@Test
