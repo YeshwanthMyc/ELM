@@ -259,7 +259,7 @@ public class RDVInvoiceWithHoldDeduction extends BaseClass {
 
 	}
 
-	@Test(dataProvider = "RDVInvoiceData", dependsOnMethods = {"createRDVWithDeductionHold"})
+	@Test(dataProvider = "RDVInvoiceData", dependsOnMethods = {"createRDVWithDeductionHold"},groups = "invHoldDeduction")
 	public void InvoiceWithHoldDeduction(HashMap<String, String> data) throws SQLException, InterruptedException {
 		InvoiceLocators RDVInv = new InvoiceLocators(driver, wait, action);
 		invDocNumber = RDVInv.getDocNumber(holdDeductionTxrnId);

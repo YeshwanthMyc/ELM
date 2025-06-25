@@ -11,7 +11,7 @@ import LocatorsOfWindows.InvoiceLocators;
 import LocatorsOfWindows.PaymentOutLocators;
 import TestComponents.BaseClass;
 
-public class PaymentOutForInvoiceWithNoDeduction extends BaseClass{
+public class PaymentOutForInvoiceWithExternalPenaltyDeduction extends BaseClass{
 
 	@BeforeClass
 	public void setupData() {
@@ -20,8 +20,8 @@ public class PaymentOutForInvoiceWithNoDeduction extends BaseClass{
 		receiptData();
 		rdvData();
 	}
-	@Test(dataProvider = "PaymentOutData",dependsOnGroups = "invNoDeduction")
-	public void paymentOutForInvWithNoDed(HashMap<String, String> data) throws SQLException, InterruptedException {
+	@Test(dataProvider = "PaymentOutData",dependsOnGroups = "invExtPenaltyDeduction")
+	public void paymentOutForInvWithExtPenaltyDed(HashMap<String, String> data) throws SQLException, InterruptedException {
 		PaymentOutLocators paymentOut = new PaymentOutLocators(driver,wait,action);
 		InvoiceLocators RDVInv = new InvoiceLocators(driver,wait,action);
 		paymentOut.setDefaultRoleForLogin(data.get("Login_User_Name"), data.get("Login_Role"));

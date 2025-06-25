@@ -257,7 +257,7 @@ String revenueAccount =null;
 
 	}
 
-	@Test(dataProvider = "RDVInvoiceData", dependsOnMethods = { "createRDVWithDeductionPenalty" })
+	@Test(dataProvider = "RDVInvoiceData", dependsOnMethods = { "createRDVWithDeductionPenalty" },groups = "invPenaltyDeduction")
 	public void InvoiceWithPenaltyDeduction(HashMap<String, String> data) throws SQLException, InterruptedException {
 		InvoiceLocators RDVInv = new InvoiceLocators(driver, wait, action);
 		invDocNumber = RDVInv.getDocNumber(penaltyDeductionTxrnId);

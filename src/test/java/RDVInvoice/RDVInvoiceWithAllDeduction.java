@@ -290,7 +290,7 @@ public class RDVInvoiceWithAllDeduction extends BaseClass {
 
 	}
 	
-	@Test(dataProvider = "RDVInvoiceData", dependsOnMethods = { "createRDVWithAllDeductions" })
+	@Test(dataProvider = "RDVInvoiceData", dependsOnMethods = { "createRDVWithAllDeductions" },groups = "AllDeductions")
 	public void InvoiceWithAllDeductions(HashMap<String, String> data) throws SQLException, InterruptedException {
 		InvoiceLocators RDVInv = new InvoiceLocators(driver, wait, action);
 		invDocNumber = RDVInv.getDocNumber(allDeductionTxrnId);
