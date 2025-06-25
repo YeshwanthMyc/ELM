@@ -318,6 +318,7 @@ public class InvoiceLocators extends ReusableUtilities {
 				pending_Role_In_Db = invApprovalQueryResult.getString("Pendingapproval");
 				if (pending_Role_In_Db == null || pending_Role_In_Db.isEmpty()) {
 					pending_Role_In_Db = null;
+					login("Openbravo", "12");
 					break;
 				}
 
