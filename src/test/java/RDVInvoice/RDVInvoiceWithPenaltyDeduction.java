@@ -278,7 +278,7 @@ String revenueAccount =null;
 		Assert.assertTrue(amountValidations, "Amount validation failed");
 		RDVInv.submitOrApprove();
 
-		SubmitMessageresult = RDVInv.submitMessageValidation(poDocNumber, "Purchase Invoice", "InvoiceWithNoDeduction",
+		SubmitMessageresult = RDVInv.submitMessageValidation(poDocNumber, "Purchase Invoice", "InvoiceWithPenaltyDeduction",
 				invDocNumber);
 		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
 		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
