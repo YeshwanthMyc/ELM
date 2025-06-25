@@ -29,7 +29,7 @@ public class PaymentOutForInvoiceWithExternalPenaltyDeduction extends BaseClass{
 		RDVInv.openWindow("Purchase Invoice");
 		RDVInv.documentNoFilter(invDocNumber);
 		paymentOut.create_View_Payment();
-		paymentOut.select_PaymentInstr_ParentSeq();
+		paymentOut.select_PaymentInstr_ParentSeq(data.get("Payment_Sequence"));
 		logout();
 		
 		approvalresult =paymentOut.payment_Approval(poDocNumber, invDocNumber, currentDate);

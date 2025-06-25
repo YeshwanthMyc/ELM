@@ -42,7 +42,7 @@ public class PaymentOutLocators extends ReusableUtilities {
 
 	}
 
-	public void select_PaymentInstr_ParentSeq() throws InterruptedException {
+	public void select_PaymentInstr_ParentSeq(String Payment_Sequence) throws InterruptedException {
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("OBClassicPopup_iframe")));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("process")));
@@ -67,7 +67,7 @@ public class PaymentOutLocators extends ReusableUtilities {
 			WebElement parentSequence = row.findElement(By.xpath(".//select[contains(@id,'inpParentSeq')]"));
 			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", parentSequence);
 			select = new Select(parentSequence);
-			select.selectByVisibleText("1000 - 10000");
+			select.selectByVisibleText(Payment_Sequence);
 		}
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@id='Save_BTNname']"))).click();

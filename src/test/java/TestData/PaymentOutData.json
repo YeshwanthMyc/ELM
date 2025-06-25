@@ -1,6 +1,7 @@
 [
 	{
 		"Login_User_Name":"404011",
-		"Login_Role":"موظف إدارة المدفوعات - Payments Employee"
+		"Login_Role":"موظف إدارة المدفوعات - Payments Employee",
+		"Payment_Sequence": "1000 - 10000"
 	}
 ]

@@ -182,6 +182,12 @@ public class BaseClass {
 		 invDocNumber=null;
 		 Deduction=System.getProperty("Deduction", "All Deductions");
 	}
+	
+	public static String Payment_Sequence;
+	public static void paymentData() {
+		Payment_Sequence=System.getProperty("Payment_Sequence", "1000 - 10000");
+	}
+	
 
 	public BaseClass() {
 		try {
