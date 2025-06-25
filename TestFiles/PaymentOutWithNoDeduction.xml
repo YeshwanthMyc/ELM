@@ -3,6 +3,7 @@
 <suite name="Payment Out ForInvoice With No Deduction">
 	<test thread-count="5" name="Payment Out Fo rInvoice With No Deduction">
 			<classes>
+			<class name="RDVInvoice.RDVInvoiceWithNoDeduction" />
 			<class name="PaymentOut.PaymentOutForInvoiceWithNoDeduction" />
 		</classes>
 	</test> <!--
