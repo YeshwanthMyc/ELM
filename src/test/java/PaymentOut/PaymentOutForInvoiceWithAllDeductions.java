@@ -19,6 +19,7 @@ public class PaymentOutForInvoiceWithAllDeductions extends BaseClass{
 		poData();
 		receiptData();
 		rdvData();
+		paymentData();
 	}
 	@Test(dataProvider = "PaymentOutData",dependsOnGroups = "AllDeductions")
 	public void paymentOutForInvWithAllDed(HashMap<String, String> data) throws SQLException, InterruptedException {

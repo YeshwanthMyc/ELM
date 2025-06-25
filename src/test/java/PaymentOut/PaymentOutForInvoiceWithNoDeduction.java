@@ -19,6 +19,7 @@ public class PaymentOutForInvoiceWithNoDeduction extends BaseClass{
 		poData();
 		receiptData();
 		rdvData();
+		paymentData();
 	}
 	@Test(dataProvider = "PaymentOutData",dependsOnGroups = "invNoDeduction")
 	public void paymentOutForInvWithNoDed(HashMap<String, String> data) throws SQLException, InterruptedException {

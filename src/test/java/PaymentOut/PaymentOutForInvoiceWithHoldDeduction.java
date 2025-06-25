@@ -19,6 +19,7 @@ public class PaymentOutForInvoiceWithHoldDeduction extends BaseClass{
 		poData();
 		receiptData();
 		rdvData();
+		paymentData();
 	}
 	@Test(dataProvider = "PaymentOutData",dependsOnGroups = "invHoldDeduction")
 	public void paymentOutForInvWithHoldDed(HashMap<String, String> data) throws SQLException, InterruptedException {
