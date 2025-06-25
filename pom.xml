@@ -230,6 +230,7 @@
 				</plugins>
 			</build>
 		</profile>
+		
 		<profile>
 			<id>PaymentOutWithNoDeduction</id>
 			<build>
@@ -242,6 +243,86 @@
 							<suiteXmlFiles>
 								<suiteXmlFile>
 									TestFiles/PaymentOutWithNoDeduction.xml</suiteXmlFile>
+
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+			<id>PaymentOutWithHoldDeduction</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>3.5.3</version>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>
+									TestFiles/PaymentOutWithHoldDeduction.xml</suiteXmlFile>
+
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+			<id>PaymentOutWithPenaltyDeduction</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>3.5.3</version>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>
+									TestFiles/PaymentOutWithPenaltyDeduction.xml</suiteXmlFile>
+
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+			<id>PaymentOutWithExternalPenaltyDeduction</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>3.5.3</version>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>
+									TestFiles/PaymentOutWithExternalPenaltyDeduction.xml</suiteXmlFile>
+
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+			<id>PaymentOutWithAllDeductions</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>3.5.3</version>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>
+									TestFiles/PaymentOutWithAllDeductions.xml</suiteXmlFile>
 
 							</suiteXmlFiles>
 						</configuration>

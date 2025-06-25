@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Payment Out ForInvoice With External Penalty Deduction">
+	<test thread-count="5" name="Payment Out For Invoice With External Penalty Deduction">
+			<classes>
+			<class name="PaymentOut.PaymentOutForInvoiceWithExternalPenaltyDeduction" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->

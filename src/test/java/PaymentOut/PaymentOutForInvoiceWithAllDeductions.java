@@ -42,6 +42,6 @@ public class PaymentOutForInvoiceWithAllDeductions extends BaseClass{
 			Assert.fail("Expected 'Success' but got: " + actualMessageForSubmittext);
 		}
 		
-		
+		//
 	}
 }
