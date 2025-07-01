@@ -342,7 +342,7 @@
 						<configuration>
 							<suiteXmlFiles>
 								<suiteXmlFile>
-									TestFiles/FinancialAccount/FinancialAccountWithNoDeduction.xml</suiteXmlFile>
+									TestFiles/FinancialAccount/financialAccountWithNoDeduction.xml</suiteXmlFile>
 
 							</suiteXmlFiles>
 						</configuration>
@@ -362,7 +362,7 @@
 						<configuration>
 							<suiteXmlFiles>
 								<suiteXmlFile>
-									TestFiles/FinancialAccount/FinancialAccountWithHoldDeduction.xml</suiteXmlFile>
+									TestFiles/FinancialAccount/financialAccountWithHoldDeduction.xml</suiteXmlFile>
 
 							</suiteXmlFiles>
 						</configuration>
@@ -382,7 +382,7 @@
 						<configuration>
 							<suiteXmlFiles>
 								<suiteXmlFile>
-									TestFiles/FinancialAccount/FinancialAccountWithPenaltyDeduction.xml</suiteXmlFile>
+									TestFiles/FinancialAccount/financialAccountWithPenaltyDeduction.xml</suiteXmlFile>
 
 							</suiteXmlFiles>
 						</configuration>
@@ -402,7 +402,7 @@
 						<configuration>
 							<suiteXmlFiles>
 								<suiteXmlFile>
-									TestFiles/FinancialAccount/FinancialAccountWithExternalPenaltyDeduction.xml</suiteXmlFile>
+									TestFiles/FinancialAccount/financialAccountWithExternalPenaltyDeduction.xml</suiteXmlFile>
 
 							</suiteXmlFiles>
 						</configuration>
@@ -422,7 +422,7 @@
 						<configuration>
 							<suiteXmlFiles>
 								<suiteXmlFile>
-									TestFiles/FinancialAccount/FinancialAccountWithAllDeduction.xml</suiteXmlFile>
+									TestFiles/FinancialAccount/financialAccountWithAllDeduction.xml</suiteXmlFile>
 
 							</suiteXmlFiles>
 						</configuration>
