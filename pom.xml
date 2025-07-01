@@ -422,7 +422,7 @@
 						<configuration>
 							<suiteXmlFiles>
 								<suiteXmlFile>
-									TestFiles/FinancialAccount/financialAccountWithAllDeduction.xml</suiteXmlFile>
+									TestFiles/FinancialAccount/financialAccountWithAllDeductions.xml</suiteXmlFile>
 
 							</suiteXmlFiles>
 						</configuration>
