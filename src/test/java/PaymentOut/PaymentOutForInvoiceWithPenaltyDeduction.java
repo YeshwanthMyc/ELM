@@ -21,7 +21,7 @@ public class PaymentOutForInvoiceWithPenaltyDeduction extends BaseClass{
 		rdvData();
 		paymentData();
 	}
-	@Test(dataProvider = "PaymentOutData",dependsOnGroups = "invPenaltyDeduction")
+	@Test(dataProvider = "PaymentOutData",dependsOnGroups = "invPenaltyDeduction",groups="paymentPenaltyDeduction")
 	public void paymentOutForInvWithPenaltyDed(HashMap<String, String> data) throws SQLException, InterruptedException {
 		PaymentOutLocators paymentOut = new PaymentOutLocators(driver,wait,action);
 		InvoiceLocators RDVInv = new InvoiceLocators(driver,wait,action);

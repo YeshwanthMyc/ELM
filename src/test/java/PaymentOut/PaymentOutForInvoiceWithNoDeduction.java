@@ -21,7 +21,7 @@ public class PaymentOutForInvoiceWithNoDeduction extends BaseClass{
 		rdvData();
 		paymentData();
 	}
-	@Test(dataProvider = "PaymentOutData",dependsOnGroups = "invNoDeduction")
+	@Test(dataProvider = "PaymentOutData",dependsOnGroups = "invNoDeduction", groups = "paymentNoDeduction")
 	public void paymentOutForInvWithNoDed(HashMap<String, String> data) throws SQLException, InterruptedException {
 		PaymentOutLocators paymentOut = new PaymentOutLocators(driver,wait,action);
 		InvoiceLocators RDVInv = new InvoiceLocators(driver,wait,action);

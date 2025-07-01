@@ -180,7 +180,7 @@ public class BaseClass {
 	public static String Deduction;
 	public static void invData() {
 		 invDocNumber=null;
-		 Deduction=System.getProperty("Deduction", "All Deductions");
+		 Deduction=System.getProperty("Deduction", "None");
 	}
 	
 	public static String Payment_Sequence;
@@ -216,7 +216,7 @@ public class BaseClass {
 			throw new RuntimeException("Unsupported browser: " + browserName);
 		}
 
-		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		action = new Actions(driver);
 	}
 

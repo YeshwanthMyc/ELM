@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Financial Account ForInvoice With All Deduction">
+	<test thread-count="5" name="Financial Account ForInvoice With Hold Deduction">
+			<classes>
+			<class name="PaymentOut.PaymentOutForInvoiceWithHoldDeductions" />
+			<class name="FinancialAccount.financialAccountForInvoiceWithHoldDeduction" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
