@@ -4,7 +4,7 @@
 	<test thread-count="5" name="Financial Account ForInvoice With Hold Deduction">
 			<classes>
 			<class name="RDVInvoice.RDVInvoiceWithHoldDeduction" />
-			<class name="PaymentOut.PaymentOutForInvoiceWithHoldDeductions" />
+			<class name="PaymentOut.PaymentOutForInvoiceWithHoldDeduction" />
 			<class name="FinancialAccount.financialAccountForInvoiceWithHoldDeduction" />
 		</classes>
 	</test> <!--
