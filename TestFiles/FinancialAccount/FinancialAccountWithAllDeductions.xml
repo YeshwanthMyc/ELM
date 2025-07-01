@@ -3,6 +3,7 @@
 <suite name="Financial Account ForInvoice With All Deduction">
 	<test thread-count="5" name="Financial Account ForInvoice With All Deduction">
 			<classes>
+			<class name="RDVInvoice.RDVInvoiceWithAllDeduction" />
 			<class name="PaymentOut.PaymentOutForInvoiceWithAllDeductions" />
 			<class name="FinancialAccount.financialAccountForInvoiceWithAllDeduction" />
 		</classes>
