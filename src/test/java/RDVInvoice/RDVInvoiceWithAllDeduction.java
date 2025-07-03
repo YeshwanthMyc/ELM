@@ -49,6 +49,9 @@ public class RDVInvoiceWithAllDeduction extends BaseClass {
 		PO.awardNumber(data.get("awardNumber"));
 		PO.awardDate(BaseClass.currentDate);
 		PO.letterDate(currentDate);
+		if(isTaxPO=true) {
+			PO.enterTaxDetails(data.get("taxMethod"),data.get("poWindowName"));
+		}
 		PO.selectSupplier(data.get("supplierName"));
 		PO.city(data.get("cityName"));
 		PO.MOFDates(currentDate);
@@ -299,15 +302,20 @@ public class RDVInvoiceWithAllDeduction extends BaseClass {
 		RDVInv.documentNoFilter(invDocNumber);
 		RDVInv.mofRequestNumber(data.get("mofRequestNo"), invDocNumber);
 		RDVInv.description("Automation Testing");
-		RDVInv.enterTaxDetails(data.get("taxMethod"));
+		if(isTaxPO=false) {
+			RDVInv.enterTaxDetails(data.get("taxMethod"),"Purchase Invoice");
+		}
+		
 		RDVInv.enterNoClaimDetails(currentDate);
 		RDVInv.enterSupplierInvNumberAndDate(currentDate);
 		RDVInv.saveHeader();
 		RDVInv.undoIcon();
-		RDVInv.addTaxLines();
+		if(isTaxPO=false) {
+			RDVInv.addTaxLines();
+		}	
 		Thread.sleep(3000);
 		boolean amountValidations = RDVInv.amountValidations(allDeductionTxrnId, 
-				invDocNumber, Deduction,penaltyName,revenueAccount,externalPenaltyName,externalPenaltySupplierName);
+				invDocNumber, Deduction,penaltyName,revenueAccount,externalPenaltyName,externalPenaltySupplierName,isTaxPO);
 		Assert.assertTrue(amountValidations, "Amount validation failed");
 		RDVInv.submitOrApprove();
 

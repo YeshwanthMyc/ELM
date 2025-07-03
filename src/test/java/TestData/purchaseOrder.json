@@ -6,7 +6,7 @@
 	    "MultiApprovalRequesterRoleId": "860E5C820A6E4CFF8AD41C1639D8A59C",
 		"SingleApprovalRequesterRoleId": "D276B8C8F5984648A4A144CA7D07A3C2",
 		"windowName":"Purchase Order",
-	    "poWindowName": "Purchase Order and Contracts summary",
+	    "poWindowName": "Purchase Order And Contracts Summary",
 	    "processType": "Direct Purchasing",
 	    "referenceNum": "7904957584",
 	    "AmtcontractCategoryName": "02",
@@ -20,6 +20,7 @@
 		"productCode":"01010001",
 		"quantity":"9",
 		"unitPrice":"1000",
-		"AccrualUser":"Openbravo"
+		"AccrualUser":"Openbravo",
+		"taxMethod":"احتساب على الوزارة 15%"
 	}
 ]

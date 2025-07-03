@@ -84,32 +84,7 @@ public class InvoiceLocators extends ReusableUtilities {
 		}
 	}
 
-	public void enterTaxDetails(String taxName) throws InterruptedException {
-		// Tax Method
-		for (int i = 0; i < 3; i++) {
-			try {
-				WebElement isTaxLine = wait.until(ExpectedConditions.elementToBeClickable(
-						By.xpath("//div[@class='OBFormFieldLabel' and text()='Is Tax Line']/span")));
-				isTaxLine.click();
-				break;
-			} catch (Exception e) {
-				Thread.sleep(500);
-			}
-		}
-
-		for (int i = 0; i < 3; i++) {
-			try {
-				WebElement taxMethod = wait
-						.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='efinTaxMethod']")));
-				taxMethod.sendKeys(taxName);
-				Thread.sleep(1500);
-				action.sendKeys(Keys.ENTER).build().perform();
-				break;
-			} catch (Exception e) {
-				Thread.sleep(500);
-			}
-		}
-	}
+	
 
 	public void enterNoClaimDetails(String currentDate) throws InterruptedException {
 		// No Claim Details
@@ -205,9 +180,13 @@ public class InvoiceLocators extends ReusableUtilities {
 		}
 		return amount;
 	}
+	
+	private static double roundTwoDecimals(double value) {
+	    return Math.round(value * 100.0) / 100.0;
+	}
 
 	public boolean amountValidations(String TxrnId, String tempDocNumber, String Deduction, String PenaltyName,
-			String revenueAccount, String ExternalPenaltyName, String externalBusinessPartnerName)
+			String revenueAccount, String ExternalPenaltyName, String externalBusinessPartnerName,boolean isTaxPO)
 			throws NumberFormatException, SQLException {
 
 		boolean amountValidations = false;
@@ -258,40 +237,91 @@ public class InvoiceLocators extends ReusableUtilities {
 				+ externalBusinessPartnerName + "')");
 
 		if (Deduction.equalsIgnoreCase("None") || Deduction.equalsIgnoreCase("Hold")) {
-			if (netMatchAmount > 0 && mainLineAmt > 0 && taxLine > 0) {
-				if (netMatchAmount == mainLineAmt && taxLine == mainLineAmt * 0.15) {
-					amountValidations = true;
+			if(isTaxPO=false) {
+				if (netMatchAmount > 0 && mainLineAmt > 0 && taxLine > 0) {
+					if (netMatchAmount == mainLineAmt && taxLine == mainLineAmt * 0.15) {
+						amountValidations = true;
+					}
 				}
 			}
+			
+			if(isTaxPO=true) {
+				if (netMatchAmount > 0 && mainLineAmt > 0 && taxLine > 0) {
+					if(mainLineAmt==roundTwoDecimals(netMatchAmount/1.15) && taxLine==roundTwoDecimals(mainLineAmt * 0.15)) {
+						amountValidations = true;
+					}
+				}
+			}
+			
 
 		} else if (Deduction.equalsIgnoreCase("Penalty")) {
-
-			if (mainLineAmt > 0 && netMatchAmount > 0 && penaltyAmt > 0 && taxLine > 0) {
-				if (mainLineAmt == netMatchAmount + penaltyAmt && -penaltyLineAmt == penaltyAmt
-						&& taxLine == netMatchAmount * 0.15) {
-					amountValidations = true;
+			if(isTaxPO=false) {
+				if (mainLineAmt > 0 && netMatchAmount > 0 && penaltyAmt > 0 && taxLine > 0) {
+					if (mainLineAmt == netMatchAmount + penaltyAmt && -penaltyLineAmt == penaltyAmt
+							&& taxLine == netMatchAmount * 0.15) {
+						amountValidations = true;
+					}
 				}
 			}
+			if(isTaxPO=true) {
+				if (mainLineAmt > 0 && netMatchAmount > 0 && penaltyAmt > 0 && taxLine > 0) {
+					if((mainLineAmt==roundTwoDecimals((netMatchAmount/1.15)+penaltyAmt)) && -penaltyLineAmt == penaltyAmt
+							&& taxLine==roundTwoDecimals((netMatchAmount/1.15)*0.15)) {
+						amountValidations = true;
+					}
+				}
+			}
+			
 
 		} else if (Deduction.equalsIgnoreCase("External Penalty")) {
-
-			if (mainLineAmt > 0 && netMatchAmount > 0 && externalPenaltyAmt > 0 && lineExternalPenaltyAmt > 0
-					&& taxLine > 0 && extPenaltytaxLine > 0) {
-				if (mainLineAmt == netMatchAmount && externalPenaltyAmt == lineExternalPenaltyAmt
-						&& taxLine == mainLineAmt * 0.15 && extPenaltytaxLine == lineExternalPenaltyAmt * 0.15) {
-					amountValidations = true;
+			if(isTaxPO=false) {
+				if (mainLineAmt > 0 && netMatchAmount > 0 && externalPenaltyAmt > 0 && lineExternalPenaltyAmt > 0
+						&& taxLine > 0 && extPenaltytaxLine > 0) {
+					if (mainLineAmt == netMatchAmount && externalPenaltyAmt == lineExternalPenaltyAmt
+							&& taxLine == mainLineAmt * 0.15 && extPenaltytaxLine == lineExternalPenaltyAmt * 0.15) {
+						amountValidations = true;
+					}
 				}
 			}
+			if(isTaxPO=true) {
+				if (mainLineAmt > 0 && netMatchAmount > 0 && externalPenaltyAmt > 0 && lineExternalPenaltyAmt > 0
+						&& taxLine > 0 && extPenaltytaxLine > 0) {
+					System.out.println(roundTwoDecimals(netMatchAmount/1.15));
+					System.out.println(externalPenaltyAmt/1.15);
+					System.out.println(mainLineAmt*0.15);
+					System.out.println(lineExternalPenaltyAmt * 0.15);
+					
+					if(mainLineAmt== roundTwoDecimals(netMatchAmount/1.15) && lineExternalPenaltyAmt == roundTwoDecimals(externalPenaltyAmt/1.15) &&
+							taxLine == roundTwoDecimals(mainLineAmt*0.15) && extPenaltytaxLine == roundTwoDecimals(lineExternalPenaltyAmt * 0.15)) {
+						amountValidations = true;
+					}
+				}
+			}
+			
 
 		} else if (Deduction.equalsIgnoreCase("All Deductions")) {
-			if (mainLineAmt > 0 && lineExternalPenaltyAmt > 0 && taxLine > 0 && extPenaltytaxLine > 0
-					&& penaltyAmt > 0) {
-				if (mainLineAmt == netMatchAmount + penaltyAmt && externalPenaltyAmt == lineExternalPenaltyAmt
-						&& taxLine == netMatchAmount * 0.15 && extPenaltytaxLine == lineExternalPenaltyAmt * 0.15
-						&& -penaltyLineAmt == penaltyAmt) {
-					amountValidations = true;
+			if(isTaxPO=false) {
+				if (mainLineAmt > 0 && lineExternalPenaltyAmt > 0 && taxLine > 0 && extPenaltytaxLine > 0
+						&& penaltyAmt > 0) {
+					if (mainLineAmt == netMatchAmount + penaltyAmt && externalPenaltyAmt == lineExternalPenaltyAmt
+							&& taxLine == netMatchAmount * 0.15 && extPenaltytaxLine == lineExternalPenaltyAmt * 0.15
+							&& -penaltyLineAmt == penaltyAmt) {
+						amountValidations = true;
+					}
 				}
 			}
+			if(isTaxPO=true) {
+				if(mainLineAmt > 0 && lineExternalPenaltyAmt > 0 && taxLine > 0 && extPenaltytaxLine > 0
+						&& penaltyAmt > 0) {
+					if(mainLineAmt==roundTwoDecimals((netMatchAmount/1.15)+penaltyAmt) && lineExternalPenaltyAmt==roundTwoDecimals(externalPenaltyAmt/1.15)
+							&& taxLine == roundTwoDecimals((netMatchAmount/1.15)*0.15) && extPenaltytaxLine==lineExternalPenaltyAmt*0.15 && -penaltyLineAmt == penaltyAmt) {
+						amountValidations = true;
+						
+					}
+					
+				}
+			}
+			
 		}
 
 		return amountValidations;

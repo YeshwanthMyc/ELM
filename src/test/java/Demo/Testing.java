@@ -19,7 +19,7 @@ import LocatorsOfWindows.PaymentOutLocators;
 import TestComponents.BaseClass;
 import TestComponents.RetryAnalyzer;
 
-public class Testing extends BaseClass{
+public class Testing extends BaseClass {
 	@BeforeClass
 	public void setupData() {
 		commonData();
@@ -28,60 +28,60 @@ public class Testing extends BaseClass{
 		rdvData();
 		invData();
 	}
-	@Test(dataProvider ="PaymentOutData")
+
+	@Test(dataProvider = "RDVData")
 	public void InvoiceWithNoDeduction(HashMap<String, String> data) throws SQLException, InterruptedException {
-		
-		ReusableUtilities rs = new ReusableUtilities(driver,wait,action);
-		rs.login("Openbravo", "12");
-		rs.openWindow("Financial Account");
-		
-		//Select MOF Account row
-		WebElement mofAccount= wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@class='OBGridCell']/div/nobr[contains(text(),'MOF')]")));
-		action.moveToElement(mofAccount).click().build().perform();
-		
-		//Click Add Multiple Payment button
-		WebElement add_Multiple_Payment = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@class='OBToolbarTextButton' and (contains(text(),'Add Multiple Payments'))]")));
-		action.moveToElement(add_Multiple_Payment).click().build().perform();
-		
-		//Filter the invoice and selct the invoice in Multiple Payment popup
-		WebElement invoice_Filter=wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='efinInvoice$documentNo']")));
-		invoice_Filter.sendKeys("250000176");
-		
-		List<WebElement> add_Invoices_From_PopUp = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy
-				(By.xpath("//table[@class='listTable']//tbody/tr/td[contains(@class,'OBGridCell')]/div/nobr[contains(text(),'250000176')]")));
-		for(int i=0;i<add_Invoices_From_PopUp.size();i++) {
-			add_Invoices_From_PopUp = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy
-					(By.xpath("//table[@class='listTable']//tbody/tr/td[contains(@class,'OBGridCell')]/div/nobr[contains(text(),'250000176')]")));
-			add_Invoices_From_PopUp.get(i).click();
-		}
-		
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@class='OBFormButton' and contains(text(),'Done')]"))).click();
-		
-		//select the latest payment
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='efinDocumentNo']"))).sendKeys("250000171");
-		
-		List<WebElement> payment_Sequence_Number = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//td[contains(@class,'OBGridCell')]/div/nobr[text()='250000171']/ancestor::td/following-sibling::td[2]\r\n"
-				+ "")));
-		
-		WebElement maxElement = payment_Sequence_Number.stream().filter(e -> !e.getText().trim().isEmpty())
-				.max(Comparator.comparingInt(e -> Integer.parseInt(e.getText().trim()))).orElse(null);
-		if (maxElement != null) {
-		    maxElement.click();
+		InvoiceLocators RDVInv = new InvoiceLocators(driver, wait, action);
+		invDocNumber = RDVInv.getDocNumber(extPenaltyDeductionTxrnId);
+		RDVInv.login("4350143", "12");
+		RDVInv.openWindow("Purchase Invoice");
+		RDVInv.documentNoFilter("T-1001964");
+		/*
+		 * RDVInv.mofRequestNumber("0", "T-1001964");
+		 * RDVInv.description("Automation Testing"); if(isTaxPO=false) {
+		 * RDVInv.enterTaxDetails(data.get("taxMethod"),"Purchase Invoice"); }
+		 * RDVInv.enterNoClaimDetails(currentDate);
+		 * RDVInv.enterSupplierInvNumberAndDate(currentDate); RDVInv.saveHeader();
+		 * RDVInv.undoIcon(); if(isTaxPO=false) { RDVInv.addTaxLines(); }
+		 */
+		Thread.sleep(3000);
+		// Data Needed for Invoice
+		penaltyName = data.get("10% Penalty Name");
+		revenueAccount = data.get("Revenue Account");
+		externalPenaltyName = data.get("External Penalty Name");
+		externalPenaltySupplierName = data.get("External Penalty Supplier Name");
+		boolean amountValidations = RDVInv.amountValidations("EA964554483548649A3D4E43976B9825", "T-1001964", Deduction,
+				penaltyName, revenueAccount, externalPenaltyName, externalPenaltySupplierName, isTaxPO);
+		Assert.assertTrue(amountValidations, "Amount validation failed");
+		RDVInv.submitOrApprove();
+
+		SubmitMessageresult = RDVInv.submitMessageValidation(poDocNumber, "Purchase Invoice",
+				"InvoiceWithExternalPenaltyDeduction", invDocNumber);
+		submitMessageSuccessResult = (boolean) SubmitMessageresult.get("submitMessageSuccess");
+		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
+		if (submitMessageSuccessResult) {
+			submitMessageSuccess = true;
 		} else {
-		    System.out.println("No payment Sequence is present");
+			submitMessageSuccess = false;
+			System.out.println("Expected 'Success' but got: " + actualMessageForSubmittext);
+			Assert.fail("Expected 'Success' but got: " + actualMessageForSubmittext);
 		}
-		
-		//Post
-		WebElement post_Button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//td[@class='OBToolbarTextButton' and (contains(text(),'Post'))])[2]")));
-		action.moveToElement(post_Button).click().build().perform();
-		Thread.sleep(2000);
-		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("OBClassicPopup_iframe")));
-		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.name("process")));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[.='OK']"))).click();
-		driver.switchTo().defaultContent();
-		
-		
-		
+		RDVInv.logout();
+
+		invDocNumber = RDVInv.getDocNumber(extPenaltyDeductionTxrnId);
+
+		approvalresult = RDVInv.invoiceApproval(poDocNumber, invDocNumber);
+		submitMessageSuccessResult = (boolean) approvalresult.get("submitMessageSuccessResult");
+		actualMessageForSubmittext = (String) SubmitMessageresult.get("actualMessageForSubmittext[1]");
+
+		if (submitMessageSuccessResult) {
+			submitMessageSuccess = true;
+		} else {
+			submitMessageSuccess = false;
+			System.out.println("Expected 'Success' but got: " + actualMessageForSubmittext);
+			Assert.fail("Expected 'Success' but got: " + actualMessageForSubmittext);
+		}
+
 	}
 
 }

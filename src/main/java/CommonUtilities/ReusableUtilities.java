@@ -343,5 +343,41 @@ public class ReusableUtilities {
 		driver.switchTo().defaultContent();
 		Thread.sleep(3000);
 	}
+	
+	public void enterTaxDetails(String taxName,String windowname) throws InterruptedException {
+		// Tax Method
+		for (int i = 0; i < 3; i++) {
+			try {
+				WebElement isTaxLine = wait.until(ExpectedConditions.elementToBeClickable(
+						By.xpath("//div[@class='OBFormFieldLabel' and text()='Is Tax Line']/span")));
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", isTaxLine);
+				isTaxLine.click();
+				break;
+			} catch (Exception e) {
+				Thread.sleep(500);
+			}
+		}
+
+		for (int i = 0; i < 3; i++) {
+			try {
+				WebElement taxMethod;
+				if(windowname.equalsIgnoreCase("Purchase Order And Contracts Summary")) {
+					 taxMethod = wait
+							.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='escmTaxMethod']")));
+					 taxMethod.sendKeys(taxName);
+				}else if(windowname.equalsIgnoreCase("Purchase Invoice")) {
+					 taxMethod = wait
+							.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='efinTaxMethod']")));
+					 taxMethod.sendKeys(taxName);
+				}		
+				
+				Thread.sleep(1500);
+				action.sendKeys(Keys.ENTER).build().perform();
+				break;
+			} catch (Exception e) {
+				Thread.sleep(500);
+			}
+		}
+	}
 
 }

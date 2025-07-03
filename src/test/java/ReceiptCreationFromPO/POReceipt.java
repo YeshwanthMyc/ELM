@@ -46,6 +46,9 @@ public class POReceipt extends BaseClass {
 		PO.awardNumber(data.get("awardNumber"));
 		PO.awardDate(currentDate);
 		PO.letterDate(currentDate);
+		if(isTaxPO=true) {
+			PO.enterTaxDetails(data.get("taxMethod"),data.get("poWindowName"));
+		}
 		PO.selectSupplier(data.get("supplierName"));
 		PO.city(data.get("cityName"));
 		PO.MOFDates(currentDate);
