@@ -80,13 +80,13 @@ public class BaseClass {
 	public static String poApprovalType;
 	public static String contractType;
 	public static String txrnType;
-	public static boolean isTaxPO;
+	public static boolean isTaxPO  =Boolean.parseBoolean(System.getProperty("isTaxPO", "true"));;
 
 	public static void poData() {
 		poApprovalType = System.getProperty("POapprovalType", "Single");
 		contractType = System.getProperty("contractType", "Amt");
 		txrnType = System.getProperty("txrnType", "Project Receiving");
-		isTaxPO =Boolean.parseBoolean(System.getProperty("isTaxPO", "true"));
+		
 	}
 
 	// Receipt Data
