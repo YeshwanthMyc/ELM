@@ -49,8 +49,8 @@ public class RDVInvoiceWithAllDeduction extends BaseClass {
 		PO.awardNumber(data.get("awardNumber"));
 		PO.awardDate(BaseClass.currentDate);
 		PO.letterDate(currentDate);
-		System.out.println(isTaxPO);
-		if(isTaxPO=true) {
+		//System.out.println(isTaxPO);
+		if(isTaxPO==true) {
 			PO.enterTaxDetails(data.get("taxMethod"),data.get("poWindowName"));
 		}
 		PO.selectSupplier(data.get("supplierName"));
@@ -303,7 +303,7 @@ public class RDVInvoiceWithAllDeduction extends BaseClass {
 		RDVInv.documentNoFilter(invDocNumber);
 		RDVInv.mofRequestNumber(data.get("mofRequestNo"), invDocNumber);
 		RDVInv.description("Automation Testing");
-		if(isTaxPO=false) {
+		if(isTaxPO==false) {
 			RDVInv.enterTaxDetails(data.get("taxMethod"),"Purchase Invoice");
 		}
 		
@@ -311,7 +311,7 @@ public class RDVInvoiceWithAllDeduction extends BaseClass {
 		RDVInv.enterSupplierInvNumberAndDate(currentDate);
 		RDVInv.saveHeader();
 		RDVInv.undoIcon();
-		if(isTaxPO=false) {
+		if(isTaxPO==false) {
 			RDVInv.addTaxLines();
 		}	
 		Thread.sleep(3000);
