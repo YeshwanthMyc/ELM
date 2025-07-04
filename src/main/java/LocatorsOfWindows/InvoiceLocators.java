@@ -237,7 +237,7 @@ public class InvoiceLocators extends ReusableUtilities {
 				+ externalBusinessPartnerName + "')");
 
 		if (Deduction.equalsIgnoreCase("None") || Deduction.equalsIgnoreCase("Hold")) {
-			if(isTaxPO=false) {
+			if(isTaxPO==false) {
 				if (netMatchAmount > 0 && mainLineAmt > 0 && taxLine > 0) {
 					if (netMatchAmount == mainLineAmt && taxLine == mainLineAmt * 0.15) {
 						amountValidations = true;
@@ -245,7 +245,7 @@ public class InvoiceLocators extends ReusableUtilities {
 				}
 			}
 			
-			if(isTaxPO=true) {
+			if(isTaxPO==true) {
 				if (netMatchAmount > 0 && mainLineAmt > 0 && taxLine > 0) {
 					if(mainLineAmt==roundTwoDecimals(netMatchAmount/1.15) && taxLine==roundTwoDecimals(mainLineAmt * 0.15)) {
 						amountValidations = true;
@@ -255,7 +255,7 @@ public class InvoiceLocators extends ReusableUtilities {
 			
 
 		} else if (Deduction.equalsIgnoreCase("Penalty")) {
-			if(isTaxPO=false) {
+			if(isTaxPO==false) {
 				if (mainLineAmt > 0 && netMatchAmount > 0 && penaltyAmt > 0 && taxLine > 0) {
 					if (mainLineAmt == netMatchAmount + penaltyAmt && -penaltyLineAmt == penaltyAmt
 							&& taxLine == netMatchAmount * 0.15) {
@@ -263,7 +263,7 @@ public class InvoiceLocators extends ReusableUtilities {
 					}
 				}
 			}
-			if(isTaxPO=true) {
+			if(isTaxPO==true) {
 				if (mainLineAmt > 0 && netMatchAmount > 0 && penaltyAmt > 0 && taxLine > 0) {
 					if((mainLineAmt==roundTwoDecimals((netMatchAmount/1.15)+penaltyAmt)) && -penaltyLineAmt == penaltyAmt
 							&& taxLine==roundTwoDecimals((netMatchAmount/1.15)*0.15)) {
@@ -274,7 +274,7 @@ public class InvoiceLocators extends ReusableUtilities {
 			
 
 		} else if (Deduction.equalsIgnoreCase("External Penalty")) {
-			if(isTaxPO=false) {
+			if(isTaxPO==false) {
 				if (mainLineAmt > 0 && netMatchAmount > 0 && externalPenaltyAmt > 0 && lineExternalPenaltyAmt > 0
 						&& taxLine > 0 && extPenaltytaxLine > 0) {
 					if (mainLineAmt == netMatchAmount && externalPenaltyAmt == lineExternalPenaltyAmt
@@ -283,7 +283,7 @@ public class InvoiceLocators extends ReusableUtilities {
 					}
 				}
 			}
-			if(isTaxPO=true) {
+			if(isTaxPO==true) {
 				if (mainLineAmt > 0 && netMatchAmount > 0 && externalPenaltyAmt > 0 && lineExternalPenaltyAmt > 0
 						&& taxLine > 0 && extPenaltytaxLine > 0) {
 					System.out.println(roundTwoDecimals(netMatchAmount/1.15));
@@ -300,7 +300,7 @@ public class InvoiceLocators extends ReusableUtilities {
 			
 
 		} else if (Deduction.equalsIgnoreCase("All Deductions")) {
-			if(isTaxPO=false) {
+			if(isTaxPO==false) {
 				if (mainLineAmt > 0 && lineExternalPenaltyAmt > 0 && taxLine > 0 && extPenaltytaxLine > 0
 						&& penaltyAmt > 0) {
 					if (mainLineAmt == netMatchAmount + penaltyAmt && externalPenaltyAmt == lineExternalPenaltyAmt
@@ -310,7 +310,7 @@ public class InvoiceLocators extends ReusableUtilities {
 					}
 				}
 			}
-			if(isTaxPO=true) {
+			if(isTaxPO==true) {
 				if(mainLineAmt > 0 && lineExternalPenaltyAmt > 0 && taxLine > 0 && extPenaltytaxLine > 0
 						&& penaltyAmt > 0) {
 					if(mainLineAmt==roundTwoDecimals((netMatchAmount/1.15)+penaltyAmt) && lineExternalPenaltyAmt==roundTwoDecimals(externalPenaltyAmt/1.15)
