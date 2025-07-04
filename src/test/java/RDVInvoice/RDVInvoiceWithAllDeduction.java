@@ -49,6 +49,7 @@ public class RDVInvoiceWithAllDeduction extends BaseClass {
 		PO.awardNumber(data.get("awardNumber"));
 		PO.awardDate(BaseClass.currentDate);
 		PO.letterDate(currentDate);
+		System.out.println(isTaxPO);
 		if(isTaxPO=true) {
 			PO.enterTaxDetails(data.get("taxMethod"),data.get("poWindowName"));
 		}
